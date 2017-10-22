@@ -579,3 +579,13 @@ body {
     .todo-list-footer .btn {
       border-radius: .4rem; }
   
+
+.alert-danger{
+  color:#a94442
+}
+
+.alert-success{
+  color:#3c763d
+}
+
+

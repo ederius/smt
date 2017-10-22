@@ -1,3 +1,63 @@
-<p>
-  pines works!
-</p>
+<div class="card">
+  <div class="card-block">
+    <h3 class="text-center titulo ">Generar pín</h3>
+
+        <p class="grey-text">
+          Este módulo fue creado con el fin de generar pin únicos, para poder tener acceso por medio de estos, a los
+          formularios de inscripciones para aspirar a un cupo dentro del centro de enseñanza Happy kids.
+        </p>
+        <p class="grey-text">
+          En el siguiente formulario ingrese el numero de cedula, nombres y apellidos de un acudiente del niño.
+        </p>
+        
+        <form name="form" id="formulario" [formGroup]="forma" (ngSubmit)="generarPin()">
+
+          <div class="form-group row">
+            <label for="cedula" class="col-2 col-form-label">Cedula:</label>
+            <div class="col-4">
+              <input class="form-control" type="number" id="cedula" formControlName="cedula" placeholder="Cedula">
+            </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="nombres" class="col-2 col-form-label">Nombres:</label>
+              <div class="col-4">
+                <input class="form-control" type="text" id="nombres" formControlName="nombres" placeholder="Nombres">
+              </div>
+          </div>
+
+            <div class="form-group row">
+                <label for="Apellidos" class="col-2 col-form-label">Apellidos:</label>
+                <div class="col-4">
+                  <input class="form-control" type="text" id="Apellidos" formControlName="apellidos" placeholder="Apellidos">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Apellidos" class="col-2 col-form-label">Teléfono:</label>
+                <div class="col-4">
+                  <input class="form-control" type="number" id="telefono" formControlName="telefono" placeholder="Teléfono">
+                </div>
+            </div>
+
+            <div *ngIf="result" class="alert alert-success text-center" role="alert">
+                {{result}}!!
+            </div>
+            <div *ngIf="error" class="alert alert-danger text-center" role="alert">
+                {{error}}!!
+            </div>
+
+            <div class="text-center boton">
+              <button class="btn btn-success" type="submit" [disabled]="forma?.invalid">
+                Generar <i class="fa fa-refresh" aria-hidden="true" ></i>
+              </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+  <script src="../controller/Pin/pin.js"></script>

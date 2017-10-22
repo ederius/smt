@@ -10,7 +10,9 @@ import { AdmitidosComponent } from './components/admitidos/admitidos.component';
 import { MatriculadosComponent } from './components/matriculados/matriculados.component';
 import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 import { AdministradoresComponent } from './components/administradores/administradores.component';
+import { RegisterUserComponent } from "./components/register-user/register-user.component";
 
+import { GuardiaService } from "./services/guardia.service";
 
 const ROUTES: Routes = [
   { path: 'panel', component: PanelComponent,
@@ -24,9 +26,11 @@ const ROUTES: Routes = [
       { path: 'transacciones', component:TransaccionesComponent },
       { path: 'administradores', component:AdministradoresComponent },
       
-    ]
+    ],
+    canActivate: [ GuardiaService ]
 },
   { path: 'login', component: LoginComponent },
+  { path: 'registrar-usuario', component: RegisterUserComponent },  
   { path: '**', pathMatch: 'full', redirectTo:'login' }
 ];
 
