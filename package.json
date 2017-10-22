@@ -24,7 +24,12 @@
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "fontawesome": "^4.7.2",
+    "jquery": "^3.2.1",
+    "popper": "^1.0.0",
+    "popper.js": "^1.11.0",
+    "query": "^0.2.0",
     "rxjs": "^5.4.2",
+    "tether": "^1.4.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

@@ -1,0 +1,451 @@
+
+> wd@1.4.1 install C:\Users\Yuyutocu\Desktop\smt\node_modules\wd
+> node scripts/build-browser-scripts
+
+
+> ngrok@2.2.22 postinstall C:\Users\Yuyutocu\Desktop\smt\node_modules\ngrok
+> node ./postinstall.js
+
+ngrok - downloading binary https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-386.zip
+ngrok - downloading progress: 0/5140478[2K[1Gngrok - downloading progress: 12457/5140478[2K[1Gngrok - downloading progress: 28841/5140478[2K[1Gngrok - downloading progress: 45225/5140478[2K[1Gngrok - downloading progress: 53001/5140478[2K[1Gngrok - downloading progress: 69385/5140478[2K[1Gngrok - downloading progress: 85769/5140478[2K[1Gngrok - downloading progress: 92097/5140478[2K[1Gngrok - downloading progress: 108481/5140478[2K[1Gngrok - downloading progress: 118161/5140478[2K[1Gngrok - downloading progress: 134545/5140478[2K[1Gngrok - downloading progress: 150929/5140478[2K[1Gngrok - downloading progress: 155809/5140478[2K[1Gngrok - downloading progress: 172193/5140478[2K[1Gngrok - downloading progress: 188577/5140478[2K[1Gngrok - downloading progress: 204961/5140478[2K[1Gngrok - downloading progress: 206489/5140478[2K[1Gngrok - downloading progress: 222873/5140478[2K[1Gngrok - downloading progress: 239257/5140478[2K[1Gngrok - downloading progress: 255641/5140478[2K[1Gngrok - downloading progress: 264409/5140478[2K[1Gngrok - downloading progress: 280793/5140478[2K[1Gngrok - downloading progress: 297177/5140478[2K[1Gngrok - downloading progress: 304953/5140478[2K[1Gngrok - downloading progress: 321337/5140478[2K[1Gngrok - downloading progress: 337721/5140478[2K[1Gngrok - downloading progress: 344049/5140478[2K[1Gngrok - downloading progress: 360433/5140478[2K[1Gngrok - downloading progress: 376817/5140478[2K[1Gngrok - downloading progress: 387489/5140478[2K[1Gngrok - downloading progress: 403873/5140478[2K[1Gngrok - downloading progress: 420257/5140478[2K[1Gngrok - downloading progress: 436641/5140478[2K[1Gngrok - downloading progress: 453025/5140478[2K[1Gngrok - downloading progress: 469409/5140478[2K[1Gngrok - downloading progress: 485793/5140478[2K[1Gngrok - downloading progress: 485953/5140478[2K[1Gngrok - downloading progress: 502337/5140478[2K[1Gngrok - downloading progress: 518721/5140478[2K[1Gngrok - downloading progress: 535105/5140478[2K[1Gngrok - downloading progress: 551113/5140478[2K[1Gngrok - downloading progress: 567497/5140478[2K[1Gngrok - downloading progress: 574281/5140478[2K[1Gngrok - downloading progress: 590665/5140478[2K[1Gngrok - downloading progress: 607049/5140478[2K[1Gngrok - downloading progress: 620617/5140478[2K[1Gngrok - downloading progress: 637001/5140478[2K[1Gngrok - downloading progress: 653385/5140478[2K[1Gngrok - downloading progress: 669769/5140478[2K[1Gngrok - downloading progress: 682881/5140478[2K[1Gngrok - downloading progress: 699265/5140478[2K[1Gngrok - downloading progress: 715649/5140478[2K[1Gngrok - downloading progress: 716185/5140478[2K[1Gngrok - downloading progress: 732569/5140478[2K[1Gngrok - downloading progress: 748953/5140478[2K[1Gngrok - downloading progress: 765337/5140478[2K[1Gngrok - downloading progress: 772657/5140478[2K[1Gngrok - downloading progress: 789041/5140478[2K[1Gngrok - downloading progress: 805425/5140478[2K[1Gngrok - downloading progress: 821809/5140478[2K[1Gngrok - downloading progress: 837817/5140478[2K[1Gngrok - downloading progress: 854201/5140478[2K[1Gngrok - downloading progress: 865329/5140478[2K[1Gngrok - downloading progress: 881713/5140478[2K[1Gngrok - downloading progress: 898097/5140478[2K[1Gngrok - downloading progress: 914481/5140478[2K[1Gngrok - downloading progress: 923249/5140478[2K[1Gngrok - downloading progress: 939633/5140478[2K[1Gngrok - downloading progress: 956017/5140478[2K[1Gngrok - downloading progress: 972401/5140478[2K[1Gngrok - downloading progress: 988785/5140478[2K[1Gngrok - downloading progress: 1001441/5140478[2K[1Gngrok - downloading progress: 1017825/5140478[2K[1Gngrok - downloading progress: 1034209/5140478[2K[1Gngrok - downloading progress: 1050593/5140478[2K[1Gngrok - downloading progress: 1066977/5140478[2K[1Gngrok - downloading progress: 1081081/5140478[2K[1Gngrok - downloading progress: 1097465/5140478[2K[1Gngrok - downloading progress: 1098457/5140478[2K[1Gngrok - downloading progress: 1114841/5140478[2K[1Gngrok - downloading progress: 1131225/5140478[2K[1Gngrok - downloading progress: 1147609/5140478[2K[1Gngrok - downloading progress: 1163617/5140478[2K[1Gngrok - downloading progress: 1180001/5140478[2K[1Gngrok - downloading progress: 1196385/5140478[2K[1Gngrok - downloading progress: 1212769/5140478[2K[1Gngrok - downloading progress: 1228777/5140478[2K[1Gngrok - downloading progress: 1245161/5140478[2K[1Gngrok - downloading progress: 1261545/5140478[2K[1Gngrok - downloading progress: 1266425/5140478[2K[1Gngrok - downloading progress: 1282809/5140478[2K[1Gngrok - downloading progress: 1299193/5140478[2K[1Gngrok - downloading progress: 1315577/5140478[2K[1Gngrok - downloading progress: 1331961/5140478[2K[1Gngrok - downloading progress: 1334481/5140478[2K[1Gngrok - downloading progress: 1350865/5140478[2K[1Gngrok - downloading progress: 1367249/5140478[2K[1Gngrok - downloading progress: 1383633/5140478[2K[1Gngrok - downloading progress: 1400017/5140478[2K[1Gngrok - downloading progress: 1416401/5140478[2K[1Gngrok - downloading progress: 1424257/5140478[2K[1Gngrok - downloading progress: 1440641/5140478[2K[1Gngrok - downloading progress: 1457025/5140478[2K[1Gngrok - downloading progress: 1473409/5140478[2K[1Gngrok - downloading progress: 1489417/5140478[2K[1Gngrok - downloading progress: 1502449/5140478[2K[1Gngrok - downloading progress: 1518833/5140478[2K[1Gngrok - downloading progress: 1535217/5140478[2K[1Gngrok - downloading progress: 1551601/5140478[2K[1Gngrok - downloading progress: 1567985/5140478[2K[1Gngrok - downloading progress: 1574849/5140478[2K[1Gngrok - downloading progress: 1591233/5140478[2K[1Gngrok - downloading progress: 1607617/5140478[2K[1Gngrok - downloading progress: 1624001/5140478[2K[1Gngrok - downloading progress: 1640385/5140478[2K[1Gngrok - downloading progress: 1656769/5140478[2K[1Gngrok - downloading progress: 1668969/5140478[2K[1Gngrok - downloading progress: 1685353/5140478[2K[1Gngrok - downloading progress: 1701737/5140478[2K[1Gngrok - downloading progress: 1718121/5140478[2K[1Gngrok - downloading progress: 1726889/5140478[2K[1Gngrok - downloading progress: 1743273/5140478[2K[1Gngrok - downloading progress: 1750057/5140478[2K[1Gngrok - downloading progress: 1766441/5140478[2K[1Gngrok - downloading progress: 1782825/5140478[2K[1Gngrok - downloading progress: 1799209/5140478[2K[1Gngrok - downloading progress: 1815593/5140478[2K[1Gngrok - downloading progress: 1831977/5140478[2K[1Gngrok - downloading progress: 1839833/5140478[2K[1Gngrok - downloading progress: 1856217/5140478[2K[1Gngrok - downloading progress: 1872601/5140478[2K[1Gngrok - downloading progress: 1888985/5140478[2K[1Gngrok - downloading progress: 1905369/5140478[2K[1Gngrok - downloading progress: 1913681/5140478[2K[1Gngrok - downloading progress: 1930065/5140478[2K[1Gngrok - downloading progress: 1946449/5140478[2K[1Gngrok - downloading progress: 1951329/5140478[2K[1Gngrok - downloading progress: 1967713/5140478[2K[1Gngrok - downloading progress: 1984097/5140478[2K[1Gngrok - downloading progress: 2000481/5140478[2K[1Gngrok - downloading progress: 2016865/5140478[2K[1Gngrok - downloading progress: 2033249/5140478[2K[1Gngrok - downloading progress: 2049633/5140478[2K[1Gngrok - downloading progress: 2054137/5140478[2K[1Gngrok - downloading progress: 2070521/5140478[2K[1Gngrok - downloading progress: 2086905/5140478[2K[1Gngrok - downloading progress: 2103289/5140478[2K[1Gngrok - downloading progress: 2119673/5140478[2K[1Gngrok - downloading progress: 2123641/5140478[2K[1Gngrok - downloading progress: 2140025/5140478[2K[1Gngrok - downloading progress: 2145361/5140478[2K[1Gngrok - downloading progress: 2161745/5140478[2K[1Gngrok - downloading progress: 2178129/5140478[2K[1Gngrok - downloading progress: 2194513/5140478[2K[1Gngrok - downloading progress: 2210897/5140478[2K[1Gngrok - downloading progress: 2227281/5140478[2K[1Gngrok - downloading progress: 2243665/5140478[2K[1Gngrok - downloading progress: 2252513/5140478[2K[1Gngrok - downloading progress: 2268897/5140478[2K[1Gngrok - downloading progress: 2285281/5140478[2K[1Gngrok - downloading progress: 2294505/5140478[2K[1Gngrok - downloading progress: 2310889/5140478[2K[1Gngrok - downloading progress: 2327273/5140478[2K[1Gngrok - downloading progress: 2336497/5140478[2K[1Gngrok - downloading progress: 2352881/5140478[2K[1Gngrok - downloading progress: 2369265/5140478[2K[1Gngrok - downloading progress: 2385649/5140478[2K[1Gngrok - downloading progress: 2402033/5140478[2K[1Gngrok - downloading progress: 2418417/5140478[2K[1Gngrok - downloading progress: 2432065/5140478[2K[1Gngrok - downloading progress: 2448449/5140478[2K[1Gngrok - downloading progress: 2464833/5140478[2K[1Gngrok - downloading progress: 2481217/5140478[2K[1Gngrok - downloading progress: 2484193/5140478[2K[1Gngrok - downloading progress: 2500577/5140478[2K[1Gngrok - downloading progress: 2516961/5140478[2K[1Gngrok - downloading progress: 2533345/5140478[2K[1Gngrok - downloading progress: 2547905/5140478[2K[1Gngrok - downloading progress: 2564289/5140478[2K[1Gngrok - downloading progress: 2580673/5140478[2K[1Gngrok - downloading progress: 2597057/5140478[2K[1Gngrok - downloading progress: 2613441/5140478[2K[1Gngrok - downloading progress: 2629825/5140478[2K[1Gngrok - downloading progress: 2646209/5140478[2K[1Gngrok - downloading progress: 2662297/5140478[2K[1Gngrok - downloading progress: 2678681/5140478[2K[1Gngrok - downloading progress: 2695065/5140478[2K[1Gngrok - downloading progress: 2711449/5140478[2K[1Gngrok - downloading progress: 2718769/5140478[2K[1Gngrok - downloading progress: 2735153/5140478[2K[1Gngrok - downloading progress: 2751537/5140478[2K[1Gngrok - downloading progress: 2767921/5140478[2K[1Gngrok - downloading progress: 2784305/5140478[2K[1Gngrok - downloading progress: 2800689/5140478[2K[1Gngrok - downloading progress: 2817073/5140478[2K[1Gngrok - downloading progress: 2821577/5140478[2K[1Gngrok - downloading progress: 2837961/5140478[2K[1Gngrok - downloading progress: 2854345/5140478[2K[1Gngrok - downloading progress: 2857777/5140478[2K[1Gngrok - downloading progress: 2874161/5140478[2K[1Gngrok - downloading progress: 2890545/5140478[2K[1Gngrok - downloading progress: 2906929/5140478[2K[1Gngrok - downloading progress: 2922937/5140478[2K[1Gngrok - downloading progress: 2939321/5140478[2K[1Gngrok - downloading progress: 2955705/5140478[2K[1Gngrok - downloading progress: 2972089/5140478[2K[1Gngrok - downloading progress: 2988473/5140478[2K[1Gngrok - downloading progress: 3004857/5140478[2K[1Gngrok - downloading progress: 3021241/5140478[2K[1Gngrok - downloading progress: 3037625/5140478[2K[1Gngrok - downloading progress: 3046017/5140478[2K[1Gngrok - downloading progress: 3062401/5140478[2K[1Gngrok - downloading progress: 3078785/5140478[2K[1Gngrok - downloading progress: 3095169/5140478[2K[1Gngrok - downloading progress: 3111177/5140478[2K[1Gngrok - downloading progress: 3127561/5140478[2K[1Gngrok - downloading progress: 3143945/5140478[2K[1Gngrok - downloading progress: 3160329/5140478[2K[1Gngrok - downloading progress: 3176713/5140478[2K[1Gngrok - downloading progress: 3183577/5140478[2K[1Gngrok - downloading progress: 3199961/5140478[2K[1Gngrok - downloading progress: 3216345/5140478[2K[1Gngrok - downloading progress: 3232729/5140478[2K[1Gngrok - downloading progress: 3249113/5140478[2K[1Gngrok - downloading progress: 3265497/5140478[2K[1Gngrok - downloading progress: 3281881/5140478[2K[1Gngrok - downloading progress: 3292177/5140478[2K[1Gngrok - downloading progress: 3308561/5140478[2K[1Gngrok - downloading progress: 3324945/5140478[2K[1Gngrok - downloading progress: 3341329/5140478[2K[1Gngrok - downloading progress: 3341409/5140478[2K[1Gngrok - downloading progress: 3357793/5140478[2K[1Gngrok - downloading progress: 3374177/5140478[2K[1Gngrok - downloading progress: 3390561/5140478[2K[1Gngrok - downloading progress: 3406945/5140478[2K[1Gngrok - downloading progress: 3423329/5140478[2K[1Gngrok - downloading progress: 3425393/5140478[2K[1Gngrok - downloading progress: 3441777/5140478[2K[1Gngrok - downloading progress: 3458161/5140478[2K[1Gngrok - downloading progress: 3474545/5140478[2K[1Gngrok - downloading progress: 3490929/5140478[2K[1Gngrok - downloading progress: 3507313/5140478[2K[1Gngrok - downloading progress: 3523697/5140478[2K[1Gngrok - downloading progress: 3529649/5140478[2K[1Gngrok - downloading progress: 3546033/5140478[2K[1Gngrok - downloading progress: 3562417/5140478[2K[1Gngrok - downloading progress: 3578801/5140478[2K[1Gngrok - downloading progress: 3595185/5140478[2K[1Gngrok - downloading progress: 3611569/5140478[2K[1Gngrok - downloading progress: 3625217/5140478[2K[1Gngrok - downloading progress: 3639697/5140478[2K[1Gngrok - downloading progress: 3656081/5140478[2K[1Gngrok - downloading progress: 3672465/5140478[2K[1Gngrok - downloading progress: 3688849/5140478[2K[1Gngrok - downloading progress: 3705233/5140478[2K[1Gngrok - downloading progress: 3721617/5140478[2K[1Gngrok - downloading progress: 3738001/5140478[2K[1Gngrok - downloading progress: 3754385/5140478[2K[1Gngrok - downloading progress: 3755537/5140478[2K[1Gngrok - downloading progress: 3771921/5140478[2K[1Gngrok - downloading progress: 3788305/5140478[2K[1Gngrok - downloading progress: 3804689/5140478[2K[1Gngrok - downloading progress: 3821073/5140478[2K[1Gngrok - downloading progress: 3837457/5140478[2K[1Gngrok - downloading progress: 3853841/5140478[2K[1Gngrok - downloading progress: 3870225/5140478[2K[1Gngrok - downloading progress: 3886609/5140478[2K[1Gngrok - downloading progress: 3893097/5140478[2K[1Gngrok - downloading progress: 3900337/5140478[2K[1Gngrok - downloading progress: 3916721/5140478[2K[1Gngrok - downloading progress: 3933105/5140478[2K[1Gngrok - downloading progress: 3949489/5140478[2K[1Gngrok - downloading progress: 3965873/5140478[2K[1Gngrok - downloading progress: 3975633/5140478[2K[1Gngrok - downloading progress: 3992017/5140478[2K[1Gngrok - downloading progress: 4008401/5140478[2K[1Gngrok - downloading progress: 4024785/5140478[2K[1Gngrok - downloading progress: 4041169/5140478[2K[1Gngrok - downloading progress: 4057553/5140478[2K[1Gngrok - downloading progress: 4073937/5140478[2K[1Gngrok - downloading progress: 4090321/5140478[2K[1Gngrok - downloading progress: 4095817/5140478[2K[1Gngrok - downloading progress: 4112201/5140478[2K[1Gngrok - downloading progress: 4128585/5140478[2K[1Gngrok - downloading progress: 4144969/5140478[2K[1Gngrok - downloading progress: 4146497/5140478[2K[1Gngrok - downloading progress: 4162881/5140478[2K[1Gngrok - downloading progress: 4179265/5140478[2K[1Gngrok - downloading progress: 4195649/5140478[2K[1Gngrok - downloading progress: 4212033/5140478[2K[1Gngrok - downloading progress: 4226137/5140478[2K[1Gngrok - downloading progress: 4242521/5140478[2K[1Gngrok - downloading progress: 4258905/5140478[2K[1Gngrok - downloading progress: 4275289/5140478[2K[1Gngrok - downloading progress: 4291673/5140478[2K[1Gngrok - downloading progress: 4308057/5140478[2K[1Gngrok - downloading progress: 4324441/5140478[2K[1Gngrok - downloading progress: 4340825/5140478[2K[1Gngrok - downloading progress: 4356457/5140478[2K[1Gngrok - downloading progress: 4372841/5140478[2K[1Gngrok - downloading progress: 4389225/5140478[2K[1Gngrok - downloading progress: 4405609/5140478[2K[1Gngrok - downloading progress: 4421993/5140478[2K[1Gngrok - downloading progress: 4438377/5140478[2K[1Gngrok - downloading progress: 4454761/5140478[2K[1Gngrok - downloading progress: 4471145/5140478[2K[1Gngrok - downloading progress: 4486777/5140478[2K[1Gngrok - downloading progress: 4503161/5140478[2K[1Gngrok - downloading progress: 4519545/5140478[2K[1Gngrok - downloading progress: 4535929/5140478[2K[1Gngrok - downloading progress: 4546145/5140478[2K[1Gngrok - downloading progress: 4562529/5140478[2K[1Gngrok - downloading progress: 4578913/5140478[2K[1Gngrok - downloading progress: 4595297/5140478[2K[1Gngrok - downloading progress: 4611681/5140478[2K[1Gngrok - downloading progress: 4617097/5140478[2K[1Gngrok - downloading progress: 4633481/5140478[2K[1Gngrok - downloading progress: 4649865/5140478[2K[1Gngrok - downloading progress: 4666249/5140478[2K[1Gngrok - downloading progress: 4682257/5140478[2K[1Gngrok - downloading progress: 4698641/5140478[2K[1Gngrok - downloading progress: 4715025/5140478[2K[1Gngrok - downloading progress: 4731409/5140478[2K[1Gngrok - downloading progress: 4747793/5140478[2K[1Gngrok - downloading progress: 4764177/5140478[2K[1Gngrok - downloading progress: 4774929/5140478[2K[1Gngrok - downloading progress: 4791313/5140478[2K[1Gngrok - downloading progress: 4807697/5140478[2K[1Gngrok - downloading progress: 4824081/5140478[2K[1Gngrok - downloading progress: 4840465/5140478[2K[1Gngrok - downloading progress: 4856849/5140478[2K[1Gngrok - downloading progress: 4867601/5140478[2K[1Gngrok - downloading progress: 4883985/5140478[2K[1Gngrok - downloading progress: 4900369/5140478[2K[1Gngrok - downloading progress: 4916753/5140478[2K[1Gngrok - downloading progress: 4933137/5140478[2K[1Gngrok - downloading progress: 4949521/5140478[2K[1Gngrok - downloading progress: 4963169/5140478[2K[1Gngrok - downloading progress: 4979553/5140478[2K[1Gngrok - downloading progress: 4995937/5140478[2K[1Gngrok - downloading progress: 5012321/5140478[2K[1Gngrok - downloading progress: 5028705/5140478[2K[1Gngrok - downloading progress: 5037017/5140478[2K[1Gngrok - downloading progress: 5053401/5140478[2K[1Gngrok - downloading progress: 5069785/5140478[2K[1Gngrok - downloading progress: 5086169/5140478[2K[1Gngrok - downloading progress: 5100729/5140478[2K[1Gngrok - downloading progress: 5117113/5140478[2K[1Gngrok - downloading progress: 5133497/5140478[2K[1Gngrok - downloading progress: 5140478/5140478
+ngrok - binary downloaded to C:\Users\Yuyutocu\.ngrok\aHR0cHM6Ly9iaW4uZXF1aW5veC5pby9jLzRWbUR6QTdpYUhiL25ncm9rLXN0YWJsZS13aW5kb3dzLTM4Ni56aXA=.zip
+ngrok - unpacking binary
+ngrok - binary unpacked to C:\Users\Yuyutocu\Desktop\smt\node_modules\ngrok\bin\ngrok.exe
+smt@0.0.0 C:\Users\Yuyutocu\Desktop\smt
++-- popper@1.0.0 
+| +-- browser-icons@0.0.1 
+| | +-- icon-android@0.0.1 
+| | +-- icon-chrome@0.0.1 
+| | +-- icon-firefox@0.0.1 
+| | +-- icon-ie@0.0.1 
+| | +-- icon-ios@0.0.1 
+| | +-- icon-linux@0.0.1 
+| | +-- icon-opera@0.0.1 
+| | +-- icon-osx@0.0.1 
+| | +-- icon-safari@0.0.1 
+| | `-- icon-windows@0.0.1 
+| +-- browserify@12.0.2 
+| | +-- assert@1.3.0 
+| | +-- browser-pack@6.0.2 
+| | | +-- combine-source-map@0.7.2 
+| | | | +-- convert-source-map@1.1.3 
+| | | | +-- inline-source-map@0.6.2 
+| | | | `-- lodash.memoize@3.0.4 
+| | | `-- umd@3.0.1 
+| | +-- browser-resolve@1.11.2 
+| | | `-- resolve@1.1.7 
+| | +-- buffer@3.6.0 
+| | | +-- base64-js@0.0.8 
+| | | `-- isarray@1.0.0 
+| | +-- concat-stream@1.5.2 
+| | | +-- readable-stream@2.0.6 
+| | | | `-- isarray@1.0.0 
+| | | `-- typedarray@0.0.6 
+| | +-- deps-sort@2.0.0 
+| | +-- duplexer2@0.1.4 
+| | | `-- readable-stream@2.3.3 
+| | |   +-- isarray@1.0.0 
+| | |   `-- string_decoder@1.0.3 
+| | +-- glob@5.0.15 
+| | +-- htmlescape@1.1.1 
+| | +-- insert-module-globals@7.0.1 
+| | | `-- lexical-scope@1.2.0 
+| | |   `-- astw@2.2.0 
+| | |     `-- acorn@4.0.13 
+| | +-- JSONStream@1.3.1 
+| | | `-- jsonparse@1.3.1 
+| | +-- labeled-stream-splicer@2.0.0 
+| | | `-- stream-splicer@2.0.0 
+| | |   `-- readable-stream@2.3.3 
+| | |     +-- isarray@1.0.0 
+| | |     `-- string_decoder@1.0.3 
+| | +-- module-deps@4.1.1 
+| | | +-- cached-path-relative@1.0.1 
+| | | +-- detective@4.5.0 
+| | | | `-- acorn@4.0.13 
+| | | +-- readable-stream@2.3.3 
+| | | | +-- isarray@1.0.0 
+| | | | `-- string_decoder@1.0.3 
+| | | `-- stream-combiner2@1.1.1 
+| | |   `-- readable-stream@2.3.3 
+| | |     +-- isarray@1.0.0 
+| | |     `-- string_decoder@1.0.3 
+| | +-- os-browserify@0.1.2 
+| | +-- parents@1.0.1 
+| | | `-- path-platform@0.11.15 
+| | +-- read-only-stream@2.0.0 
+| | | `-- readable-stream@2.3.3 
+| | |   +-- isarray@1.0.0 
+| | |   `-- string_decoder@1.0.3 
+| | +-- readable-stream@2.3.3 
+| | | +-- isarray@1.0.0 
+| | | `-- string_decoder@1.0.3 
+| | +-- shasum@1.0.2 
+| | | `-- json-stable-stringify@0.0.1 
+| | +-- shell-quote@1.6.1 
+| | | +-- array-filter@0.0.1 
+| | | +-- array-map@0.0.0 
+| | | `-- array-reduce@0.0.0 
+| | +-- subarg@1.0.0 
+| | | `-- minimist@1.2.0 
+| | +-- syntax-error@1.3.0 
+| | | `-- acorn@4.0.13 
+| | +-- through2@2.0.3 
+| | | `-- readable-stream@2.3.3 
+| | |   +-- isarray@1.0.0 
+| | |   `-- string_decoder@1.0.3 
+| | `-- timers-browserify@1.4.2 
+| +-- chai@4.1.2 
+| | +-- assertion-error@1.0.2 
+| | +-- check-error@1.0.2 
+| | +-- deep-eql@3.0.1 
+| | +-- get-func-name@2.0.0 
+| | +-- pathval@1.1.0 
+| | `-- type-detect@4.0.3 
+| +-- mocha@3.5.3 
+| | +-- browser-stdout@1.3.0 
+| | +-- commander@2.9.0 
+| | | `-- graceful-readlink@1.0.1 
+| | +-- debug@2.6.8 
+| | +-- diff@3.2.0 
+| | +-- glob@7.1.1 
+| | +-- growl@1.9.2 
+| | +-- lodash.create@3.1.1 
+| | | +-- lodash._baseassign@3.2.0 
+| | | | +-- lodash._basecopy@3.0.1 
+| | | | `-- lodash.keys@3.1.2 
+| | | |   +-- lodash._getnative@3.9.1 
+| | | |   +-- lodash.isarguments@3.1.0 
+| | | |   `-- lodash.isarray@3.0.4 
+| | | +-- lodash._basecreate@3.0.3 
+| | | `-- lodash._isiterateecall@3.0.9 
+| | `-- supports-color@3.1.2 
+| +-- ngrok@2.2.22 
+| | +-- @types/node@8.0.31 
+| | +-- decompress-zip@0.3.0 
+| | | +-- binary@0.3.0 
+| | | | +-- buffers@0.1.1 
+| | | | `-- chainsaw@0.1.0 
+| | | |   `-- traverse@0.3.9 
+| | | +-- mkpath@0.1.0 
+| | | +-- nopt@3.0.6 
+| | | +-- readable-stream@1.1.14 
+| | | `-- touch@0.0.3 
+| | |   `-- nopt@1.0.10 
+| | `-- lock@0.1.4 
+| +-- platform@1.3.4 
+| +-- rijs@0.7.1 
+| | +-- accepts@1.3.3 
+| | +-- after@0.8.2 
+| | +-- ansi-regex@2.0.0 
+| | +-- ansi-styles@2.2.1 
+| | +-- anymatch@1.3.0 
+| | +-- arr-diff@2.0.0 
+| | +-- arr-flatten@1.0.1 
+| | +-- array-flatten@1.1.1 
+| | +-- array-unique@0.2.1 
+| | +-- arraybuffer.slice@0.0.6 
+| | +-- arrify@1.0.1 
+| | +-- asn1@0.2.3 
+| | +-- assert-plus@0.2.0 
+| | +-- async-each@1.0.1 
+| | +-- asynckit@0.4.0 
+| | +-- aws-sign2@0.6.0 
+| | +-- aws4@1.5.0 
+| | +-- backo2@1.0.2 
+| | +-- balanced-match@0.4.2 
+| | +-- base64-arraybuffer@0.1.5 
+| | +-- base64id@1.0.0 
+| | +-- bcrypt-pbkdf@1.0.0 
+| | +-- better-assert@1.0.2 
+| | +-- bignumber.js@2.4.0 
+| | +-- binary-extensions@1.8.0 
+| | +-- blob@0.0.4 
+| | +-- boom@2.10.1 
+| | +-- brace-expansion@1.1.6 
+| | +-- braces@1.8.5 
+| | +-- buffer-shims@1.0.0 
+| | +-- bytes@2.3.0 
+| | +-- callsite@1.0.0 
+| | +-- caseless@0.11.0 
+| | +-- chalk@1.1.3 
+| | +-- chokidar@1.6.1 
+| | +-- colors@1.1.2 
+| | +-- combined-stream@1.0.5 
+| | +-- commander@2.9.0 
+| | +-- component-bind@1.0.0 
+| | +-- component-emitter@1.1.2 
+| | +-- component-inherit@0.0.3 
+| | +-- compressible@2.0.9 
+| | +-- compression@1.6.2 
+| | +-- concat-map@0.0.1 
+| | +-- content-disposition@0.5.1 
+| | +-- content-type@1.0.2 
+| | +-- cookie@0.3.1 
+| | +-- cookie-parser@1.4.3 
+| | +-- cookie-signature@1.0.6 
+| | +-- core-util-is@1.0.2 
+| | +-- cryptiles@2.0.5 
+| | +-- cssscope@0.0.1 
+| | +-- dashdash@1.14.1 
+| | | `-- assert-plus@1.0.0 
+| | +-- debug@2.2.0 
+| | +-- delayed-stream@1.0.0 
+| | +-- depd@1.1.0 
+| | +-- destroy@1.0.4 
+| | +-- ecc-jsbn@0.1.1 
+| | +-- ee-first@1.1.1 
+| | +-- encodeurl@1.0.1 
+| | +-- engine.io@1.8.2 
+| | | +-- debug@2.3.3 
+| | | `-- ms@0.7.2 
+| | +-- engine.io-client@1.8.2 
+| | | +-- component-emitter@1.2.1 
+| | | +-- debug@2.3.3 
+| | | `-- ms@0.7.2 
+| | +-- engine.io-parser@1.3.2 
+| | +-- escape-html@1.0.3 
+| | +-- escape-string-regexp@1.0.5 
+| | +-- etag@1.7.0 
+| | +-- expand-brackets@0.1.5 
+| | +-- expand-range@1.8.2 
+| | +-- express@4.14.0 
+| | | `-- qs@6.2.0 
+| | +-- extend@3.0.0 
+| | +-- extglob@0.3.2 
+| | +-- extsprintf@1.0.2 
+| | +-- filename-regex@2.0.0 
+| | +-- fill-range@2.2.3 
+| | +-- finalhandler@0.5.0 
+| | +-- for-in@0.1.6 
+| | +-- for-own@0.1.4 
+| | +-- forever-agent@0.6.1 
+| | +-- form-data@2.1.2 
+| | +-- forwarded@0.1.0 
+| | +-- fresh@0.3.0 
+| | +-- generate-function@2.0.0 
+| | +-- generate-object-property@1.2.0 
+| | +-- getpass@0.1.6 
+| | | `-- assert-plus@1.0.0 
+| | +-- glob-base@0.3.0 
+| | +-- glob-parent@2.0.0 
+| | +-- graceful-fs@4.1.11 
+| | +-- graceful-readlink@1.0.1 
+| | +-- har-validator@2.0.6 
+| | +-- has-ansi@2.0.0 
+| | +-- has-binary@0.1.7 
+| | +-- has-cors@1.1.0 
+| | +-- hawk@3.1.3 
+| | +-- hoek@2.16.3 
+| | +-- http-errors@1.5.1 
+| | +-- http-signature@1.1.1 
+| | +-- indexof@0.0.1 
+| | +-- inherits@2.0.3 
+| | +-- ipaddr.js@1.1.1 
+| | +-- is-binary-path@1.0.1 
+| | +-- is-buffer@1.1.4 
+| | +-- is-dotfile@1.0.2 
+| | +-- is-equal-shallow@0.1.3 
+| | +-- is-extendable@0.1.1 
+| | +-- is-extglob@1.0.0 
+| | +-- is-glob@2.0.1 
+| | +-- is-my-json-valid@2.15.0 
+| | +-- is-number@2.1.0 
+| | +-- is-posix-bracket@0.1.1 
+| | +-- is-primitive@2.0.0 
+| | +-- is-property@1.0.2 
+| | +-- is-typedarray@1.0.0 
+| | +-- isarray@0.0.1 
+| | +-- isobject@2.1.0 
+| | | `-- isarray@1.0.0 
+| | +-- isstream@0.1.2 
+| | +-- jodid25519@1.0.2 
+| | +-- jsbn@0.1.0 
+| | +-- json-schema@0.2.3 
+| | +-- json-stringify-safe@5.0.1 
+| | +-- json3@3.3.2 
+| | +-- jsonpointer@4.0.0 
+| | +-- jsprim@1.3.1 
+| | +-- kind-of@3.1.0 
+| | +-- media-typer@0.3.0 
+| | +-- merge-descriptors@1.0.1 
+| | +-- methods@1.1.2 
+| | +-- micromatch@2.3.11 
+| | +-- mime@1.3.4 
+| | +-- mime-db@1.25.0 
+| | +-- mime-types@2.1.13 
+| | +-- minimatch@3.0.3 
+| | +-- minimist@1.2.0 
+| | +-- ms@0.7.1 
+| | +-- mysql@2.12.0 
+| | +-- negotiator@0.6.1 
+| | +-- normalize-path@2.0.1 
+| | +-- oauth-sign@0.8.2 
+| | +-- object-assign@4.1.0 
+| | +-- object-component@0.0.3 
+| | +-- object.omit@2.0.1 
+| | +-- on-finished@2.3.0 
+| | +-- on-headers@1.0.1 
+| | +-- options@0.0.6 
+| | +-- parse-glob@3.0.4 
+| | +-- parsejson@0.0.3 
+| | +-- parseqs@0.0.5 
+| | +-- parseuri@0.0.5 
+| | +-- parseurl@1.3.1 
+| | +-- path-is-absolute@1.0.1 
+| | +-- path-to-regexp@0.1.7 
+| | +-- pinkie@2.0.4 
+| | +-- pinkie-promise@2.0.1 
+| | +-- preserve@0.2.0 
+| | +-- process-nextick-args@1.0.7 
+| | +-- proxy-addr@1.1.2 
+| | +-- punycode@1.4.1 
+| | +-- qs@6.3.0 
+| | +-- randomatic@1.1.6 
+| | +-- range-parser@1.2.0 
+| | +-- readable-stream@1.1.14 
+| | +-- readdirp@2.1.0 
+| | | +-- isarray@1.0.0 
+| | | `-- readable-stream@2.2.2 
+| | +-- regex-cache@0.4.3 
+| | +-- repeat-element@1.1.2 
+| | +-- repeat-string@1.6.1 
+| | +-- request@2.79.0 
+| | +-- rijs.backpressure@0.1.6 
+| | +-- rijs.components@0.1.1 
+| | +-- rijs.core@0.0.17 
+| | +-- rijs.css@0.0.3 
+| | +-- rijs.data@0.1.3 
+| | +-- rijs.db@0.1.7 
+| | +-- rijs.delay@0.0.6 
+| | +-- rijs.features@0.1.0 
+| | +-- rijs.fn@0.0.7 
+| | +-- rijs.helpers@0.0.11 
+| | +-- rijs.html@0.0.3 
+| | +-- rijs.hypermedia@0.0.5 
+| | +-- rijs.mysql@1.1.0 
+| | +-- rijs.needs@0.0.6 
+| | +-- rijs.offline@0.0.5 
+| | +-- rijs.pages@1.0.0 
+| | +-- rijs.precss@0.0.18 
+| | +-- rijs.prehtml@0.0.5 
+| | +-- rijs.reactive@0.0.6 
+| | +-- rijs.resdir@0.2.1 
+| | +-- rijs.serve@0.7.0 
+| | +-- rijs.sessions@0.0.6 
+| | +-- rijs.shadow@0.0.8 
+| | +-- rijs.singleton@0.0.4 
+| | +-- rijs.sync@0.4.0 
+| | +-- rijs.versioned@0.0.3 
+| | +-- send@0.14.1 
+| | +-- serve-static@1.11.1 
+| | +-- set-immediate-shim@1.0.1 
+| | +-- setprototypeof@1.0.2 
+| | +-- sntp@1.0.9 
+| | +-- socket.io@1.7.2 
+| | | +-- debug@2.3.3 
+| | | `-- ms@0.7.2 
+| | +-- socket.io-adapter@0.5.0 
+| | | +-- debug@2.3.3 
+| | | `-- ms@0.7.2 
+| | +-- socket.io-client@1.7.2 
+| | | +-- component-emitter@1.2.1 
+| | | +-- debug@2.3.3 
+| | | `-- ms@0.7.2 
+| | +-- socket.io-parser@2.3.1 
+| | +-- sqlstring@2.2.0 
+| | +-- sshpk@1.10.1 
+| | | `-- assert-plus@1.0.0 
+| | +-- statuses@1.3.1 
+| | +-- string_decoder@0.10.31 
+| | +-- stringstream@0.0.5 
+| | +-- strip-ansi@3.0.1 
+| | +-- supports-color@2.0.0 
+| | +-- through@2.3.8 
+| | +-- to-array@0.1.4 
+| | +-- tough-cookie@2.3.2 
+| | +-- tunnel-agent@0.4.3 
+| | +-- tweetnacl@0.14.5 
+| | +-- type-is@1.6.14 
+| | +-- ultron@1.0.2 
+| | +-- unpipe@1.0.0 
+| | +-- util-deprecate@1.0.2 
+| | +-- utilise@1.1.15 
+| | +-- utils-merge@1.0.0 
+| | +-- uuid@3.0.1 
+| | +-- vary@1.1.0 
+| | +-- verror@1.3.6 
+| | +-- ws@1.1.1 
+| | +-- wtf-8@1.0.0 
+| | +-- xmlhttprequest-ssl@1.5.3 
+| | +-- xtend@4.0.1 
+| | `-- yeast@0.1.2 
+| +-- rijs.resdir@1.1.0 
+| | `-- minimist@1.2.0 
+| +-- utilise@2.1.4 
+| | `-- uglify-es@3.1.3 
+| `-- wd@1.4.1 
+|   +-- archiver@1.3.0 
+|   | +-- archiver-utils@1.3.0 
+|   | | +-- lazystream@1.0.0 
+|   | | | `-- readable-stream@2.3.3 
+|   | | |   +-- isarray@1.0.0 
+|   | | |   `-- string_decoder@1.0.3 
+|   | | `-- readable-stream@2.3.3 
+|   | |   +-- isarray@1.0.0 
+|   | |   `-- string_decoder@1.0.3 
+|   | +-- buffer-crc32@0.2.13 
+|   | +-- readable-stream@2.3.3 
+|   | | +-- isarray@1.0.0 
+|   | | `-- string_decoder@1.0.3 
+|   | +-- tar-stream@1.5.4 
+|   | | +-- bl@1.2.1 
+|   | | | `-- readable-stream@2.3.3 
+|   | | |   +-- isarray@1.0.0 
+|   | | |   `-- string_decoder@1.0.3 
+|   | | +-- end-of-stream@1.4.0 
+|   | | `-- readable-stream@2.3.3 
+|   | |   +-- isarray@1.0.0 
+|   | |   `-- string_decoder@1.0.3 
+|   | +-- walkdir@0.0.11 
+|   | `-- zip-stream@1.2.0 
+|   |   +-- compress-commons@1.2.0 
+|   |   | +-- crc32-stream@2.0.0 
+|   |   | | +-- crc@3.5.0 
+|   |   | | `-- readable-stream@2.3.3 
+|   |   | |   +-- isarray@1.0.0 
+|   |   | |   `-- string_decoder@1.0.3 
+|   |   | `-- readable-stream@2.3.3 
+|   |   |   +-- isarray@1.0.0 
+|   |   |   `-- string_decoder@1.0.3 
+|   |   `-- readable-stream@2.3.3 
+|   |     +-- isarray@1.0.0 
+|   |     `-- string_decoder@1.0.3 
+|   +-- async@2.0.1 
+|   +-- lodash@4.16.2 
+|   +-- q@1.4.1 
+|   +-- request@2.79.0 
+|   | +-- aws-sign2@0.6.0 
+|   | +-- caseless@0.11.0 
+|   | +-- form-data@2.1.4 
+|   | +-- har-validator@2.0.6 
+|   | | +-- chalk@1.1.3 
+|   | | | `-- supports-color@2.0.0 
+|   | | `-- is-my-json-valid@2.16.1 
+|   | |   +-- generate-function@2.0.0 
+|   | |   +-- generate-object-property@1.2.0 
+|   | |   | `-- is-property@1.0.2 
+|   | |   `-- jsonpointer@4.0.1 
+|   | +-- hawk@3.1.3 
+|   | | +-- boom@2.10.1 
+|   | | +-- cryptiles@2.0.5 
+|   | | +-- hoek@2.16.3 
+|   | | `-- sntp@1.0.9 
+|   | +-- http-signature@1.1.1 
+|   | | `-- assert-plus@0.2.0 
+|   | +-- qs@6.3.2 
+|   | `-- tunnel-agent@0.4.3 
+|   +-- underscore.string@3.3.4 
+|   `-- vargs@0.1.0 
+`-- UNMET PEER DEPENDENCY popper.js@^1.11.0
+
