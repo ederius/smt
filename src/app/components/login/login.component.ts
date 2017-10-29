@@ -50,21 +50,23 @@ export class LoginComponent implements OnInit {
           
         })
         .catch(error=>{
-
+          console.log(error);
           switch (error.code) {
-            case "auth/email-already-in-use":
-              this.loginError = "Correo ya registrado"
+            case "auth/user-not-found":
+              this.loginError = "Correo no registrado"
               break;
-            case "auth/weak-password":
-              this.loginError = "Contraseña muy debil, minimo debe tener 6 caracteres"
+            case "auth/wrong-password":
+              this.loginError = "Contrasena invalida"
               break;
             case "auth/invalid-email":
               this.loginError = "Formato de correo invalido"
               break;
+            case "auth/too-many-requests":
+              this.loginError= "Has sido bloqueado por seguridad, vuelve a intentarlo mas tarde!  "
           
             default:
               break;
-          }    
+          }             
         
         });
     

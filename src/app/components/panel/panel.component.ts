@@ -12,9 +12,6 @@ export class PanelComponent implements OnInit{
 
   constructor(private _auht:AutenticacionService, private router:Router) {
 
-    if(!this._auht.currentUser){
-      this.router.navigate(['/login']);
-    }  
 
    }
 

@@ -4,19 +4,16 @@ import { AutenticacionService } from "./autenticacion.service";
 
 
 @Injectable()
-export class GuardiaService implements CanActivate {
+export class GuardiaPinService implements CanActivate {
 
   constructor(private _auth:AutenticacionService) { }
 
   canActivate(next:ActivatedRouteSnapshot, state:RouterStateSnapshot){
-
-    if (this._auth.currentUser) {
-      console.log("paso");
+    
+    if (localStorage.sesionPin) {
       return true;
     }else{   
-      console.log("no paso");
-      //return false;
-      return true;
+      return false;
     }
   }
 
