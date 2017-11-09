@@ -23,8 +23,6 @@ export class RegisterUserComponent implements OnInit {
         'contrasena': new FormControl('', [Validators.required, Validators.minLength(6)]),
       });
 
-
-
    }
 
   ngOnInit() {

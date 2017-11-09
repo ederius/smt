@@ -24,7 +24,7 @@ export class PinesService {
   }
 
   guardarPin(campos){
-    campos.creado = `${moment().format('l')}, ${moment().format('LTS')}`
+    campos.creado = moment().format(); //obteniendo fecha y hora actual  
     this.db.database.ref(`pines/${campos.pin}`).set(campos);
   }
 

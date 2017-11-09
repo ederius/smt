@@ -21,7 +21,7 @@ import { PinesService } from "./services/pines.service";
 import { StoreFileService } from "./services/store-file.service";
 import { PinComponent } from './components/pin/pin.component';
 import { GuardiaPinService } from "./services/guardia-pin.service";
-
+import { InscripcionesService } from "./services/inscripciones.service";
 
 //rutas - routes // componentes (ROUTES_APP)
 import { routedComponents, ROUTES_APP } from "./routes";
@@ -63,7 +63,8 @@ import { PinHeaderComponent } from './components/shared/pin-header/pin-header.co
     GuardiaService,
     PinesService,
     StoreFileService,
-    GuardiaPinService  
+    GuardiaPinService,
+    InscripcionesService  
   ],
   bootstrap: [AppComponent]
 })

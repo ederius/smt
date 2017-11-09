@@ -1,0 +1,20 @@
+
+.site-title{
+    margin: 12px;
+}
+
+.header{
+    background-color: #7376df;
+    color: white;
+    margin-bottom: 10px;
+    padding-left: 20px;
+
+}
+
+.username{
+    color: white;
+}
+
+.rol{
+    color:black !important
+}

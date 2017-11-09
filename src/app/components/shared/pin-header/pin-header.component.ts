@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-pin-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PinHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  cerrarSesion(){
+
+    //borrando datos de sesion
+    localStorage.sesionPin = "";
+    this.router.navigate(['/pin/login']);
+
   }
 
 }

@@ -1,14 +1,27 @@
-<div class="col s12 center valign-wrapper" aligns="center ">
-  <div class="card col s10 valign">
-    <div class="card-content ">
-      <h5>CENTRO DE ENSEÑANZA Y ESTIMULACIÓN HAPPY KIDS</h5>
-      <P>Licencia de funncionamiento mediante resolución N° 416 de 2011 </P>
-      <p>NIVELES MATERNAL, PREESCOLAR Y PRIMARIA</p>
+<section class="container">
+    <div class="jumbotron text-center">
+      <h4 class="text-center">CENTRO DE ENSEÑANZA Y ESTIMULACIÓN HAPPY KIDS</h4>
+      <small class="text-center">Licencia de funncionamiento mediante resolución N° 416 de 2011 </small>
+      <p class="text-center">NIVELES MATERNAL, PREESCOLAR Y PRIMARIA</p>
       <hr>
-      <P>"ATENCION INTEGRAL PARA POTENCIAR VALORES, CAPACIDADES Y HABILIDADES DE NIÑOS Y NIÑAS"</P>
+      <P class="text-center">"ATENCION INTEGRAL PARA POTENCIAR VALORES, CAPACIDADES Y HABILIDADES DE NIÑOS Y NIÑAS"</P>
       <hr>
-      <br>
-      <H4>FORMATO DE INSCRIPCIÓN</H4>
+      <h5 class="text-center">FORMATO DE INSCRIPCIÓN</h5>
+    </div>
+</section>
+
+<section class="offset-lg-1 col-lg-10">
+  <div class="card">
+    <div class="card-content">
+      <form (ngSubmit)="guardarInscripcion()" [formGroup]="forma">
+
+          <div class="form-group">
+            <input type="text" placeholder="Nombres" formControlName="nombres">
+          </div>
+
+          <input type="submit" value="Guardar" [disabled]="forma.invalid">
+        
+      </form>
     </div>
   </div>
-</div>
+</section>
