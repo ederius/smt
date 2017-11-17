@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InicioComponent } from './inicio.component';
+import { InicioComponent } from './panel-inicio.component';
 
 describe('InicioComponent', () => {
   let component: InicioComponent;

@@ -9,11 +9,11 @@ import { PinesService } from "../../services/pines.service";
 import { StoreFileService } from "../../services/store-file.service";
 
 @Component({
-  selector: 'app-pines',
-  templateUrl: './pines.component.html',
-  styleUrls: ['./pines.component.css']
+  selector: 'app-panel-pines-generar',
+  templateUrl: './panel-pines-generar.component.html',
+  styleUrls: ['./panel-pines-generar.component.css']
 })
-export class PinesComponent implements OnInit {
+export class PanelPinesGenerarComponent implements OnInit {
 
   forma:FormGroup;
   result:string;

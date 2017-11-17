@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdmitidosComponent } from './admitidos.component';
+import { AdmitidosComponent } from './panel-admitidos-ver.component';
 
 describe('AdmitidosComponent', () => {
   let component: AdmitidosComponent;

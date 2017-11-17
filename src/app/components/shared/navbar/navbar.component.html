@@ -1,24 +1,44 @@
       
-    <nav class="sidebar col-xs-3 col-sm-3 col-lg-3 col-xl-2">
+    <nav class="navbar-toggleable-sm sidebar col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
           
       <h1 class="site-title text-center"><a><em class="fa fa-graduation-cap fa-2x"> </em> SMT</a>
         <br>
         <small class="text-center ">Students Management Toll</small>
       </h1>
       
-      <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
-        
+      <a href="" class="btn btn-default" id="menu-toggle" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><em class="fa fa-bars"></em></a>
+      <div class="collapse navbar-collapse" id="navbarNav">        
         <ul class="nav nav-pills flex-column sidebar-nav">
-            <li class="nav-item" ><a class="nav-link" [routerLink]="['inicio']" routerLinkActive="active" ><em class="fa fa-home"></em> Inicio <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['pines']" routerLinkActive="active" ><em class="fa fa-file-code-o"></em> Pines <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['inscritos']" routerLinkActive="active" ><em class="fa fa-address-card"></em> Inscritos <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['admitidos']" routerLinkActive="active" ><em class="fa fa-address-card-o"></em> Admitidos <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['matriculados']" routerLinkActive="active" ><em class="fa fa-folder-o"></em> Matriculados <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['transacciones']" routerLinkActive="active" ><em class="fa fa-exchange"></em> Transacciones <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['administradores']" routerLinkActive="active" ><em class="fa fa-user-o"></em> Administradores <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item" ><a class="nav-link" [routerLink]="['inicio']" routerLinkActive="active" ><em class="fa fa-home"></em> <strong>Inicio</strong> </a></li>
+
+            <li class="nav-item" data-toggle="collapse" href="#pines-submenu"><a class="nav-link"><em class="fa fa-file-code-o"></em> <strong>Pines</strong> <i class="float-right fa fa-sort-desc" aria-hidden="true"></i></a></li>
+            <div class="submenu collapse"  id="pines-submenu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['generar-pin']" routerLinkActive="active"> Generar Pin</a></li>
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['pines-generados']" routerLinkActive="active"> Pines Generados</a></li>
+            </div>
+
+            <li class="nav-item" data-toggle="collapse" href="#inscritos-submenu"><a class="nav-link" ><em class="fa fa-address-card"></em> <strong>Inscritos</strong> <i class="float-right fa fa-sort-desc" aria-hidden="true"></i></a></li>
+            <div class="submenu collapse"  id="inscritos-submenu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['inscritos']" routerLinkActive="active"> Inscritos</a></li>
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['asignar-entrevistas']" routerLinkActive="active"> Asignar entrevistas</a></li>
+            </div>
+            
+            <li class="nav-item" data-toggle="collapse" href="#admitidos-submenu"><a class="nav-link" ><em class="fa fa-address-card-o"></em> <strong>Admitidos</strong> <i class="float-right fa fa-sort-desc" aria-hidden="true"></i></a></li>
+            <div class="submenu collapse"  id="admitidos-submenu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['ver-admitidos']" routerLinkActive="active"> Ver admitidos</a></li>
+            </div>
+            
+            <li class="nav-item" ><a class="nav-link" [routerLink]="['matriculados']" routerLinkActive="active" ><em class="fa fa-folder-o"></em> <strong>Matriculados</strong> </a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['transacciones']" routerLinkActive="active" ><em class="fa fa-exchange"></em> <strong>Transacciones</strong> </a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['administradores']" routerLinkActive="active" ><em class="fa fa-user-o"></em> <strong>Administradores</strong> </a></li>
+
+
+            <li class="nav-item logout-button" (click)="cerrarSesion()"><a class="nav-link" ><em class="fa fa-power-off"></em> Salir </a></li>
+            
         </ul>
 
-        <a href="#" class="logout-button" (click)="cerrarSesion()"><em class="fa fa-power-off"></em> Salir</a>
-    
+
+        
+        </div>
     </nav>
    

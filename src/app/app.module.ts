@@ -12,7 +12,6 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 
 //Environment variables - variables de entorno
 import { environment } from '../environments/environment';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 // services - servicios
 import { GuardiaService } from "./services/guardia.service";
@@ -41,8 +40,7 @@ import { PinHeaderComponent } from './components/shared/pin-header/pin-header.co
     NavbarComponent,
     HeaderComponent,
     PinComponent,
-    PinHeaderComponent,
-
+    PinHeaderComponent
 
   ],
   imports: [

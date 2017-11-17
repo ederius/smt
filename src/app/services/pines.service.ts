@@ -12,11 +12,7 @@ export class PinesService {
   pines: AngularFireList<Pin[]>;
   pin: AngularFireObject<Pin[]>;
   
-  constructor(private db: AngularFireDatabase) { 
-
-
-
-  }
+  constructor(private db: AngularFireDatabase) {  }
 
  generarPin(cc:any){
      cc = parseInt(cc);

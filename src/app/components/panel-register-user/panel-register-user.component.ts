@@ -5,11 +5,11 @@ import { AutenticacionService } from "../../services/autenticacion.service";
 
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css']
+  selector: 'app-panel-register-user',
+  templateUrl: './panel-register-user.component.html',
+  styleUrls: ['./panel-register-user.component.css']
 })
-export class RegisterUserComponent implements OnInit {
+export class PanelRegisterUserComponent implements OnInit {
   
   forma:FormGroup;
   loginError:string;

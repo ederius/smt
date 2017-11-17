@@ -277,10 +277,7 @@ body {
     .sidebar .nav-link {
       border-radius: 0; }
     .sidebar .logout-button {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      width: 85%;
+      margin-top: 150px;
       text-align: center;
       border-radius: .3rem; }
   
@@ -295,7 +292,7 @@ body {
   .sidebar a:focus, .sidebar a:visited, .sidebar a:hover, .sidebar a:active {
     background-color: #6365d2 !important; }
   
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 768px) {
     #wrapper .sidebar-nav {
       display: none; }
   
@@ -309,7 +306,7 @@ body {
   
     #menu-toggle {
       background-color: #6365d2; } }
-  @media screen and (min-width: 576px) {
+  @media screen and (min-width: 768px) {
     #wrapper.toggled .sidebar-nav {
       display: block; }
   

@@ -5,11 +5,11 @@ import { AutenticacionService } from "../../services/autenticacion.service";
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-panel-login',
+  templateUrl: './panel-login.component.html',
+  styleUrls: ['./panel-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class PanelLoginComponent implements OnInit {
 
   forma:FormGroup;
   loginError:string;
