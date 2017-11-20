@@ -15,7 +15,6 @@ export class GuardiaService implements CanActivate {
       return true;
     }else{   
       console.log("no paso");
-      //return false;
       return true;
     }
   }

@@ -585,4 +585,20 @@ body {
   color:#3c763d
 }
 
+.sidebar{
+  overflow: hidden;
+}
 
+.titulo{
+  margin-top: 2%;
+  margin-bottom: 2%; 
+}
+
+.option{
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+ul.nav {
+  width: 100%;
+}

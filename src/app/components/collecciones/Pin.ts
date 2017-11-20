@@ -3,6 +3,10 @@ export class Pin {
     cedula:number;
     nombres:string;
     apellidos:string;
-    telefono:number;    
+    telefono:number; 
+    estado:number;
+    creado:Date;
+    actualizado:Date;
+    pin:string;   
 
 }

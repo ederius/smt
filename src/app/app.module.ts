@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { PinHeaderComponent } from './components/shared/pin-header/pin-header.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 
 
@@ -40,7 +41,8 @@ import { PinHeaderComponent } from './components/shared/pin-header/pin-header.co
     NavbarComponent,
     HeaderComponent,
     PinComponent,
-    PinHeaderComponent
+    PinHeaderComponent,
+    ReversePipe
 
   ],
   imports: [

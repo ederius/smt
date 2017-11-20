@@ -59,57 +59,57 @@ export class AutenticacionService{
     return this.authenticated ? this.authState.uid : '';
   }
 
-    // Sends email allowing user to reset password
-    resetPassword(email: string) {
-      var auth = firebase.auth();
-  
-      return auth.sendPasswordResetEmail(email)
-        .then(() => console.log("email sent"))
-        .catch((error) => console.log(error))
-    }
-  
-  
-    //// Sign Out ////
-    CerrarSession() {
-      return this.afAuth.auth.signOut().then(data=>{
-        return data;
-      }).catch(error=>{
-        return error;
-      });
-    }
+  // Sends email allowing user to reset password
+  resetPassword(email: string) {
+    var auth = firebase.auth();
 
-    usuarioActualPin(){
-      let pin = JSON.parse(localStorage.sesionPin);
-      return pin;
-    }
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
+  }
 
-    verificarSesionActivaPin(){
-      
-      if(localStorage.sesionPin){
 
-        let sesion = JSON.parse(localStorage.sesionPin);
-          switch (sesion.estado) {
-            case 1:
-            this.router.navigate(['/pin/inscripciones']);
-            break;
-            case 2:
-            this.router.navigate(['/pin/entrevistas']);
-            break;
-            case 3:
-            this.router.navigate(['/pin/admitidos']);
-            break;
-            case 4:
-            this.router.navigate(['/pin/matriculados']);
-            break;
-            
-            default:
-            break;
-          }
+  //// Sign Out ////
+  CerrarSession() {
+    return this.afAuth.auth.signOut().then(data=>{
+      return data;
+    }).catch(error=>{
+      return error;
+    });
+  }
 
-        }else{
-          this.router.navigate(['pin/login']);        
+  usuarioActualPin(){
+    let pin = JSON.parse(localStorage.sesionPin);
+    return pin;
+  }
+
+  verificarSesionActivaPin(){
+    
+    if(localStorage.sesionPin){
+
+      let sesion = JSON.parse(localStorage.sesionPin);
+        switch (sesion.estado) {
+          case 1:
+          this.router.navigate(['/pin/inscripciones']);
+          break;
+          case 2:
+          this.router.navigate(['/pin/entrevistas']);
+          break;
+          case 3:
+          this.router.navigate(['/pin/admitidos']);
+          break;
+          case 4:
+          this.router.navigate(['/pin/matriculados']);
+          break;
+          
+          default:
+          break;
         }
-      
-    }
-      
+
+      }else{
+        this.router.navigate(['pin/login']);        
+      }
+    
+  }
+    
 }

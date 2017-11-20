@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Pin } from "../components/collecciones/Pin";
+import * as _ from "lodash";
 import * as moment from "moment";
 import 'moment/locale/es-us';
 moment.locale('es');
@@ -9,8 +10,7 @@ moment.locale('es');
 @Injectable()
 export class PinesService {
 
-  pines: AngularFireList<Pin[]>;
-  pin: AngularFireObject<Pin[]>;
+  pines: Observable<any>; 
   
   constructor(private db: AngularFireDatabase) {  }
 
@@ -25,12 +25,15 @@ export class PinesService {
   }
 
   obtenerPines(){
-    return this.db.database.ref(`pines`).once('value').then(function(data){
-      data = data.val();
-      return data;
-    }).catch(err=>{
-      return err;
+    return this.db.database.ref('pines').once('value').then(function(data){
+      return _.map(data.val());
     });
   }
+
+  listarPines(){
+    return this.db.list('pines').valueChanges()
+  }
+  
+  
 
 }

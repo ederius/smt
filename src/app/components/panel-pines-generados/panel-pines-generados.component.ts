@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PinesService } from "../../services/pines.service";
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-panel-pines-generados',
@@ -15,22 +18,17 @@ export class PanelPinesGeneradosComponent implements OnInit {
     {name:"Por Email", value:4}
   ]; 
 
-  pines:any;
+  pines:Observable<any>;
 
-  constructor(private _pinesServices:PinesService) {
+  constructor(private _pinesServices:PinesService, db:AngularFireDatabase) { 
+    this.pines  = this._pinesServices.listarPines();
+   }
 
-    this.pines = this.consultarPines();
-
-  }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   consultarPines(elementos?:number){
-    return this._pinesServices.obtenerPines().then(function(data) {
-      return data;
-    }).catch(function(error){
-      console.error(error);
-    });
+
+
   }
 
 }
