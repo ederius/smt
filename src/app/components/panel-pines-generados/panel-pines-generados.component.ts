@@ -12,11 +12,17 @@ import * as _ from "lodash";
 export class PanelPinesGeneradosComponent implements OnInit {
 
   ordenar:any=[
+    
+    {name:"Por Cedula", value:"cedula"},    
     {name:"Por Nombres", value:1},
-    {name:"Por Apellidos", value:2},
+    {name:"Por Apellidos", value:"apellidos"},
     {name:"Por Teléfonos", value:3},
-    {name:"Por Email", value:4}
+    {name:"Por Pin", value:4},
+    {name:"Por Redimido", value:4}
+    
   ]; 
+
+  orden:String = "";
 
   pines:Observable<any>;
 
