@@ -13,7 +13,7 @@ export class GuardiaPinService implements CanActivate {
     if (localStorage.sesionPin) {
       return true;
     }else{   
-      return false;
+      return true;
     }
   }
 

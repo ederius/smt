@@ -21,6 +21,7 @@ import { StoreFileService } from "./services/store-file.service";
 import { PinComponent } from './components/pin/pin.component';
 import { GuardiaPinService } from "./services/guardia-pin.service";
 import { InscripcionesService } from "./services/inscripciones.service";
+import { UtilsService } from "./services/utils.service";
 
 //rutas - routes // componentes (ROUTES_APP)
 import { routedComponents, ROUTES_APP } from "./routes";
@@ -32,6 +33,12 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { PinHeaderComponent } from './components/shared/pin-header/pin-header.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 
+//Packeges 
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { OrdenarPipe } from './pipes/ordenar.pipe';
+
+
 
 
 @NgModule({
@@ -42,7 +49,9 @@ import { ReversePipe } from './pipes/reverse.pipe';
     HeaderComponent,
     PinComponent,
     PinHeaderComponent,
-    ReversePipe
+    ReversePipe,
+    SearchPipe,
+    OrdenarPipe
 
   ],
   imports: [
@@ -54,7 +63,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
     AngularFireModule.initializeApp(environment.firebase, 'smt-1'),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    Ng2FilterPipeModule
 
     
   ],
@@ -64,7 +74,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
     PinesService,
     StoreFileService,
     GuardiaPinService,
-    InscripcionesService  
+    InscripcionesService,
+    UtilsService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,15 +8,14 @@
           </div>
           
           <form class="form-signin" novalidate="" [formGroup]="forma" (ngSubmit)="login(forma.value.pin)">
-          <input type="text" class="form-control" name="pin" placeholder="Ingrese su pin" autofocus="">
+          <input type="text" class="form-control" name="pin" formControlName="pin" placeholder="Ingrese su pin" autofocus="">
           <br>
           <div *ngIf="loginError" class="alert alert-danger text-center" role="alert">
               {{loginError}}!!
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="forma.invalid  ">
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="forma.invalid">
               Iniciar Sesión
           </button>
-
           </form>
       </div>
       </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from "angularfire2/database";
+import { Observable } from "rxjs/Observable";
 import * as moment from "moment-timezone";
+import * as _ from "lodash";
 moment.locale('es');
 moment.tz("America/Los_Angeles");
 
@@ -8,7 +10,8 @@ moment.tz("America/Los_Angeles");
 @Injectable()
 export class InscripcionesService {
 
-  constructor(private db:AngularFireDatabase) { }
+  constructor(private db:AngularFireDatabase) {
+  }
 
 
   guardarInscripcion(forma){
@@ -23,6 +26,13 @@ export class InscripcionesService {
     this.db.database.ref(`inscripciones/${pin}`).set(forma);                              //Guardando datos de inscripcion
     this.db.database.ref(`pines/${pin}`).update({"estado":2, "actualizado":fechaHora});  //Actualizando estado de pin
 
+  }
+
+
+  listarInscritos(){
+    return this.db.database.ref('pines').once('value').then(function(snapshop){
+      return _.map(snapshop.val());
+    });
   }
 
 

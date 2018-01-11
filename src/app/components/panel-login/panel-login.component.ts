@@ -24,7 +24,7 @@ export class PanelLoginComponent implements OnInit {
     });
 
     //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
-    if(this._usuarioService.currentUser){
+    if(!this._usuarioService.currentUser){
       this.router.navigate(['/panel']);
     }  
 

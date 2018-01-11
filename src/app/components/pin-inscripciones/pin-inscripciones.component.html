@@ -1,27 +1,512 @@
 <section class="container">
-    <div class="jumbotron text-center">
-      <h4 class="text-center">CENTRO DE ENSEÑANZA Y ESTIMULACIÓN HAPPY KIDS</h4>
-      <small class="text-center">Licencia de funncionamiento mediante resolución N° 416 de 2011 </small>
-      <p class="text-center">NIVELES MATERNAL, PREESCOLAR Y PRIMARIA</p>
-      <hr>
-      <P class="text-center">"ATENCION INTEGRAL PARA POTENCIAR VALORES, CAPACIDADES Y HABILIDADES DE NIÑOS Y NIÑAS"</P>
-      <hr>
-      <h5 class="text-center">FORMATO DE INSCRIPCIÓN</h5>
-    </div>
+  <div class="jumbotron text-center">
+    <h4 class="text-center">CENTRO DE ENSEÑANZA Y ESTIMULACIÓN HAPPY KIDS</h4>
+    <small class="text-center">Licencia de funncionamiento mediante resolución N° 416 de 2011 </small>
+    <p class="text-center">NIVELES MATERNAL, PREESCOLAR Y PRIMARIA</p>
+    <hr>
+    <P class="text-center">"ATENCION INTEGRAL PARA POTENCIAR VALORES, CAPACIDADES Y HABILIDADES DE NIÑOS Y NIÑAS"</P>
+    <hr>
+    <h5 class="text-center">FORMATO DE INSCRIPCIÓN</h5>
+  </div>
 </section>
 
 <section class="offset-lg-1 col-lg-10">
   <div class="card">
     <div class="card-content">
       <form (ngSubmit)="guardarInscripcion()" [formGroup]="forma">
+        <div class="row">
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <h5 class="subtitulo"> INFORMACIÓN DEL NIÑO(A)</h5>
+            <div class="row">
 
-          <div class="form-group">
-            <input type="text" placeholder="Nombres" formControlName="nombres">
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="id" formControlName="id" placeholder="N. de identificacion">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExp" formControlName="fechaExp" placeholder="Fecha de expedicion de documento">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="nombres" formControlName="nombres" placeholder="Nombres">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="" formControlName="apellidos" placeholder="Apellidos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="lugarN" formControlName="lugarN" placeholder="Lugar de nacimiento">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaN" formControlName="fechaN" placeholder="Fecha de nacimiento">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="direccion" formControlName="direccion" placeholder="Dirección">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="barrio" formControlName="barrio" placeholder="Barrio">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="telefonos" formControlName="telefonos" placeholder="Teléfonos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="colegioPro" formControlName="colegioPro" placeholder="Colegio de procedencia">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="ciudad" formControlName="ciudad" placeholder="Ciudad">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4 text-left">
+                <p>El niño(a) presenta algun tipo de discapacidad</p>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Fisica">
+                  <label> Fisica </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Sensorial">
+                  <label> Sensorial </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Cognitiva">
+                  <label> Cognitiva </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="No">
+                  <label> No </label>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="eps" formControlName="eps" placeholder="EPS">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <select name="viveCPadres" formControlName="viveCPadres" class="form-control">
+                  <option value="">Convive con los padres</option>
+                  <option value="si"> Si </option>
+                  <option value="no"> No </option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="viveCOtros" formControlName="viveCOtros" placeholder="Vive con otro? Con quien (Opcional)">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <select name="estrato" formControlName="estrato" class="form-control">
+                  <option value="">Estracto</option>
+                  <option value="#1"> 1 </option>
+                  <option value="#2"> 2 </option>
+                  <option value="#3"> 3 </option>
+                  <option value="#4"> 4 </option>
+                  <option value="#5"> 5 </option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <select name="sexo" formControlName="sexo" class="form-control">
+                  <option value="">Sexo</option>
+                  <option value="femenino">Femenino</option>
+                  <option value="masculino">Masculino</option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4">
+                <select name="tipoSangre" formControlName="tipoSangre" class="form-control">
+                  <option value=""> Tipo de sangre </option>
+                  <option value="a+"> A+ </option>
+                  <option value="a-"> A- </option>
+                  <option value="b+"> B+ </option>
+                  <option value="ab"> B- </option>
+                  <option value="ab"> AB+ </option>
+                  <option value="ab"> AB- </option>
+                  <option value="ab"> O- </option>
+                  <option value="ab"> O+ </option>
+                  
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4">
+                <select name="jornada" formControlName="jornada" class="form-control">
+                  <option value=""> Jornada </option>
+                  <option value="mañana"> Mañana </option>
+                  <option value="tarde"> Tarde </option>
+                  <option value="continua"> Continua </option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4">
+                <select name="grado" formControlName="grado" class="form-control">
+                  <option value="">Grado</option>
+                  <option value="salacuna"> Sala cuna </option>
+                  <option value="caminadores"> Caminadores </option>
+                  <option value="parvulo"> Parvulo </option>
+                  <option value="pre-jardin"> Pre-jardin </option>
+                  <option value="jardin"> Jardin </option>
+                  <option value="transicion"> Transicion </option>
+                  <option value="primero"> Primero </option>
+                  <option value="segundo"> Segundo </option>
+                  <option value="tercero"> Tercero </option>
+                  <option value="cuarto"> Cuarto </option>
+                  <option value="quinto"> Quinto </option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4">
+                <div class="radio-button text-left">
+                  <p> Indigena </p>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="indigena" formControlName="indigena" value="si">
+                  <label> Si </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="indigena" formControlName="indigena" value="no">
+                  <label> No </label>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="etnia" formControlName="etnia" placeholder="Etnia (Opcional)">
+                </div>
+              </div>
+
+
+
+            </div>
+            <!--DIV DEV ROW -->
+
+
           </div>
+          <!-- DIV DE CAR -->
 
-          <input type="submit" value="Guardar" [disabled]="forma.invalid">
-        
+          <!---Infomacion del padre-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <h5 class="subtitulo"> INFORMACIÓN DEL PADRE</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaPapa" formControlName="cedulaPapa" placeholder="Cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpPapa" formControlName="fechaExpPapa" placeholder="Fecha de expedición de la cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoPapa" formControlName="correoPapa" placeholder="correo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresPapa" formControlName="nombresPapa" placeholder="Nombres">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosPapa" formControlName="apellidosPapa" placeholder="Apellidos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="profesionPapa" formControlName="profesionPapa" placeholder="Profesion">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="LugarTrabajoPapa" formControlName="LugarTrabajoPapa" placeholder="Lugar de trabajo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="cargoPapa" formControlName="cargoPapa" placeholder="Cargo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularPapa" formControlName="celularPapa" placeholder="Telefono">
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Infomacion de la madre-->
+
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo"> INFORMACIÓN DEL MADRE</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaMama" formControlName="cedulaMama" placeholder="Cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpMama" formControlName="fechaExpMama" placeholder="Fecha de expedición de la cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoMama" formControlName="correoMama" placeholder="correo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresMama" formControlName="nombresMama" placeholder="Nombres">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosMama" formControlName="apellidosMama" placeholder="Apellidos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="profesionMama" formControlName="profesionMama" placeholder="Profesion">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="LugarTrabajoMama" formControlName="LugarTrabajoMama" placeholder="Lugar de trabajo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="cargoMama" formControlName="cargoMama" placeholder="Cargo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularMama" formControlName="celularMama" placeholder="Telefono">
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Otras referencias-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo"> OTRAS REFERENCIAS</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaOtraR" formControlName="cedulaOtraR" placeholder="Cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpOtraR" formControlName="fechaExpOtraR" placeholder="Fecha de expedición de la cédula">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoOtraR" formControlName="correoOtraR" placeholder="correo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresOtraR" formControlName="nombresOtraR" placeholder="Nombres">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosOtraR" formControlName="apellidosOtraR" placeholder="Apellidos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="parentescoOtraR" formControlName="parentescoOtraR" placeholder="Parentezco">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="ocupacionOtraR" formControlName="ocupacionOtraR" placeholder="Ocupacion">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="direccionOtraR" formControlName="direccionOtraR" placeholder="Direccion">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularOtraR" formControlName="celularOtraR" placeholder="Telefonos">
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Habilidades y actitudes-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo"> HABILIDADES Y ACTITUDES</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4 text-left">
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="musica" formControlName="musica"> Musica
+                  </label>
+                </div>
+
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="RelacionPersonales" formControlName="RelacionPersonales"> Relacion con los demas
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="baile" formControlName="baile"> Baile
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="amorNaturaleza" formControlName="amorNaturaleza"> Amor a la naturaleza
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="arte" formControlName="arte"> Arte
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="armarFiguras" formControlName="armarFiguras"> Armar figuras
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="lenguaje" formControlName="lenguaje"> Lenguaje
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="otraCual" formControlName="otraCual" placeholder="Otra, Cual? (Opcional)" />
+                </div>
+
+
+              </div>
+              <!-- div medidas del card-->
+            </div>
+            <!-- div card -->
+
+            <hr>
+            <div *ngIf="exitoForma" class="alert alert-success text-center" role="alert">
+              {{exitoForma}}!!
+            </div>
+
+            <div class="button text-right">
+              <input class="btn btn-info" type="submit" value="Guardar" />
+            </div>
+
+          </div>
+          <!-- DIV DE PRIMER ROW-->
+
+
+          </div>
       </form>
+
+      </div>
     </div>
-  </div>
 </section>

@@ -1,3 +1,46 @@
-<p>
-  inscritos works!
-</p>
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center titulo ">Niños inscritos</h3>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <input type="text" name="buscar" id="buscar" placeholder="Buscar" class="form-control" [(ngModel)]="buscar">
+      </div>
+
+      <br><br>
+      <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <thead>
+          <tr>
+            <th class="text-center">T.I. </th>              
+            <th class="text-center">Nombres</th>
+            <th class="text-center">Apellidos</th>
+            <th class="text-center">Teléfonos</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Curso</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inscrito of inscritos | async | reverse | search:buscar; index">
+            <td class="text-center">{{inscrito.id}}</td>
+            <td class="text-center">{{inscrito.nombres}}</td>
+            <td class="text-center">{{inscrito.apellidos}} </td>
+            <td class="text-center">{{inscrito.telefono}}{{inscrito.celularPapa}}{{ inscritos.celularMama}}</td>
+            <td class="text-center">{{inscrito.correoPapa}}{{ inscrito.correoMama}}</td>
+            <td class="text-center">{{inscrito.grado}}</td>
+            
+            
+            <td class="text-center">
+              <a class="option" title="Detalles"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+              <a class="option" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="option" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -33,38 +33,41 @@ export class PinLoginComponent implements OnInit {
 
 
   login(pin) {
+    console.log(pin);
     //Obteniendo los pines generados para ver si existe el que el usuario ingreso 
     this._pinesService.obtenerPines().then(data => {
-      let resultado;
-      console.log(data);
-      if (resultado = data[`${pin}`]) {
 
-        localStorage.sesionPin = JSON.stringify(resultado);
-        console.log(localStorage);
-        console.log(resultado);
-        //Redireccionando al usuario, dependiendo del estado en que se encuentre el proceso
-        switch (resultado.estado) {
-          case 1:
-            this.router.navigate(['/pin/inscripciones']);
-            break;
-          case 2:
-            this.router.navigate(['/pin/entrevistas']);
-            break;
-          case 3:
-            this.router.navigate(['/pin/admitidos']);
-            break;
-          case 4:
-            this.router.navigate(['/pin/matricula']);
-            break;
+      _.forEach(data, (value, index) => { 
+          
+          if (value.pin == pin) {
 
-          default:
-            break;
-        }
+            localStorage.sesionPin = JSON.stringify(value);
 
-      } else {
-        //Notificando que el pin no es valido.
-        this.loginError = "Pin incorrecto"
-      }
+            //Redireccionando al usuario, dependiendo del estado en que se encuentre el proceso
+            switch (value.estado) {
+              case 1:
+                this.router.navigate(['/pin/inscripciones']);
+                break;
+              case 2:
+                this.router.navigate(['/pin/entrevistas']);
+                break;
+              case 3:
+                this.router.navigate(['/pin/admitidos']);
+                break;
+              case 4:
+                this.router.navigate(['/pin/matricula']);
+                break;
+
+              default:
+                break;
+            }
+
+          } else {
+            //Notificando que el pin no es valido.
+            this.loginError = "Pin incorrecto"
+          }
+
+    });
 
     }).catch(error => {
       this.loginError="Upps! Algo ha ido mal, verifica tu conección a internet!";
