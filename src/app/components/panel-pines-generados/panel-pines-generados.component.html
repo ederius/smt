@@ -32,7 +32,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pin of pines | async | search:buscar | ordenar:tipoOrden; index">
+          <tr *ngFor="let pin of pines | async | reverse | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{pin.cedula}}</td>
             <td class="text-center">{{pin.nombres}}</td>
             <td class="text-center">{{pin.apellidos}}</td>

@@ -5,10 +5,19 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h3 class="text-center titulo ">Niños inscritos</h3>
       </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <!-- Opciones de tabla -->
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
         <input type="text" name="buscar" id="buscar" placeholder="Buscar" class="form-control" [(ngModel)]="buscar">
       </div>
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <select name="ordenar" id="ordenar" class="form-control" [(ngModel)]="tipoOrden">
+          <option *ngFor="let orden of ordenar" [value]="orden.value" >{{orden.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+         <button class="btn btn-success" (click)="exportarExcel()"> <i class="fa fa-download" aria-hidden="true"></i> Excel</button>
+      </div>
+      <!-- Opciones de tabla -->
 
       <br><br>
       <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -24,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let inscrito of inscritos | async | reverse | search:buscar; index">
+          <tr *ngFor="let inscrito of inscritos | async | reverse | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{inscrito.id}}</td>
             <td class="text-center">{{inscrito.nombres}}</td>
             <td class="text-center">{{inscrito.apellidos}} </td>
@@ -34,9 +43,9 @@
             
             
             <td class="text-center">
-              <a class="option" title="Detalles"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
-              <a class="option" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-              <a class="option" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a class="option" title="Detalles" (click)="detallesInscrito(inscrito.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+              <a class="option" title="Editar" (click)="editarInscrito(inscrito.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="option" title="Eliminar" (click)="eliminarInscrito(inscrito.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </td>
 
           </tr>

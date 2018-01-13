@@ -37,7 +37,7 @@ const ROUTES: Routes = [
       { path: 'generar-pin',    component:PanelPinesGenerarComponent },
       { path: 'pines-generados',component:PanelPinesGeneradosComponent },
       { path: 'inscritos',      component:PanelInscritosComponent },
-      { path: 'admitidos',      component:PanelAdmitidosVerComponent },
+      { path: 'ver-admitidos',  component:PanelAdmitidosVerComponent },
       { path: 'matriculados',   component:PanelMatriculadosComponent },
       { path: 'transacciones',  component:PanelTransaccionesComponent },
       { path: 'administradores',component:PanelAdministradoresComponent }

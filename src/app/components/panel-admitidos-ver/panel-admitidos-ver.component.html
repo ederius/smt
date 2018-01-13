@@ -1,3 +1,55 @@
-<p>
-  admitidos works!
-</p>
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center titulo ">Niños inscritos</h3>
+      </div>
+      <!-- Opciones de tabla -->
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <input type="text" name="buscar" id="buscar" placeholder="Buscar" class="form-control" [(ngModel)]="buscar">
+      </div>
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <select name="ordenar" id="ordenar" class="form-control" [(ngModel)]="tipoOrden">
+          <option *ngFor="let orden of ordenar" [value]="orden.value" >{{orden.name}}</option>
+        </select>
+      </div>
+      <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+         <button class="btn btn-success" (click)="exportarExcel()"> <i class="fa fa-download" aria-hidden="true"></i> Excel</button>
+      </div>
+      <!-- Opciones de tabla -->
+
+      <br><br>
+      <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <thead>
+          <tr>
+            <th class="text-center">T.I. </th>              
+            <th class="text-center">Nombres</th>
+            <th class="text-center">Apellidos</th>
+            <th class="text-center">Teléfonos</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Curso</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admitido of admitidos | async | reverse | search:buscar | ordenar:tipoOrden; index">
+            <td class="text-center">{{admitido.id}}</td>
+            <td class="text-center">{{admitido.nombres}}</td>
+            <td class="text-center">{{admitido.apellidos}} </td>
+            <td class="text-center">{{admitido.telefono}}{{admitido.celularPapa}}{{ admitidos.celularMama}}</td>
+            <td class="text-center">{{admitido.correoPapa}}{{ admitido.correoMama}}</td>
+            <td class="text-center">{{admitido.grado}}</td>
+            
+            
+            <td class="text-center">
+              <a class="option" title="Detalles" (click)="detallesAdmitido(admitido.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+              <a class="option" title="Editar" (click)="editarAdmitido(admitido.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="option" title="Eliminar" (click)="eliminarAdmitido(admitido.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
