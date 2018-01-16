@@ -48,9 +48,9 @@ const ROUTES: Routes = [
   { path: 'pin', component: PinComponent,
     children:[
       { path: 'inscripciones',component:PinInscripcionesComponent },
-      { path: 'entrevistas',  component:PinInscripcionesComponent },
-      { path: 'admitidos',    component:PinInscripcionesComponent },
-      { path: 'matriculados', component:PinInscripcionesComponent }      
+      { path: 'entrevistas',  component:PinEntrevistasComponent },
+      { path: 'admitidos',    component:PinAdmitidosComponent },
+      { path: 'matriculados', component:PinMatriculadosComponent }      
     ],
     canActivate: [GuardiaPinService]
   },
