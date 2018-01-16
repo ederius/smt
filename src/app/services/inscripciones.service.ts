@@ -31,10 +31,6 @@ export class InscripcionesService {
 
   listarInscritos(){
     return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
-      let inscritos = _.map(snapshop.val());
-      console.log(inscritos);
-      inscritos = _.filter(inscritos, function(o){ o.estado==2});
-      console.log(inscritos);
       return _.map(snapshop.val());
     });
   }

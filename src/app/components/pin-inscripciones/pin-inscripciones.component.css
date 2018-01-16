@@ -3,3 +3,7 @@
     margin-bottom: 10px;
     text-align: center;
 }
+
+.ng-invalid.ng-touched:not(form){
+    border: 1px solid red;
+}

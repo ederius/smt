@@ -40,7 +40,6 @@ export class PanelLoginComponent implements OnInit {
     
         this._usuarioService.login(this.forma.value.correo, this.forma.value.contrasena)
         .then(data=>{
-          console.log(data);
           this.authState = data;          
           if (data.emailVerified) {
               this.router.navigate(['/panel']);
@@ -50,7 +49,6 @@ export class PanelLoginComponent implements OnInit {
           
         })
         .catch(error=>{
-          console.log(error);
           switch (error.code) {
             case "auth/user-not-found":
               this.loginError = "Correo no registrado"

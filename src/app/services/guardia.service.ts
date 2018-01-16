@@ -5,9 +5,7 @@ import { AutenticacionService } from "./autenticacion.service";
 
 @Injectable()
 export class GuardiaService implements CanActivate {
-
   constructor(private _auth:AutenticacionService) { }
-
   canActivate(next:ActivatedRouteSnapshot, state:RouterStateSnapshot){
 
     if (this._auth.currentUser) {
@@ -15,7 +13,7 @@ export class GuardiaService implements CanActivate {
       return true;
     }else{   
       console.log("no paso");
-      return true;
+      return false;
     }
   }
 
