@@ -10,6 +10,12 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from "angularfire2/database";
 
+//Packages
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
 //Environment variables - variables de entorno
 import { environment } from '../environments/environment';
 
@@ -33,7 +39,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { PinHeaderComponent } from './components/shared/pin-header/pin-header.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 
-//Packeges 
+//Pipes 
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { OrdenarPipe } from './pipes/ordenar.pipe';
@@ -64,7 +70,8 @@ import { OrdenarPipe } from './pipes/ordenar.pipe';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule,
-    Ng2FilterPipeModule
+    Ng2FilterPipeModule,
+    NgbModule.forRoot()
 
     
   ],

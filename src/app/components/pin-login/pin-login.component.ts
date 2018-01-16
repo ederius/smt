@@ -33,7 +33,6 @@ export class PinLoginComponent implements OnInit {
 
 
   login(pin) {
-    console.log(pin);
     //Obteniendo los pines generados para ver si existe el que el usuario ingreso 
     this._pinesService.obtenerPines().then(data => {
 

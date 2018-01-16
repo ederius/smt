@@ -1,4 +1,4 @@
-  
+
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">
 
@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let inscrito of inscritos | async | reverse | search:buscar | ordenar:tipoOrden; index">
+          <tr *ngFor="let inscrito of inscritos | async | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{inscrito.id}}</td>
             <td class="text-center">{{inscrito.nombres}}</td>
             <td class="text-center">{{inscrito.apellidos}} </td>
@@ -43,9 +43,9 @@
             
             
             <td class="text-center">
-              <a class="option" title="Detalles" (click)="detallesInscrito(inscrito.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
-              <a class="option" title="Editar" (click)="editarInscrito(inscrito.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-              <a class="option" title="Eliminar" (click)="eliminarInscrito(inscrito.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <button class="btn" title="Detalles" (click)="detallesInscrito(inscrito.id, content)"><i class="fa fa-file-text-o" aria-hidden="true"></i></button>
+              <button class="btn" title="Editar" (click)="editarInscrito(inscrito.id)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="btn" title="Eliminar" (click)="eliminarInscrito(inscrito.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </td>
 
           </tr>
@@ -53,3 +53,24 @@
       </table>
     </div>
   </div>
+
+
+
+
+  <!-- MODAL DETALLES DE INSCRITOS -->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <!--FIN MODAL DETALLES DE INSCRITOS -->

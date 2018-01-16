@@ -41,6 +41,13 @@ export class PanelAdmitidosVerComponent implements OnInit {
   listarAdmitidos(){
     this.inscritos = this._inscripcionesService.listarInscritos();
     this.admitidos = _.filter(_.map(this.inscritos)[1], function(o){ return o.estado == 3 });         //Mapeando como un array la promesa y filtrando los datos a los que tengan como estado "3" = admitidos
+    this.admitidos = [
+      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+
+    ]
   }
 
   exportarExcel(){
