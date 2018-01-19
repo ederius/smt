@@ -39,6 +39,76 @@ export class PanelInscritosComponent implements OnInit {
 
   closeResult: string;
 
+
+  //Campos de formulario detalles inscrito
+    //datos de niño
+    id:Number;      
+    fechaExp:String;  
+    nombres :String;   
+    apellidos:String;  
+    lugarN:String;     
+    fechaN :String;        
+    direccion :String;  
+    barrio:String;              
+    telefonos:Number; 
+    colegioPro:String;  
+    ciudad:Nuber; 
+    discapacidad :String;         
+    eps :String;      
+    viveCPadres :String;  
+     viveCOtros :String;  
+    estrato :Number;  
+    sexo :String;       
+    tipoSangre :String;  
+    jornada :String;   
+    grado  :String;    
+    indigena:String;   
+    etnia :String;     
+
+    //datos de papa
+    cedulaPapa:Number;    
+    fechaExpPapa:String;                  
+    correoPapa:String;             
+    nombresPapa :String;  
+    apellidosPapa:String;
+    profesionPapa:String;
+    LugarTrabajoPapa:String;
+    cargoPapa :String;           
+    celularPapa :Number;  
+
+    //datos de mama
+    cedulaMam :Number;  
+    fechaExpMama :String;                
+    correoMama  :String;          
+    nombresMama  :String; 
+    apellidosMama :String;
+    profesionMama :String;
+    LugarTrabajoMama:String;
+    cargoMama  :String;           
+    celularMama :Number;
+
+    //otra referencia
+    cedulaOtraR :Number;
+    fechaExpOtraR :String;                
+    correoOtraR :String;         
+    nombresOtraR :String;  
+    apellidosOtraR :String;
+    parentescoOtraR :String;
+    ocupacionOtraR  :String;       
+    direccionOtraR :String;
+    celularOtraR  :Number; 
+
+    //habilidades
+    musica  :String;                        
+    RelacionPersonales :String;                 
+    baile :String;                       
+    amorNaturaleza :String; 
+    arte  :String;          
+    armarFiguras  :String;                  
+    lenguaje  :String;      
+    otraCual  :String;          
+
+
   constructor(
     private _auth: AutenticacionService, 
     private _inscripcionesService:InscripcionesService,
@@ -87,6 +157,79 @@ export class PanelInscritosComponent implements OnInit {
   detallesInscrito(id, content){
     this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+
+      //Campos de formulario detalles inscrito
+    //datos de niño
+    /*
+    id        
+    fechaExp  
+    nombres   
+    apellidos 
+    lugarN    
+    fechaN        
+    direccion 
+    barrio            
+    telefonos 
+    colegioPro
+    ciudad    
+    discapacidad        
+    eps       
+    viveCPadres
+    viveCOtros
+    estrato   
+    sexo      
+    tipoSangre
+    jornada   
+    grado     
+    indigena  
+    etnia     
+
+    //datos de papa
+    cedulaPapa    
+    fechaExpPapa                  
+    correoPapa            
+    nombresPapa   
+    apellidosPapa 
+    profesionPapa 
+    LugarTrabajoPapa
+    cargoPapa             
+    celularPapa   
+
+    //datos de mama
+    cedulaMama    
+    fechaExpMama                  
+    correoMama            
+    nombresMama   
+    apellidosMama 
+    profesionMama 
+    LugarTrabajoMama
+    cargoMama             
+    celularMama   
+
+    //otra referencia
+    cedulaOtraR    
+    fechaExpOtraR                  
+    correoOtraR            
+    nombresOtraR   
+    apellidosOtraR 
+    parentescoOtraR
+    ocupacionOtraR         
+    direccionOtraR         
+    celularOtraR   
+
+    //habilidades
+    musica                          
+    RelacionPersonales                  
+    baile                           
+    amorNaturaleza  
+    arte            
+    armarFiguras                    
+    lenguaje        
+    otraCual            
+*/
+
+
+
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
