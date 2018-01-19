@@ -635,3 +635,8 @@ ul.nav {
     line-height: .6em
 }
 /*Fin de los estilos del paso a paso que se muestra en las diferentes etabas del proceso del sistemas (inscripcion, admision y matricula)*/
+
+
+.modal-xl{
+  max-width: 90% ;
+}
