@@ -68,6 +68,8 @@ export class PanelPinesGenerarComponent implements OnInit {
 
         this.generarPDF(campo, pin);
 
+        this.forma.reset(); //reseteando formulario
+
       }
 
     });

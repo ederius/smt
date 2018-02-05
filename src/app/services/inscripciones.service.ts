@@ -13,7 +13,6 @@ export class InscripcionesService {
   constructor(private db:AngularFireDatabase) {
   }
 
-
   guardarInscripcion(forma){
 
     //obteniendo pin de sesion
@@ -35,6 +34,41 @@ export class InscripcionesService {
     });
   }
 
+  obtenerInscritos(){
+    return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
+      return snapshop;
+    });
+  }
 
+  detallesInscrito(id){
+    let inscritos:Promise<any>;
+    return new Promise(function(resolve, reject){
+      return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
+        inscritos = _.map(snapshop.val());
+        console.log(inscritos);
+        //let inscritos = response;
+        let keys = Object.keys(inscritos);
+        let inscrito;
+        for(var i = 0; i>keys.length;i++){
+          if(keys[i] == id){
+            inscrito = inscritos[i];
+            break;
+          }
+        }
+        if(inscrito!=""){
+          resolve(inscrito);
+        }else{
+          resolve(false);
+        }
+    });
+  });
+  }
+
+  actualizarInscrito(pin, inscrito){
+    return this.db.database.ref(`inscripciones/${inscrito.pin}`).update(inscrito);      
+  }
+
+
+    
 
 }

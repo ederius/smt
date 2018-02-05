@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Observable} from "rxjs/Observable";
+import { FormGroup, FormControl, Validators, NgModel } from "@angular/forms";
 import * as _ from "lodash";
 import * as $ from "jquery"
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -12,34 +13,7 @@ import { AutenticacionService } from "../../services/autenticacion.service";
 import { InscripcionesService } from "../../services/inscripciones.service";
 import { UtilsService } from "../../services/utils.service";
 
-
-@Component({
-  selector: 'app-panel-inscritos',
-  templateUrl: './panel-inscritos.component.html',
-  styleUrls: ['./panel-inscritos.component.css']
-})
-export class PanelInscritosComponent implements OnInit {
-
-  errorConsulta:String;
-  exitoConsulta:String;
-
-  inscritos:Promise<any>;
-  //inscritos:Array<any>;
-  ordenar:any=[
-    {name:"Ordenar por", value:""},
-    {name:"Por tarjeta de I.", value:"id"},    
-    {name:"Por nombres", value:"nombres"},
-    {name:"Por apellidos", value:"apellidos"},
-    {name:"Por celular Mama", value:"celularMama"},
-    {name:"Por celular Papa", value:"celularPapa"},
-    {name:"Por correo Mama", value:"correoMama"},
-    {name:"Por correo Papa", value:"correoPapa"},
-    {name:"Por grado", value:"grado"}    
-  ]; 
-
-  closeResult: string;
-
-
+interface interfaceInscrito {
   //Campos de formulario detalles inscrito
     //datos de niño
     id:Number;      
@@ -52,7 +26,7 @@ export class PanelInscritosComponent implements OnInit {
     barrio:String;              
     telefonos:Number; 
     colegioPro:String;  
-    ciudad:Nuber; 
+    ciudad:Number; 
     discapacidad :String;         
     eps :String;      
     viveCPadres :String;  
@@ -77,7 +51,7 @@ export class PanelInscritosComponent implements OnInit {
     celularPapa :Number;  
 
     //datos de mama
-    cedulaMam :Number;  
+    cedulaMama :Number;  
     fechaExpMama :String;                
     correoMama  :String;          
     nombresMama  :String; 
@@ -106,7 +80,37 @@ export class PanelInscritosComponent implements OnInit {
     arte  :String;          
     armarFiguras  :String;                  
     lenguaje  :String;      
-    otraCual  :String;          
+    otraCual  :String;  
+    
+}
+
+@Component({
+  selector: 'app-panel-inscritos',
+  templateUrl: './panel-inscritos.component.html',
+  styleUrls: ['./panel-inscritos.component.css']
+})
+export class PanelInscritosComponent implements OnInit {
+
+  errorConsulta:String;
+  exitoConsulta:String;
+
+  inscritos:Promise<any>;
+  inscrito:interfaceInscrito;
+  forma:FormGroup;  
+
+  ordenar:any=[
+    {name:"Ordenar por", value:""},
+    {name:"Por tarjeta de I.", value:"id"},    
+    {name:"Por nombres", value:"nombres"},
+    {name:"Por apellidos", value:"apellidos"},
+    {name:"Por celular Mama", value:"celularMama"},
+    {name:"Por celular Papa", value:"celularPapa"},
+    {name:"Por correo Mama", value:"correoMama"},
+    {name:"Por correo Papa", value:"correoPapa"},
+    {name:"Por grado", value:"grado"}    
+  ]; 
+
+  closeResult: string;
 
 
   constructor(
@@ -155,81 +159,19 @@ export class PanelInscritosComponent implements OnInit {
 
 
   detallesInscrito(id, content){
+             
+    let inscritos
+    
+    if(inscritos = _.map(this.inscritos)[1]){ //Mapeando como un array la promesa
+      for(let i = 0; i< inscritos.length; i++){
+        if(inscritos[i].id==id){ 
+          this.inscrito = inscritos[i]; 
+        }  
+      };
+    }
+    
     this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-
-      //Campos de formulario detalles inscrito
-    //datos de niño
-    /*
-    id        
-    fechaExp  
-    nombres   
-    apellidos 
-    lugarN    
-    fechaN        
-    direccion 
-    barrio            
-    telefonos 
-    colegioPro
-    ciudad    
-    discapacidad        
-    eps       
-    viveCPadres
-    viveCOtros
-    estrato   
-    sexo      
-    tipoSangre
-    jornada   
-    grado     
-    indigena  
-    etnia     
-
-    //datos de papa
-    cedulaPapa    
-    fechaExpPapa                  
-    correoPapa            
-    nombresPapa   
-    apellidosPapa 
-    profesionPapa 
-    LugarTrabajoPapa
-    cargoPapa             
-    celularPapa   
-
-    //datos de mama
-    cedulaMama    
-    fechaExpMama                  
-    correoMama            
-    nombresMama   
-    apellidosMama 
-    profesionMama 
-    LugarTrabajoMama
-    cargoMama             
-    celularMama   
-
-    //otra referencia
-    cedulaOtraR    
-    fechaExpOtraR                  
-    correoOtraR            
-    nombresOtraR   
-    apellidosOtraR 
-    parentescoOtraR
-    ocupacionOtraR         
-    direccionOtraR         
-    celularOtraR   
-
-    //habilidades
-    musica                          
-    RelacionPersonales                  
-    baile                           
-    amorNaturaleza  
-    arte            
-    armarFiguras                    
-    lenguaje        
-    otraCual            
-*/
-
-
-
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -245,11 +187,101 @@ export class PanelInscritosComponent implements OnInit {
     }
   }
 
-  editarInscrito(id){
+
+  editarInscrito(inscrito, contentEdit){
+
+      this.inscrito = inscrito; 
+      //Definiendo los campos del formulario y sus validaciones
+      this.forma = new FormGroup({
+        
+            //datos de niño
+            'id'        : new FormControl(this.inscrito.id, Validators.required),
+            'fechaExp'  : new FormControl(this.inscrito.fechaExp, Validators.required),
+            'nombres'   : new FormControl(this.inscrito.nombres, Validators.required),
+            'apellidos' : new FormControl(this.inscrito.apellidos, Validators.required),
+            'lugarN'    : new FormControl(this.inscrito.lugarN, Validators.required),
+            'fechaN'    : new FormControl(this.inscrito.fechaN, Validators.required),    
+            'direccion' : new FormControl(this.inscrito.direccion, Validators.required),
+            'barrio'    : new FormControl(this.inscrito.barrio, Validators.required),        
+            'telefonos' : new FormControl(this.inscrito.telefonos),
+            'colegioPro': new FormControl(this.inscrito.colegioPro, Validators.required),
+            'ciudad'    : new FormControl(this.inscrito.ciudad, Validators.required),
+            'discapacidad': new FormControl(this.inscrito.discapacidad, Validators.required),        
+            'eps'       : new FormControl(this.inscrito.eps, Validators.required),
+            'viveCPadres': new FormControl(this.inscrito.viveCPadres, Validators.required),
+            'viveCOtros': new FormControl(this.inscrito.viveCOtros),
+            'estrato'   : new FormControl(this.inscrito.estrato, Validators.required),
+            'sexo'      : new FormControl(this.inscrito.sexo, Validators.required),
+            'tipoSangre': new FormControl(this.inscrito.tipoSangre, Validators.required),
+            'jornada'   : new FormControl(this.inscrito.jornada, Validators.required),
+            'grado'     : new FormControl(this.inscrito.grado, Validators.required),
+            'indigena'  : new FormControl(this.inscrito.indigena, Validators.required),
+            'etnia'     : new FormControl(this.inscrito.etnia),
+    
+            //datos de papa
+            'cedulaPapa'    : new FormControl(this.inscrito.cedulaPapa, Validators.required),
+            'fechaExpPapa'  : new FormControl(this.inscrito.fechaExpPapa, Validators.required),                
+            'correoPapa'    : new FormControl(this.inscrito.correoPapa, [Validators.required, Validators.email]),        
+            'nombresPapa'   : new FormControl(this.inscrito.nombresPapa, Validators.required),
+            'apellidosPapa' : new FormControl(this.inscrito.apellidosPapa, Validators.required),
+            'profesionPapa' : new FormControl(this.inscrito.profesionPapa),
+            'LugarTrabajoPapa': new FormControl(this.inscrito.LugarTrabajoPapa),
+            'cargoPapa'     : new FormControl(this.inscrito.cargoMama),        
+            'celularPapa'   : new FormControl(this.inscrito.cedulaPapa, Validators.required),
+    
+            //datos de mama
+            'cedulaMama'    : new FormControl(this.inscrito.cedulaMama, Validators.required),
+            'fechaExpMama'  : new FormControl(this.inscrito.fechaExpMama, Validators.required),                
+            'correoMama'    : new FormControl(this.inscrito.correoMama, [Validators.required, Validators.email]),        
+            'nombresMama'   : new FormControl(this.inscrito.nombresMama, Validators.required),
+            'apellidosMama' : new FormControl(this.inscrito.apellidosMama, Validators.required),
+            'profesionMama' : new FormControl(this.inscrito.profesionMama),
+            'LugarTrabajoMama': new FormControl(this.inscrito.LugarTrabajoMama),
+            'cargoMama'     : new FormControl(this.inscrito.cargoMama),        
+            'celularMama'   : new FormControl(this.inscrito.celularMama, Validators.required),
+    
+            //otra referencia
+            'cedulaOtraR'    : new FormControl(this.inscrito.cedulaOtraR, Validators.required),
+            'fechaExpOtraR'  : new FormControl(this.inscrito.fechaExpOtraR, Validators.required),                
+            'correoOtraR'    : new FormControl(this.inscrito.correoOtraR, [Validators.required, Validators.email]),        
+            'nombresOtraR'   : new FormControl(this.inscrito.nombresOtraR, Validators.required),
+            'apellidosOtraR' : new FormControl(this.inscrito.apellidosOtraR, Validators.required),
+            'parentescoOtraR': new FormControl(this.inscrito.parentescoOtraR, Validators.required),
+            'ocupacionOtraR' : new FormControl(this.inscrito.ocupacionOtraR, Validators.required),        
+            'direccionOtraR' : new FormControl(this.inscrito.direccionOtraR, Validators.required),        
+            'celularOtraR'   : new FormControl(this.inscrito.cedulaOtraR, Validators.required),
+    
+            //habilidades
+            'musica'          : new FormControl(this.inscrito.musica),                
+            'RelacionPersonales'  : new FormControl(this.inscrito.RelacionPersonales),                
+            'baile'           : new FormControl(this.inscrito.baile),                
+            'amorNaturaleza'  : new FormControl(this.inscrito.amorNaturaleza),
+            'arte'            : new FormControl(this.inscrito.arte),
+            'armarFiguras'    : new FormControl(this.inscrito.armarFiguras),                
+            'lenguaje'        : new FormControl(this.inscrito.lenguaje),
+            'otraCual'        : new FormControl(this.inscrito.otraCual)
+            
+      });  
+
+      this.modalService.open(contentEdit, {size: 'xl' as 'lg'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
 
   }
 
-  eliminarInscrito(id){
+
+
+  actualizarInscripcion(){
+    let forma = this.forma.value;
+    forma.pin = this.inscrito.pin;
+    this._inscripcionesService.actualizarInscrito(forma.pin, this.forma.value );    
+    this.listarInscritos();  
+    this.exitoForma = true;
+  }
+
+  eliminarInscrito(pin){
 
   }
 
