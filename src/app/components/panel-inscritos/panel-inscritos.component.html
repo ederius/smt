@@ -44,8 +44,8 @@
             
             <td class="text-center">
               <button class="btn" title="Detalles" (click)="detallesInscrito(inscrito.id, content)"><i class="fa fa-file-text-o" aria-hidden="true"></i></button>
-              <button class="btn" title="Editar" (click)="editarInscrito(inscrito, contentEdit)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-              <button class="btn" title="Eliminar" (click)="eliminarInscrito(inscrito.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <button class="btn" title="Editar" (click)="modalEditar(inscrito, contentEdit)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="btn" title="Eliminar" (click)="modalEliminar(inscrito, contentDelete)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </td>
 
           </tr>
@@ -555,6 +555,7 @@
 
 
     </div>
+
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
     </div>
@@ -1198,3 +1199,23 @@
     </div>
   </ng-template>
   <!--FIN MODAL EDITAR DE INSCRITOS -->
+
+
+
+    <!-- MODAL ELIMINAR INSCRITOS -->
+    <ng-template #contentDelete let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Detalles de niño inscrito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Esta seguro que desea eliminar al niño inscrito?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito()">Eliminar</button>        
+      </div>
+    </ng-template>
+    <!--FIN MODAL ELIMINAR INSCRITO -->

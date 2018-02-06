@@ -68,6 +68,10 @@ export class InscripcionesService {
     return this.db.database.ref(`inscripciones/${inscrito.pin}`).update(inscrito);      
   }
 
+  eliminarInscrito(pin){
+    return this.db.database.ref(`inscripciones/${pin}`).remove();          
+  }
+
 
     
 

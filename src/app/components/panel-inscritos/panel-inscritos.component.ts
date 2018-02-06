@@ -81,6 +81,9 @@ interface interfaceInscrito {
     armarFiguras  :String;                  
     lenguaje  :String;      
     otraCual  :String;  
+
+    //pin
+    pin:String;
     
 }
 
@@ -93,6 +96,7 @@ export class PanelInscritosComponent implements OnInit {
 
   errorConsulta:String;
   exitoConsulta:String;
+  exitoForma:Boolean;
 
   inscritos:Promise<any>;
   inscrito:interfaceInscrito;
@@ -188,7 +192,7 @@ export class PanelInscritosComponent implements OnInit {
   }
 
 
-  editarInscrito(inscrito, contentEdit){
+  modalEditar(inscrito, contentEdit){
 
       this.inscrito = inscrito; 
       //Definiendo los campos del formulario y sus validaciones
@@ -272,7 +276,6 @@ export class PanelInscritosComponent implements OnInit {
   }
 
 
-
   actualizarInscripcion(){
     let forma = this.forma.value;
     forma.pin = this.inscrito.pin;
@@ -281,8 +284,18 @@ export class PanelInscritosComponent implements OnInit {
     this.exitoForma = true;
   }
 
-  eliminarInscrito(pin){
+  modalEliminar(inscrito, content){
+    this.inscrito = inscrito;
+    this.modalService.open(content, {size: 'sm' as 'sm'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
+  eliminarInscrito(){
+    this._inscripcionesService.eliminarInscrito(this.inscrito.pin);
+    this.listarInscritos()
   }
 
 
