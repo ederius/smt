@@ -87,6 +87,14 @@ interface interfaceInscrito {
     
 }
 
+interface hora {
+  hour: number,
+  minute: number,
+  second: number
+}
+
+interface fecha {year: number, month: number, day: number}
+
 @Component({
   selector: 'app-panel-inscritos',
   templateUrl: './panel-inscritos.component.html',
@@ -101,6 +109,15 @@ export class PanelInscritosComponent implements OnInit {
   inscritos:Promise<any>;
   inscrito:interfaceInscrito;
   forma:FormGroup;  
+
+  //variables de examen y cita de admision
+  fechaEntrevista:fecha;
+  horaEntrevista: hora;
+  fechaExamenes:fecha;
+  horaExamenes:hora;
+  actualizadoExitosamente: boolean;
+  
+
 
   ordenar:any=[
     {name:"Ordenar por", value:""},
@@ -293,9 +310,47 @@ export class PanelInscritosComponent implements OnInit {
     });
   }
 
+  modalExamenes(inscrito, content){
+    this.inscrito = inscrito;
+    let pin = inscrito.pin;
+    /*this._inscripcionesService.consultarCitas(pin).then(function(data){
+      console.log(data.fechaEntrevista);
+      let cita = JSON.stringify(data);
+      cita = JSON.parse(cita);
+      if(cita!={}){
+        this.fechaEntrevista = cita.fechaEntrevista;
+        this.horaEntrevista =cita.horaEntrevista;
+        this.fechaExamenes =cita.fechaExamenes;
+        this.horaExamenes =cita.horaExamenes;
+      }
+       });*/
+        
+      this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+   
+  }
+
   eliminarInscrito(){
     this._inscripcionesService.eliminarInscrito(this.inscrito.pin);
     this.listarInscritos()
+  }
+
+  guardarCita(){
+    let citas = {
+    fechaEntrevista:this.fechaEntrevista,
+    horaEntrevista: this.horaEntrevista,
+    fechaExamenes:this.fechaExamenes,
+    horaExamenes:this.horaExamenes
+    };
+
+    let pin = this.inscrito.pin;
+
+    this._inscripcionesService.asignarCitas(citas, pin);
+    this.actualizadoExitosamente = true;
+
   }
 
 

@@ -29,7 +29,7 @@
             <th class="text-center">Teléfonos</th>
             <th class="text-center">Email</th>
             <th class="text-center">Curso</th>
-            <th>Opciones</th>
+            <th class="text-center">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -41,8 +41,8 @@
             <td class="text-center">{{ inscrito.correoMama}}</td>
             <td class="text-center">{{inscrito.grado}}</td>
             
-            
             <td class="text-center">
+              <button class="btn" title="Definir examenes de admisión" (click)="modalExamenes(inscrito, contentQuiz)"><i class="fa fa-address-card"></i></button>                
               <button class="btn" title="Detalles" (click)="detallesInscrito(inscrito.id, content)"><i class="fa fa-file-text-o" aria-hidden="true"></i></button>
               <button class="btn" title="Editar" (click)="modalEditar(inscrito, contentEdit)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
               <button class="btn" title="Eliminar" (click)="modalEliminar(inscrito, contentDelete)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -66,7 +66,6 @@
       </button>
     </div>
     <div class="modal-body">
-
 
       <div class="row">
         <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
@@ -1202,20 +1201,85 @@
 
 
 
-    <!-- MODAL ELIMINAR INSCRITOS -->
-    <ng-template #contentDelete let-c="close" let-d="dismiss">
-      <div class="modal-header">
-        <h4 class="modal-title">Detalles de niño inscrito</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <!-- MODAL ELIMINAR INSCRITOS -->
+  <ng-template #contentDelete let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Detalles de niño inscrito</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>¿Esta seguro que desea eliminar al niño inscrito?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito()">Eliminar</button>        
+    </div>
+  </ng-template>
+  <!--FIN MODAL ELIMINAR INSCRITO -->
+
+
+
+  <!-- MODAL EXAMANES DE INSCRIPCIÓN -->
+  <ng-template #contentQuiz let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Asignar entrevista y examenes de admisión</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <p>La entrevista y el examen de admisión son los procesos que el niño debe completar satisfactoriamente para poder aspirar al curso en el cual desea matricularse.</p>
+      <hr>
+      <section class="row">
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+          <ul><li>Entrevista con padres.</li></ul>
+
+          <section class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+              <p>Fecha</p>
+              <ngb-datepicker #dp [(ngModel)]="fechaEntrevista" (navigate)="date = $event.next" ></ngb-datepicker>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">   
+              <p>Hora</p>           
+              <ngb-timepicker [(ngModel)]="horaEntrevista" [meridian]="meridian" ></ngb-timepicker>
+            </div>
+          </section>
+          
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+            <ul><li>Examenes de admisión.</li></ul>
+  
+            <section class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                <p>Fecha</p>
+                <ngb-datepicker #dp [(ngModel)]="fechaExamenes" (navigate)="date = $event.next"></ngb-datepicker>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">   
+                <p>Hora</p>           
+                <ngb-timepicker [(ngModel)]="horaExamenes" [meridian]="meridian"></ngb-timepicker>
+              </div>
+            </section>
+            
+          </div>
+
+      </section>
+
+      <hr>
+      <div *ngIf="actualizadoExitosamente" class="alert alert-success text-center col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert">
+        Pruebas de admisión agendadas con exito!!
       </div>
-      <div class="modal-body">
-        <p>¿Esta seguro que desea eliminar al niño inscrito?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito()">Eliminar</button>        
-      </div>
-    </ng-template>
-    <!--FIN MODAL ELIMINAR INSCRITO -->
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="guardarCita()"
+      [disabled]="fechaEntrevista==null || horaEntrevista==null || fechaExamenes==null || horaExamenes==null"
+      >Actualizar</button>        
+    </div>
+  </ng-template>
+  <!-- FIN MODAL EXAMENES DE INSCRIPCIÓN -->

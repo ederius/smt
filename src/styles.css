@@ -640,7 +640,9 @@ ul.nav {
 .modal-xl{
   max-width: 90% ;
 }
-
+.modal-md{
+  max-width: 70% ;
+}
 .modal-sm{
   max-width: 40% ;
 }

@@ -72,6 +72,16 @@ export class InscripcionesService {
     return this.db.database.ref(`inscripciones/${pin}`).remove();          
   }
 
+  consultarCitas(pin){
+    return this.db.database.ref(`citasExamenesAdmision/${pin}`).once('value').then(function(snapshop){
+      return snapshop.val();
+    });
+  }
+
+  asignarCitas(citas, pin){
+    this.db.database.ref(`citasExamenesAdmision/${pin}`).set(citas);                              //Guardando datos de inscripcion
+  }
+
 
     
 
