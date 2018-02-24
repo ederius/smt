@@ -12,6 +12,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AutenticacionService } from "../../services/autenticacion.service";
 import { InscripcionesService } from "../../services/inscripciones.service";
 import { UtilsService } from "../../services/utils.service";
+import { EmailsService } from "../../services/emails.service";
 
 interface interfaceInscrito {
   //Campos de formulario detalles inscrito
@@ -93,7 +94,16 @@ interface hora {
   second: number
 }
 
-interface fecha {year: number, month: number, day: number}
+interface fecha {day: number, month: number, year: number}
+
+interface cita {
+  fechaEntrevista:fecha,
+  horaEntrevista:hora,
+  fechaExamenes:fecha,
+  horaExamenes:hora
+
+
+}
 
 @Component({
   selector: 'app-panel-inscritos',
@@ -139,7 +149,8 @@ export class PanelInscritosComponent implements OnInit {
     private _inscripcionesService:InscripcionesService,
     private router: Router,
     private Utils:UtilsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _emailSerice: EmailsService
     ) { 
 
     //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
@@ -313,23 +324,25 @@ export class PanelInscritosComponent implements OnInit {
   modalExamenes(inscrito, content){
     this.inscrito = inscrito;
     let pin = inscrito.pin;
-    /*this._inscripcionesService.consultarCitas(pin).then(function(data){
-      console.log(data.fechaEntrevista);
-      let cita = JSON.stringify(data);
-      cita = JSON.parse(cita);
+    this._inscripcionesService.consultarCitas(pin).then((data)=>{
+      console.log(data);
+      let cita:cita = data;
+      console.log(cita);
       if(cita!={}){
-        this.fechaEntrevista = cita.fechaEntrevista;
-        this.horaEntrevista =cita.horaEntrevista;
-        this.fechaExamenes =cita.fechaExamenes;
-        this.horaExamenes =cita.horaExamenes;
+        this.fechaEntrevista  = cita.fechaEntrevista;
+        this.horaEntrevista   = cita.horaEntrevista;
+        this.fechaExamenes    = cita.fechaExamenes;
+        this.horaExamenes     = cita.horaExamenes;
       }
-       });*/
+      
+    });
         
-      this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+    this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
    
   }
 
@@ -350,6 +363,7 @@ export class PanelInscritosComponent implements OnInit {
 
     this._inscripcionesService.asignarCitas(citas, pin);
     this.actualizadoExitosamente = true;
+    this._emailSerice.enviarEmail();    
 
   }
 
