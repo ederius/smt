@@ -646,3 +646,18 @@ ul.nav {
 .modal-sm{
   max-width: 40% ;
 }
+
+.subtitulo{
+  margin: 3px;
+  padding-top: 6px;
+  background-color: #7376DF;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 40px;
+}
+
+.tablaVacia{
+  color:#a0a0a0;
+  text-align: center;
+  padding: 10px;
+}

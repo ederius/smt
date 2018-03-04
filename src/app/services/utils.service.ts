@@ -24,6 +24,26 @@ export class UtilsService  {
           new Angular5Csv(datos, nombreArchivo);
         }, 1000)
         
-      }
+ }
+
+
+  reverseObject(object) {
+    console.log(object);
+    var newObject = {};
+    var keys = [];
+    for (var key in object) {
+        keys.push(key);
+    }
+    for (var i = keys.length - 1; i >= 0; i--) {
+
+      var value = object[keys[i]];
+      newObject[keys[i]]= value;
+    }       
+    console.log(newObject);
+    
+    return newObject;
+  }
 
 }
+
+

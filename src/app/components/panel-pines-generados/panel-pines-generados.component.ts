@@ -31,7 +31,7 @@ export class PanelPinesGeneradosComponent implements OnInit {
   tipoOrden:String = "";
   orden:String = "";
 
-  pines:Promise<any>;
+  pines:Array<{}>;
 
   constructor(
     private _pinesServices:PinesService, 
@@ -44,7 +44,12 @@ export class PanelPinesGeneradosComponent implements OnInit {
   ngOnInit() {}
 
   listarPines(){
-    this.pines  = this._pinesServices.obtenerPines();    
+     this._pinesServices.obtenerPines().then((data)=>{
+      this.pines=data;
+      console.log(this.pines);
+     }).catch(function(error){
+       console.log(error)
+     });    
   }
   
   exportarExcel(){

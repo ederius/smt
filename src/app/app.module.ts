@@ -29,6 +29,7 @@ import { GuardiaPinService } from "./services/guardia-pin.service";
 import { InscripcionesService } from "./services/inscripciones.service";
 import { UtilsService } from "./services/utils.service";
 import { EmailsService } from "./services/emails.service";
+import { AgendaServicesService } from "./services/agenda.service";
 
 //rutas - routes // componentes (ROUTES_APP)
 import { routedComponents, ROUTES_APP } from "./routes";
@@ -84,7 +85,8 @@ import { OrdenarPipe } from './pipes/ordenar.pipe';
     GuardiaPinService,
     InscripcionesService,
     UtilsService,
-    EmailsService
+    EmailsService,
+    AgendaServicesService
   ],
   bootstrap: [AppComponent]
 })

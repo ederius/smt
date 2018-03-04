@@ -17,7 +17,7 @@ import { UtilsService } from "../../services/utils.service";
 export class PanelAdmitidosVerComponent implements OnInit {
 
   inscritos:Promise<any>;
-  admitidos:Array<any>;
+  admitidos:Promise<any>;
 
 
   constructor(
@@ -39,25 +39,26 @@ export class PanelAdmitidosVerComponent implements OnInit {
   }
 
   listarAdmitidos(){
-    this.inscritos = this._inscripcionesService.listarInscritos();
-    this.admitidos = _.filter(_.map(this.inscritos)[1], function(o){ return o.estado == 3 });         //Mapeando como un array la promesa y filtrando los datos a los que tengan como estado "3" = admitidos
-    this.admitidos = [
-      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
-      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
-      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
-      { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
-
-    ]
+    //this.admitidos = this._inscripcionesService.listarInscritos().then((data)=>{
+      //return _.filter(data, function(o){ return o.estado == 3 });         //Mapeando como un array la promesa y filtrando los datos a los que tengan como estado "3" = admitidos      
+      
+    //});
+    //this.admitidos = [
+    //  { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+    //  { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+    //  { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
+    //  { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" }
+    //]
   }
 
   exportarExcel(){
-
-    _.forEach(this.admitidos, function(pin, index){                                                   //eliminando actualizado de los objetos dentor del array
-      if(pin.actualizado != undefined){
-        delete pin.actualizado;
-        this.admitidos[index] = pin;
-      }
-    });
+    
+    //_.forEach(this.admitidos, function(pin, index){                                                   //eliminando actualizado de los objetos dentor del array
+    //  if(pin.actualizado != undefined){
+    //    delete pin.actualizado;
+    //    this.admitidos[index] = pin;
+    //  }
+    //});
 
     this.Utils.exportarExcel(this.admitidos, 'Reporte-de-admitidos');
   

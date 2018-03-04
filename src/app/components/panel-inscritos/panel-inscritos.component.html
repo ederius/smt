@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let inscrito of inscritos | async | search:buscar | ordenar:tipoOrden; index">
+          <tr *ngFor="let inscrito of inscritos | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{inscrito.id}}</td>
             <td class="text-center">{{inscrito.nombres}}</td>
             <td class="text-center">{{inscrito.apellidos}} </td>

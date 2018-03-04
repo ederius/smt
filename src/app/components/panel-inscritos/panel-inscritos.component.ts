@@ -5,6 +5,10 @@ import { FormGroup, FormControl, Validators, NgModel } from "@angular/forms";
 import * as _ from "lodash";
 import * as $ from "jquery"
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 
 
 
@@ -116,7 +120,7 @@ export class PanelInscritosComponent implements OnInit {
   exitoConsulta:String;
   exitoForma:Boolean;
 
-  inscritos:Promise<any>;
+  inscritos:Array<any>;
   inscrito:interfaceInscrito;
   forma:FormGroup;  
 
@@ -150,7 +154,8 @@ export class PanelInscritosComponent implements OnInit {
     private router: Router,
     private Utils:UtilsService,
     private modalService: NgbModal,
-    private _emailSerice: EmailsService
+    private _emailSerice: EmailsService,
+    private http:Http
     ) { 
 
     //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
@@ -166,7 +171,16 @@ export class PanelInscritosComponent implements OnInit {
   }
 
   listarInscritos(){
-    this.inscritos = this._inscripcionesService.listarInscritos();
+    let inscritos
+    this._inscripcionesService.listarInscritos().then((data)=>{
+      console.log(data);
+      this.inscritos = data; 
+    console.log(this.inscritos);
+    
+      //return data;
+    });
+
+
     /*this.inscritos = [
       { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
       { id:"1", nombres:"Eder Alberto", apellidos:"Diaz Toro", telefono:3006343860, celularPapa:3006343860, celularMama:3006343860, correoPapa:"eder@diaz.com", correoMama:"yuyu@diaz.com", grado: "pre-escolar" },
@@ -177,7 +191,7 @@ export class PanelInscritosComponent implements OnInit {
 
   exportarExcel(){
 
-    let inscritos = _.map(this.inscritos)[1];         //Mapeando como un array la promesa
+    let inscritos = this.inscritos;         //Mapeando como un array la promesa
     _.forEach(inscritos, function(pin, index){        //eliminando actualizado de los objetos dentor del array
       if(pin.actualizado != undefined){
         delete pin.actualizado;
@@ -194,7 +208,7 @@ export class PanelInscritosComponent implements OnInit {
              
     let inscritos
     
-    if(inscritos = _.map(this.inscritos)[1]){ //Mapeando como un array la promesa
+    if(inscritos = this.inscritos){ //Mapeando como un array la promesa
       for(let i = 0; i< inscritos.length; i++){
         if(inscritos[i].id==id){ 
           this.inscrito = inscritos[i]; 
@@ -351,6 +365,29 @@ export class PanelInscritosComponent implements OnInit {
     this.listarInscritos()
   }
 
+  enviarEmail(){
+    let url = `https://us-central1-smt-1-7b0e8.cloudfunctions.net/httpEmail`
+    let params: URLSearchParams = new URLSearchParams();
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*')
+    let options = new RequestOptions({headers:headers});
+
+    params.set('to', 'ederitodiaz@gmail.com');
+    params.set('from', 'you@yoursupercoolapp.com');
+    params.set('subject', 'test-email');
+    params.set('content', 'Hello World');
+
+    return this.http.post(url, params, options)
+                    .toPromise()
+                    .then( res => {
+                      console.log(res)
+                    })
+                    .catch(err => {
+                      console.log(err)
+                    })
+  }
+
   guardarCita(){
     let citas = {
     fechaEntrevista:this.fechaEntrevista,
@@ -363,7 +400,7 @@ export class PanelInscritosComponent implements OnInit {
 
     this._inscripcionesService.asignarCitas(citas, pin);
     this.actualizadoExitosamente = true;
-    this._emailSerice.enviarEmail();    
+    this.enviarEmail();    
 
   }
 

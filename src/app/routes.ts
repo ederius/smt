@@ -13,7 +13,7 @@ import { PanelTransaccionesComponent }  from './components/panel-transacciones/p
 import { PanelAdministradoresComponent }from './components/panel-administradores/panel-administradores.component';
 import { PanelRegisterUserComponent }   from "./components/panel-register-user/panel-register-user.component";
 import { PanelPinesGeneradosComponent } from './components/panel-pines-generados/panel-pines-generados.component';
-
+import { PanelAgendaComponent } from "./components/panel-agenda/panel-agenda.component";
 //panel de padres de familia o niños
 import { PinComponent }               from "./components/pin/pin.component";
 import { PinLoginComponent }          from './components/pin-login/pin-login.component';
@@ -40,7 +40,9 @@ const ROUTES: Routes = [
       { path: 'ver-admitidos',  component:PanelAdmitidosVerComponent },
       { path: 'matriculados',   component:PanelMatriculadosComponent },
       { path: 'transacciones',  component:PanelTransaccionesComponent },
-      { path: 'administradores',component:PanelAdministradoresComponent }
+      { path: 'administradores',component:PanelAdministradoresComponent },
+      { path: 'agenda',         component:PanelAgendaComponent }
+      
     ],
     canActivate: [ GuardiaService ]
   },
@@ -73,6 +75,7 @@ export const routedComponents = [
   PanelTransaccionesComponent,
   PanelAdministradoresComponent,
   PanelPinesGeneradosComponent,
+  PanelAgendaComponent,
   //pin components - componentes de pines 
   PinComponent,
   PinLoginComponent,

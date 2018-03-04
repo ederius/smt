@@ -32,7 +32,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pin of pines | async | reverse | search:buscar | ordenar:tipoOrden; index">
+          <tr *ngFor="let pin of pines | reverse | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{pin.cedula}}</td>
             <td class="text-center">{{pin.nombres}}</td>
             <td class="text-center">{{pin.apellidos}}</td>
@@ -42,7 +42,6 @@
               <span *ngIf="pin.estado == 1">No</span>
               <span *ngIf="pin.estado != 1">Si</span>
             </td>
-            
             
             <!-- <td class="text-center">
               <a href="" class="option" title="Detalles"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>

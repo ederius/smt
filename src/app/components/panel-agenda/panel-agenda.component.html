@@ -1,0 +1,96 @@
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center titulo ">Agenda de examenes y entrevistas</h3>
+      </div>
+      <hr>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 agenda text-center">
+        <ngb-datepicker [(ngModel)]="agenda" (ngModelChange)="consultarAgenda()"></ngb-datepicker>
+      </div>
+
+      <!-- tabla de citados a entrevistas --> 
+      <div class="text-center subtitulo col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4>Niños citados para entrevista con papas</h4>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">T.I. </th>              
+              <th class="text-center">Nombres</th>
+              <th class="text-center">Apellidos</th>
+              <th class="text-center">Teléfonos</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Curso</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let inscritoEntrevista of entrevistasInscritos | reverse | search:buscar | ordenar:tipoOrden; index">
+              <td class="text-center">{{inscritoEntrevista.id}}</td>
+              <td class="text-center">{{inscritoEntrevista.nombres}}</td>
+              <td class="text-center">{{inscritoEntrevista.apellidos}} </td>
+              <td class="text-center">{{inscritoEntrevista.celularMama}}</td>
+              <td class="text-center">{{inscritoEntrevista.correoMama}}</td>
+              <td class="text-center">{{inscritoEntrevista.grado}}</td>
+              
+              <td class="text-center">
+                <a class="option" title="Detalles" (click)="detallesAdmitido(inscritoEntrevista.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+              </td>
+
+            </tr>
+          </tbody>
+          
+        </table>
+        <div *ngIf="entrevistasInscritos.length == 0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
+          <h4>No hay niños citados este dia</h4>
+        </div>
+      </div>
+
+      <!-- tabla de citados a examenes --> 
+      <div class="text-center subtitulo col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4>Niños citados para examen de admisión</h4>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">T.I. </th>              
+              <th class="text-center">Nombres</th>
+              <th class="text-center">Apellidos</th>
+              <th class="text-center">Teléfonos</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Curso</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let inscritoExamenes of examenesInscritos | reverse | search:buscar | ordenar:tipoOrden; index">
+              <td class="text-center">{{inscritoExamenes.id}}</td>
+              <td class="text-center">{{inscritoExamenes.nombres}}</td>
+              <td class="text-center">{{inscritoExamenes.apellidos}} </td>
+              <td class="text-center">{{inscritoExamenes.celularMama}}</td>
+              <td class="text-center">{{inscritoExamenes.correoMama}}</td>
+              <td class="text-center">{{inscritoExamenes.grado}}</td>
+              
+
+              <td class="text-center">
+                <a class="option" title="Detalles" (click)="detallesAdmitido(admitido.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="examenesInscritos.length == 0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
+          <h4>No hay niños citados este dia</h4>
+        </div>
+      </div>
+    
+
+    </div>
+  </div>

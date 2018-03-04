@@ -35,8 +35,8 @@ export class PinLoginComponent implements OnInit {
   login(pin) {
     //Obteniendo los pines generados para ver si existe el que el usuario ingreso 
     this._pinesService.obtenerPines().then(data => {
-
-      _.forEach(data, (value, index) => { 
+      let datos:Array<any>=data;
+      _.forEach(datos, (value, index) => { 
           
           if (value.pin == pin) {
 

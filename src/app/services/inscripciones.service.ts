@@ -41,7 +41,7 @@ export class InscripcionesService {
   }
 
   detallesInscrito(id){
-    let inscritos:Promise<any>;
+    let inscritos:Array<any>;
     return new Promise(function(resolve, reject){
       return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
         inscritos = _.map(snapshop.val());
@@ -62,6 +62,12 @@ export class InscripcionesService {
         }
     });
   });
+  }
+
+  consultarInscrito(pin){
+    return this.db.database.ref(`inscripciones/${pin}`).once('value').then(function(snapshop){
+      return snapshop.val();
+    });
   }
 
   actualizarInscrito(pin, inscrito){
