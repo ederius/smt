@@ -13,4 +13,18 @@ export class AgendaServicesService {
     });
   }
 
+  guardarCalificacion(pin, calificacion){
+    return this.db.database.ref(`examenesAdmision/${pin}`).update(calificacion).then(function(data){
+      return data;
+    }).catch((error)=>{
+      return error
+    });
+  }
+
+  consultarCalificacion(pin){
+    return this.db.database.ref(`examenesAdmision/${pin}`).once('value').then(function(data){
+      return data.val();
+    });
+  }
+
 }

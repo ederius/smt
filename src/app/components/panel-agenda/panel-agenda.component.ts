@@ -7,6 +7,8 @@ import { InscripcionesService } from "../../services/inscripciones.service";
 
 //PACKAGE
 import * as _ from "lodash";
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -21,10 +23,19 @@ export class PanelAgendaComponent implements OnInit {
   entrevistasInscritos:Array<any>=[];
   examenesInscritos:Array<any>=[];
 
+  inscrito:any;
+  calificacionCastellano:number;
+  calificacionMatematica:number;
+  calificacionLectura:number;  
+  calificacionEntrevista:number;
+  actualizadaExitosamenteEntrevista:boolean=false;
+  actualizadaExitosamenteCalificaciones:boolean=false;
+
   constructor(
     private _agendaSevice:AgendaServicesService, 
     public _Utils:UtilsService, 
-    private _inscripcionesServices:InscripcionesService
+    private _inscripcionesServices:InscripcionesService,
+    private modalService: NgbModal    
   ) { }
 
   ngOnInit() {
@@ -57,6 +68,85 @@ export class PanelAgendaComponent implements OnInit {
     }, (error)=>{
       console.log(error);
     });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  modalAsignarCalificacionEntrevista(inscrito, contentModal){
+    
+      this.inscrito = inscrito; 
+      let closeResult
+      //consultando calificacion si en caso de que tenga algunas
+      this._agendaSevice.consultarCalificacion(inscrito.pin).then((data)=>{
+        console.log(data);
+        this.calificacionEntrevista = data.calificacionEntrevista;
+      }).catch((error)=>{
+        console.error(error);
+      })
+      //Abriendo modal para ver o insertar calificación de la entrevista con papas
+      this.modalService.open(contentModal, {size: 'xl' as 'lg'}).result.then((result) => {
+        closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+
+  }
+
+  modalAsignarCalificacionExamenes(inscrito, contentModal){
+    
+      this.inscrito = inscrito; 
+      let closeResult
+      //consultando calificacion si en caso de que tenga algunas
+      this._agendaSevice.consultarCalificacion(inscrito.pin).then((data)=>{
+        console.log(data);
+        this.calificacionCastellano = data.calificacionCastellano;
+        this.calificacionMatematica = data.calificacionMatematica;
+        this.calificacionLectura = data.calificacionLectura;
+      }).catch((error)=>{
+        console.error(error);
+      })
+      //Abriendo modal para ver o insertar calificación de la entrevista con papas
+      this.modalService.open(contentModal, {size: 'xl' as 'lg'}).result.then((result) => {
+        closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+
+  }
+
+  guardarCalificacionEntrevista(){
+    let pin = this.inscrito.pin
+    let calificacion = { calificacionEntrevista:this.calificacionEntrevista };
+    this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
+      this.actualizadaExitosamenteEntrevista=true;
+    }).catch((error)=>{
+      console.error(error);
+    })
+
+  }
+
+
+  guardarCalificacionExamenes(){
+    let pin = this.inscrito.pin
+    let calificacion = { 
+      calificacionCastellano : this.calificacionCastellano,
+      calificacionMatematica : this.calificacionMatematica,
+      calificacionLectura : this.calificacionLectura
+     };
+    this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
+      this.actualizadaExitosamenteCalificaciones=true;
+    }).catch((error)=>{
+      console.error(error);
+    });
+
   }
 
 }

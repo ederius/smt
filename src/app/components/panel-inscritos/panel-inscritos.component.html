@@ -556,7 +556,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
     </div>
   </ng-template>
   <!--FIN MODAL DETALLES DE INSCRITOS -->
@@ -578,7 +578,7 @@
       <form (ngSubmit)="actualizarInscripcion()" [formGroup]="forma">
         <div class="row">
           <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
-            <h5 class="subtitulo"> INFORMACIÓN DEL NIÑO(A)</h5>
+            <h5 class="subtitulo text-center"> INFORMACIÓN DEL NIÑO(A)</h5>
             <div class="row">
 
               <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.id.errors?.required && forma.controls.id.touched) || ( forma.controls.id.errors?.required && sended ) }">
@@ -842,7 +842,7 @@
             <div class="row ">
 
               <div class="col-xs-12 col-md-12 col-lg-12">
-                <h5 class="subtitulo"> INFORMACIÓN DEL PADRE</h5>
+                <h5 class="subtitulo text-center"> INFORMACIÓN DEL PADRE</h5>
               </div>
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaPapa.errors?.required && forma.controls.cedulaPapa.touched) || ( forma.controls.cedulaPapa.errors?.required && sended )}">
@@ -929,7 +929,7 @@
 
               <div class="col-xs-12 col-md-12 col-lg-12">
 
-                <h5 class="subtitulo"> INFORMACIÓN DEL MADRE</h5>
+                <h5 class="subtitulo text-center"> INFORMACIÓN DEL MADRE</h5>
               </div>
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaMama.errors?.required && forma.controls.cedulaMama.touched) || ( forma.controls.cedulaMama.errors?.required && sended )}">
@@ -1016,7 +1016,7 @@
 
               <div class="col-xs-12 col-md-12 col-lg-12">
 
-                <h5 class="subtitulo"> OTRAS REFERENCIAS</h5>
+                <h5 class="subtitulo  text-center"> OTRAS REFERENCIAS</h5>
               </div>
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaOtraR.errors?.required && forma.controls.cedulaOtraR.touched) || ( forma.controls.cedulaOtraR.errors?.required && sended )}">
@@ -1112,7 +1112,7 @@
 
               <div class="col-xs-12 col-md-12 col-lg-12">
 
-                <h5 class="subtitulo"> HABILIDADES Y ACTITUDES</h5>
+                <h5 class="subtitulo text-center"> HABILIDADES Y ACTITUDES</h5>
               </div>
 
               <div class="col-xs-12 col-md-8 col-lg-4 text-left">
@@ -1178,7 +1178,7 @@
             </div>
 
             <div class="button text-right">
-              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>                  
+              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>                  
               <input class="btn btn-info" type="submit" value="Actualizar" />                
             </div>
             <div class="button text-right">
@@ -1213,7 +1213,7 @@
       <p>¿Esta seguro que desea eliminar al niño inscrito?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
       <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito()">Eliminar</button>        
     </div>
   </ng-template>
@@ -1276,7 +1276,7 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
       <button type="button" class="btn btn-primary" (click)="guardarCita()"
       [disabled]="fechaEntrevista==null || horaEntrevista==null || fechaExamenes==null || horaExamenes==null"
       >Actualizar</button>        

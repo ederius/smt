@@ -12,7 +12,7 @@
       </div>
 
       <!-- tabla de citados a entrevistas --> 
-      <div class="text-center subtitulo col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="text-center subtituloAgenda col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h4>Niños citados para entrevista con papas</h4>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -22,9 +22,9 @@
               <th class="text-center">T.I. </th>              
               <th class="text-center">Nombres</th>
               <th class="text-center">Apellidos</th>
-              <th class="text-center">Teléfonos</th>
-              <th class="text-center">Email</th>
               <th class="text-center">Curso</th>
+              <th class="text-center">Teléfono</th>
+              <th class="text-center">Cita</th>
               <th>Opciones</th>
             </tr>
           </thead>
@@ -33,12 +33,17 @@
               <td class="text-center">{{inscritoEntrevista.id}}</td>
               <td class="text-center">{{inscritoEntrevista.nombres}}</td>
               <td class="text-center">{{inscritoEntrevista.apellidos}} </td>
-              <td class="text-center">{{inscritoEntrevista.celularMama}}</td>
-              <td class="text-center">{{inscritoEntrevista.correoMama}}</td>
               <td class="text-center">{{inscritoEntrevista.grado}}</td>
+              <td class="text-center">{{inscritoEntrevista.celularMama}}</td>
+              <td class="text-center">
+                {{inscritoEntrevista.fechaEntrevista.day}}-{{inscritoEntrevista.fechaEntrevista.month}}-{{inscritoEntrevista.fechaEntrevista.year}} / 
+                {{inscritoEntrevista.horaEntrevista.hour.toString().length==1? '0'+ inscritoEntrevista.horaEntrevista.hour:inscritoEntrevista.horaEntrevista.hour }}:
+                {{inscritoEntrevista.horaEntrevista.minute.toString().length==1? '0'+ inscritoEntrevista.horaEntrevista.minute:inscritoEntrevista.horaEntrevista.minute }}:
+                {{inscritoEntrevista.horaEntrevista.second.toString().length==1? '0'+ inscritoEntrevista.horaEntrevista.second:inscritoEntrevista.horaEntrevista.second }}
+              </td>
               
               <td class="text-center">
-                <a class="option" title="Detalles" (click)="detallesAdmitido(inscritoEntrevista.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+                <a class="option" title="Detalles" (click)="modalAsignarCalificacionEntrevista(inscritoEntrevista, contentModalEntrevista)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
               </td>
 
             </tr>
@@ -52,7 +57,7 @@
       </div>
 
       <!-- tabla de citados a examenes --> 
-      <div class="text-center subtitulo col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="text-center subtituloAgenda col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h4>Niños citados para examen de admisión</h4>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -62,24 +67,27 @@
               <th class="text-center">T.I. </th>              
               <th class="text-center">Nombres</th>
               <th class="text-center">Apellidos</th>
-              <th class="text-center">Teléfonos</th>
-              <th class="text-center">Email</th>
               <th class="text-center">Curso</th>
+              <th class="text-center">Teléfono</th>
+              <th class="text-center">Cita</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let inscritoExamenes of examenesInscritos | reverse | search:buscar | ordenar:tipoOrden; index">
-              <td class="text-center">{{inscritoExamenes.id}}</td>
-              <td class="text-center">{{inscritoExamenes.nombres}}</td>
-              <td class="text-center">{{inscritoExamenes.apellidos}} </td>
-              <td class="text-center">{{inscritoExamenes.celularMama}}</td>
-              <td class="text-center">{{inscritoExamenes.correoMama}}</td>
-              <td class="text-center">{{inscritoExamenes.grado}}</td>
-              
-
+                <td class="text-center">{{inscritoExamenes.id}}</td>
+                <td class="text-center">{{inscritoExamenes.nombres}}</td>
+                <td class="text-center">{{inscritoExamenes.apellidos}} </td>
+                <td class="text-center">{{inscritoExamenes.grado}}</td>
+                <td class="text-center">{{inscritoExamenes.celularMama}}</td>
+                <td class="text-center">
+                  {{inscritoExamenes.fechaEntrevista.day}}-{{inscritoExamenes.fechaEntrevista.month}}-{{inscritoExamenes.fechaEntrevista.year}} / 
+                  {{inscritoExamenes.horaEntrevista.hour.toString().length==1? '0'+ inscritoExamenes.horaEntrevista.hour:inscritoExamenes.horaEntrevista.hour }}:
+                  {{inscritoExamenes.horaEntrevista.minute.toString().length==1? '0'+ inscritoExamenes.horaEntrevista.minute:inscritoExamenes.horaEntrevista.minute }}:
+                  {{inscritoExamenes.horaEntrevista.second.toString().length==1? '0'+ inscritoExamenes.horaEntrevista.second:inscritoExamenes.horaEntrevista.second }}
+                </td>
               <td class="text-center">
-                <a class="option" title="Detalles" (click)="detallesAdmitido(admitido.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+                <a class="option" title="Detalles" (click)="modalAsignarCalificacionExamenes(inscritoExamenes,contentModalExamen)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
               </td>
 
             </tr>
@@ -94,3 +102,104 @@
 
     </div>
   </div>
+
+
+
+    <!-- MODAL CALIFICACIÓN ENTREVISTA DE INSCRIPCIÓN -->
+    <ng-template #contentModalEntrevista let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Asignar calificación</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <p>La entrevista y el examen de admisión son los procesos que el niño debe completar satisfactoriamente para poder aspirar al curso en el cual desea matricularse.</p>
+          <hr>
+          <section class="row">
+    
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+              <ul><li>Entrevista con padres.</li></ul>
+              <section class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                    <div class="input-group">
+                        <span class="input-group-addon">Calificación entrevista</span>
+                        <input type="number" class="form-control" name="entrevista" [(ngModel)]="calificacionEntrevista" maxlength="10" minlength="1">
+                    </div>
+                  </div>
+              </section>
+            </div>
+
+          </section>
+    
+          <hr>
+          <hr>
+          <div *ngIf="actualizadaExitosamenteEntrevista" class="alert alert-success text-center col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert">
+            Calificación guardada con exito!!
+          </div>
+    
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="guardarCalificacionEntrevista()"
+          [disabled]="calificacionEntrevista==null" >Asignar</button>        
+        </div>
+      </ng-template>
+      <!-- FIN MODAL ENTREVISTA DE INSCRIPCIÓN -->
+
+
+    <!-- MODAL CALIFICACIÓN EXAMENES DE INSCRIPCIÓN -->
+    <ng-template #contentModalExamen let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Asignar calificación</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <p>La entrevista y el examen de admisión son los procesos que el niño debe completar satisfactoriamente para poder aspirar al curso en el cual desea matricularse.</p>
+          <hr>
+          <section class="row">
+    
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+              <ul><li>Examenes de admisión.</li></ul>
+              <section class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                  <div class="input-group">
+                    <span class="input-group-addon">Calificación matematicas:</span>
+                    <input type="number" class="form-control" name="EMatematica" [(ngModel)]="calificacionMatematica" maxlength="10" minlength="1">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                  <div class="input-group">
+                    <span class="input-group-addon">Calificación castellano:</span>                        
+                    <input type="number" class="form-control" name="ECastellano" [(ngModel)]="calificacionCastellano" maxlength="10" minlength="1">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                    <div class="input-group">
+                      <span class="input-group-addon">Calificación comprención de lectura:</span>                        
+                      <input type="number" class="form-control" name="ECastellano" [(ngModel)]="calificacionLectura" maxlength="10" minlength="1">
+                    </div>
+                  </div>
+              </section>
+            </div>
+
+          </section>
+    
+          <hr>
+          <div *ngIf="actualizadaExitosamenteCalificaciones" class="alert alert-success text-center col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert">
+            Calificaciones guardadas con exito!!
+          </div>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="guardarCalificacionExamenes()"
+          [disabled]="calificacionMatematica==null || calificacionCastellano==null || calificacionLectura==null" >Asignar</button>        
+        </div>
+      </ng-template>
+      <!-- FIN MODAL EXAMENES DE INSCRIPCIÓN -->
