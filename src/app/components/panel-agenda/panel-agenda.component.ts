@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //SERVICES
-import { AgendaServicesService } from "../../services/agenda.service";
+import { AgendaService } from "../../services/agenda.service";
 import { UtilsService } from "../../services/utils.service";
 import { InscripcionesService } from "../../services/inscripciones.service";
 
@@ -32,7 +32,7 @@ export class PanelAgendaComponent implements OnInit {
   actualizadaExitosamenteCalificaciones:boolean=false;
 
   constructor(
-    private _agendaSevice:AgendaServicesService, 
+    private _agendaSevice:AgendaService, 
     public _Utils:UtilsService, 
     private _inscripcionesServices:InscripcionesService,
     private modalService: NgbModal    
@@ -50,7 +50,6 @@ export class PanelAgendaComponent implements OnInit {
           if(value1.fechaEntrevista.day == this.agenda.day && value1.fechaEntrevista.year == this.agenda.year && value1.fechaEntrevista.month == this.agenda.month ){
               return this._inscripcionesServices.consultarInscrito(index1).then((data1)=>{
                 this.entrevistasInscritos.push(Object.assign({}, value1, data1));
-                console.log(this.entrevistasInscritos);
               }).catch((error)=>{ 
                 console.error(error)
               });
@@ -60,7 +59,6 @@ export class PanelAgendaComponent implements OnInit {
           if(value2.fechaExamenes.day == this.agenda.day && value2.fechaExamenes.year == this.agenda.year && value2.fechaExamenes.month == this.agenda.month ){
             return this._inscripcionesServices.consultarInscrito(index2).then((data2)=>{
               this.examenesInscritos.push(Object.assign({}, value2, data2));
-              console.log(this.examenesInscritos)
             }).catch(()=>{})
           }  
         });
@@ -86,7 +84,6 @@ export class PanelAgendaComponent implements OnInit {
       let closeResult
       //consultando calificacion si en caso de que tenga algunas
       this._agendaSevice.consultarCalificacion(inscrito.pin).then((data)=>{
-        console.log(data);
         this.calificacionEntrevista = data.calificacionEntrevista;
       }).catch((error)=>{
         console.error(error);
@@ -106,7 +103,6 @@ export class PanelAgendaComponent implements OnInit {
       let closeResult
       //consultando calificacion si en caso de que tenga algunas
       this._agendaSevice.consultarCalificacion(inscrito.pin).then((data)=>{
-        console.log(data);
         this.calificacionCastellano = data.calificacionCastellano;
         this.calificacionMatematica = data.calificacionMatematica;
         this.calificacionLectura = data.calificacionLectura;
@@ -130,7 +126,7 @@ export class PanelAgendaComponent implements OnInit {
     }).catch((error)=>{
       console.error(error);
     })
-
+    
   }
 
 
@@ -148,5 +144,11 @@ export class PanelAgendaComponent implements OnInit {
     });
 
   }
+
+  imprimir(id){
+    let divToPrint=document.getElementById(id).outerHTML;
+    this._agendaSevice.imprimir(divToPrint);
+  }
+  
 
 }

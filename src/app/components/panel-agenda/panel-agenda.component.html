@@ -13,9 +13,11 @@
 
       <!-- tabla de citados a entrevistas --> 
       <div class="text-center subtituloAgenda col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4>Niños citados para entrevista con papas</h4>
+        <h4>Niños citados para entrevista con papas 
+          <button class="btn btn-success btn-sm button-right" (click)="imprimir('tablaCitasPapas')">Imprimir</button>
+        </h4>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="tablaCitasPapas">
         <table class="table">
           <thead>
             <tr>
@@ -58,9 +60,11 @@
 
       <!-- tabla de citados a examenes --> 
       <div class="text-center subtituloAgenda col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4>Niños citados para examen de admisión</h4>
+        <h4>Niños citados para examen de admisión
+            <button class="btn btn-success btn-sm button-right" (click)="imprimir('tablaCitasExamenes')">Imprimir</button>
+        </h4>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="tablaCitasExamenes">
         <table class="table">
           <thead>
             <tr>

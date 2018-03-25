@@ -14,6 +14,7 @@ import { PanelAdministradoresComponent }from './components/panel-administradores
 import { PanelRegisterUserComponent }   from "./components/panel-register-user/panel-register-user.component";
 import { PanelPinesGeneradosComponent } from './components/panel-pines-generados/panel-pines-generados.component';
 import { PanelAgendaComponent } from "./components/panel-agenda/panel-agenda.component";
+import { PanelCalificacionComponent } from "./components/panel-calificacion/panel-calificacion.component";
 //panel de padres de familia o niños
 import { PinComponent }               from "./components/pin/pin.component";
 import { PinLoginComponent }          from './components/pin-login/pin-login.component';
@@ -41,7 +42,9 @@ const ROUTES: Routes = [
       { path: 'matriculados',   component:PanelMatriculadosComponent },
       { path: 'transacciones',  component:PanelTransaccionesComponent },
       { path: 'administradores',component:PanelAdministradoresComponent },
-      { path: 'agenda',         component:PanelAgendaComponent }
+      { path: 'agenda',         component:PanelAgendaComponent },
+      { path: 'calificacion',   component:PanelCalificacionComponent }
+      
       
     ],
     canActivate: [ GuardiaService ]

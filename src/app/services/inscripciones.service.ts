@@ -45,8 +45,6 @@ export class InscripcionesService {
     return new Promise(function(resolve, reject){
       return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
         inscritos = _.map(snapshop.val());
-        console.log(inscritos);
-        //let inscritos = response;
         let keys = Object.keys(inscritos);
         let inscrito;
         for(var i = 0; i>keys.length;i++){

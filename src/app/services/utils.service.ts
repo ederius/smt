@@ -28,7 +28,6 @@ export class UtilsService  {
 
 
   reverseObject(object) {
-    console.log(object);
     var newObject = {};
     var keys = [];
     for (var key in object) {
@@ -39,9 +38,12 @@ export class UtilsService  {
       var value = object[keys[i]];
       newObject[keys[i]]= value;
     }       
-    console.log(newObject);
     
     return newObject;
+  }
+
+  promedioCalificaciones(calificaciones){
+
   }
 
 }

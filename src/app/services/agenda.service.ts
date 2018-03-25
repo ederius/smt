@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angular
 import * as _ from "lodash";
 
 @Injectable()
-export class AgendaServicesService {
+export class AgendaService {
 
   constructor(private db:AngularFireDatabase) { }
 
@@ -21,10 +21,24 @@ export class AgendaServicesService {
     });
   }
 
-  consultarCalificacion(pin){
+  consultarCalificacion(pin:string=""){
     return this.db.database.ref(`examenesAdmision/${pin}`).once('value').then(function(data){
       return data.val();
     });
+  }
+
+
+  consultarCalificacion2(){
+    return this.db.database.ref(`examenesAdmision`).once('value').then(function(data){
+      return data.val();
+    });
+  }
+
+  imprimir(content){
+    var newWin= window.open("");
+    newWin.document.write(content);
+    newWin.print();
+    newWin.close();
   }
 
 }

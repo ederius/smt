@@ -33,6 +33,14 @@ export class PinesService {
   listarPines(){
     return this.db.list('pines').valueChanges()
   }
+
+  actualizarEstado(pin, estado){
+    return this.db.database.ref(`pines/${pin}`).update({estado:estado}).then(function(data){
+      return data;
+    }).catch((error)=>{
+      return error
+    });
+  }
   
   
 

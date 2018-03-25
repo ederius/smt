@@ -173,11 +173,7 @@ export class PanelInscritosComponent implements OnInit {
   listarInscritos(){
     let inscritos
     this._inscripcionesService.listarInscritos().then((data)=>{
-      console.log(data);
       this.inscritos = data; 
-    console.log(this.inscritos);
-    
-      //return data;
     });
 
 
@@ -339,9 +335,7 @@ export class PanelInscritosComponent implements OnInit {
     this.inscrito = inscrito;
     let pin = inscrito.pin;
     this._inscripcionesService.consultarCitas(pin).then((data)=>{
-      console.log(data);
       let cita:cita = data;
-      console.log(cita);
       if(cita!={}){
         this.fechaEntrevista  = cita.fechaEntrevista;
         this.horaEntrevista   = cita.horaEntrevista;
@@ -381,7 +375,6 @@ export class PanelInscritosComponent implements OnInit {
     return this.http.post(url, params, options)
                     .toPromise()
                     .then( res => {
-                      console.log(res)
                     })
                     .catch(err => {
                       console.log(err)

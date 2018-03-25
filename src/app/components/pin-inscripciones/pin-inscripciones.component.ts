@@ -107,13 +107,10 @@ export class PinInscripcionesComponent implements OnInit {
 
   guardarInscripcion(){
 
-    console.log(this.forma);
-
     if(this.forma.valid){
       this._auth.verificarSesionActivaPin();      //validando si ya inicio sesion
       let forma = this.forma.value;               //Obteniendo datos del formario
       let pin = JSON.parse(localStorage.sesionPin);
-      console.log(pin);
       forma.pin = pin.pin;                
       this._inscripcionesService.guardarInscripcion(forma);
       this.exitoForma = "Guardado exitosamente";

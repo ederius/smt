@@ -46,7 +46,6 @@ export class PanelPinesGeneradosComponent implements OnInit {
   listarPines(){
      this._pinesServices.obtenerPines().then((data)=>{
       this.pines=data;
-      console.log(this.pines);
      }).catch(function(error){
        console.log(error)
      });    

@@ -29,7 +29,9 @@ import { GuardiaPinService } from "./services/guardia-pin.service";
 import { InscripcionesService } from "./services/inscripciones.service";
 import { UtilsService } from "./services/utils.service";
 import { EmailsService } from "./services/emails.service";
-import { AgendaServicesService } from "./services/agenda.service";
+import { AgendaService } from "./services/agenda.service";
+import { AdmitidosService } from "./services/admitidos.service";
+
 
 //rutas - routes // componentes (ROUTES_APP)
 import { routedComponents, ROUTES_APP } from "./routes";
@@ -45,6 +47,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { OrdenarPipe } from './pipes/ordenar.pipe';
+import { PanelCalificacionComponent } from './components/panel-calificacion/panel-calificacion.component';
 
 
 
@@ -59,7 +62,8 @@ import { OrdenarPipe } from './pipes/ordenar.pipe';
     PinHeaderComponent,
     ReversePipe,
     SearchPipe,
-    OrdenarPipe
+    OrdenarPipe,
+    PanelCalificacionComponent
 
   ],
   imports: [
@@ -86,7 +90,8 @@ import { OrdenarPipe } from './pipes/ordenar.pipe';
     InscripcionesService,
     UtilsService,
     EmailsService,
-    AgendaServicesService
+    AgendaService,
+    AdmitidosService
   ],
   bootstrap: [AppComponent]
 })
