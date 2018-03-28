@@ -18,7 +18,6 @@
          <button class="btn btn-success" (click)="exportarExcel()"> <i class="fa fa-download" aria-hidden="true"></i> Excel</button>
       </div>
       <!-- Opciones de tabla -->
-
       <br><br>
       <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <thead>
@@ -29,23 +28,23 @@
             <th class="text-center">Teléfonos</th>
             <th class="text-center">Email</th>
             <th class="text-center">Curso</th>
-            <th>Opciones</th>
+            <th>Matricular</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let admitido of admitidos | async | reverse | search:buscar | ordenar:tipoOrden; index">
+          <tr *ngFor="let admitido of admitidos | reverse | search:buscar | ordenar:tipoOrden; index">
             <td class="text-center">{{admitido.id}}</td>
             <td class="text-center">{{admitido.nombres}}</td>
             <td class="text-center">{{admitido.apellidos}} </td>
-            <td class="text-center">{{admitido.telefono}}{{admitido.celularPapa}}{{ admitidos.celularMama}}</td>
-            <td class="text-center">{{admitido.correoPapa}}{{ admitido.correoMama}}</td>
+            <td class="text-center">{{admitido.telefonos}}{{admitido.celularMama}}</td>
+            <td class="text-center">{{admitido.correoMama}}</td>
             <td class="text-center">{{admitido.grado}}</td>
             
-            
             <td class="text-center">
-              <a class="option" title="Detalles" (click)="detallesAdmitido(admitido.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
-              <a class="option" title="Editar" (click)="editarAdmitido(admitido.id)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-              <a class="option" title="Eliminar" (click)="eliminarAdmitido(admitido.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="admitido[admitido.id]" (change)="matricularModal(admitido, contentAdd)" />
+                <span class="slider round"></span>
+              </label>
             </td>
 
           </tr>
@@ -53,3 +52,22 @@
       </table>
     </div>
   </div>
+
+
+    <!-- MODAL ADMITIR INSCRITOS -->
+    <ng-template #contentAdd let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Admisión</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Esta seguro que desea aprotar la niño como matriculado?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-outline-dark" (click)="matricular()">Matricular</button>        
+        </div>
+      </ng-template>
+      <!--FIN MODAL ADMITIR INSCRITO -->

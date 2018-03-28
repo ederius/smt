@@ -31,6 +31,7 @@ import { UtilsService } from "./services/utils.service";
 import { EmailsService } from "./services/emails.service";
 import { AgendaService } from "./services/agenda.service";
 import { AdmitidosService } from "./services/admitidos.service";
+import { MatriculadosService } from "./services/matriculados.service";
 
 
 //rutas - routes // componentes (ROUTES_APP)
@@ -91,7 +92,8 @@ import { PanelCalificacionComponent } from './components/panel-calificacion/pane
     UtilsService,
     EmailsService,
     AgendaService,
-    AdmitidosService
+    AdmitidosService,
+    MatriculadosService
   ],
   bootstrap: [AppComponent]
 })

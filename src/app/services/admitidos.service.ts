@@ -17,4 +17,16 @@ export class AdmitidosService {
     });
   }
 
+  listarAdmitidos(){
+    return this.db.database.ref(`admitidos`).once('value').then(function(data){
+      return _.map(data.val());
+    }).catch((error)=>{
+      return error
+    });
+  }
+
+  eliminarAdmitido(pin){
+    return this.db.database.ref(`admitidos/${pin}`).remove();          
+  }
+
 }

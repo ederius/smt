@@ -31,7 +31,7 @@
               <th class="text-center">Matematicas</th>
               <th class="text-center">Compr. Lectura</th>
               <th class="text-center">Entrevista</th>
-              <th class="text-center">Admitido</th>
+              <th class="text-center">Admitir</th>
             </tr>
           </thead>
           <tbody>
@@ -40,15 +40,17 @@
               <td class="text-center">{{inscrito.nombres}}</td>
               <td class="text-center">{{inscrito.apellidos}} </td>
               <td class="text-center">{{inscrito.grado}}</td>
-              <td class="text-center">{{inscrito.calificacionCastellano || N/A}}</td>
-              <td class="text-center">{{inscrito.calificacionMatematica || N/A}}</td>
-              <td class="text-center">{{inscrito.calificacionLectura || N/A}}</td>
-              <td class="text-center">{{inscrito.calificacionEntrevista || N/A}}</td>
+              <td class="text-center">{{inscrito.calificacionCastellano || 'N/A'}}</td>
+              <td class="text-center">{{inscrito.calificacionMatematica || 'N/A'}}</td>
+              <td class="text-center">{{inscrito.calificacionLectura || 'N/A'}}</td>
+              <td class="text-center">{{inscrito.calificacionEntrevista || 'N/A'}}</td>
               <td class="text-center"><!-- Rounded switch -->
                 <label class="switch">
-                  <input type="checkbox" [(ngModel)]="admitido" (change)="admitirModal(inscrito, contentDelete)">
+                  <input type="checkbox" [(ngModel)]="admitido[inscrito.id]" (change)="admitirModal(inscrito, contentAdd)"
+                  [disabled]="!inscrito.calificacionCastellano && !inscrito.calificacionMatematica && !inscrito.calificacionLectura && !inscrito.calificacionEntrevista">
                   <span class="slider round"></span>
-                </label></td>               
+                </label>
+              </td>               
             </tr>
           </tbody>
         </table>
@@ -58,8 +60,8 @@
   
   
   
-  <!-- MODAL ELIMINAR INSCRITOS -->
-  <ng-template #contentDelete let-c="close" let-d="dismiss">
+  <!-- MODAL ADMITIR INSCRITOS -->
+  <ng-template #contentAdd let-c="close" let-d="dismiss">
       <div class="modal-header">
         <h4 class="modal-title">Admisión</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -67,11 +69,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>¿Esta seguro que desea reprotar la niño como admitido?</p>
+        <p>¿Esta seguro que desea aprotar la niño como admitido?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
         <button type="button" class="btn btn-outline-dark" (click)="admitir()">Admitir</button>        
       </div>
     </ng-template>
-    <!--FIN MODAL ELIMINAR INSCRITO -->
+    <!--FIN MODAL ADMITIR INSCRITO -->

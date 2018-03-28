@@ -24,7 +24,7 @@ export class PanelCalificacionComponent implements OnInit {
   inscrito:any;
   buscar:string;
   tipoOrden:any;
-  admitido:boolean;
+  admitido:any = {};
 
 
   ordenar:any=[
@@ -63,7 +63,7 @@ export class PanelCalificacionComponent implements OnInit {
         let keys = Object.keys(data2);
         _.forEach(data1, function(inscrito1:any, index1){
           _.forEach(keys, function(key, index2){
-            if(inscrito1.pin == keys){
+            if(inscrito1.pin == key){
               inscrito1.calificacionCastellano = data2[key].calificacionCastellano;
               inscrito1.calificacionMatematica = data2[key].calificacionMatematica;
               inscrito1.calificacionLectura = data2[key].calificacionLectura;
@@ -108,28 +108,25 @@ export class PanelCalificacionComponent implements OnInit {
     this.inscrito = inscrito;
     this.modalService.open(content, {size: 'sm' as 'sm'}).result.then((result) => {
       //this.closeResult = `Closed with: ${result}`;
+      this.admitido[inscrito.id]=false;               //Devolviendo switch a su estado original 
     }, (reason) => {
       let closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log("cerre");
     });
   }
 
   admitir(){
     let inscrito = this.inscrito;
     this._admitidosService.agregar(inscrito).then((response1)=>{
-      console.log(response1);
       return this._inscripcionesService.eliminarInscrito(inscrito.pin);
     }).then((response2)=>{
-      console.log(response2);      
       return this._pinesService.actualizarEstado(inscrito.pin, 3)
     }).then((response3)=>{
-      console.log(response3);
-      console.log("todo bien!");
       this.listarInscritos();
     })
     .catch((error)=>{
       console.log(error);
     });
-
 
   }
   
