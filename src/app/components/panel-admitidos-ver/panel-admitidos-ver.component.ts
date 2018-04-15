@@ -15,7 +15,6 @@ import { PinesService } from "../../services/pines.service";
 import { MatriculadosService } from "../../services/matriculados.service";
 
 
-
 @Component({
   selector: 'app-panel-admitidos-ver',
   templateUrl: './panel-admitidos-ver.component.html',
@@ -26,6 +25,14 @@ export class PanelAdmitidosVerComponent implements OnInit {
   inscritos:Array<any>;
   admitidos:Array<any>;
   admitido:any;
+  adm:any;
+  documentoID:boolean;
+  fotos:boolean;
+  pago:boolean;
+  certificadoMedico:boolean;
+  certificadoEPS:boolean;
+  exito:string;
+  error:any;
 
   constructor(
       private _auth: AutenticacionService, 
@@ -51,8 +58,28 @@ export class PanelAdmitidosVerComponent implements OnInit {
   }
 
   listarAdmitidos(){
-    this._admitidosService.listarAdmitidos().then((data)=>{
-      this.admitidos = data; 
+    this._admitidosService.listarAdmitidos().then((admitidos)=>{
+      this._admitidosService.obtenerRequerimientos2().then((requisitos)=>{
+        if(requisitos){
+          _.forEach(admitidos, (a, index1)=>{ 
+            _.forEach(requisitos, (r, index2)=>{               
+              console.log(`${a.pin} == ${r.pin}`);
+              if(a.pin == r.pin){ 
+                admitidos[index1].documentoID=r.documentoID;
+                admitidos[index1].fotos=r.fotos;
+                admitidos[index1].pago=r.pago;
+                admitidos[index1].certificadoMedico=r.certificadoMedico;
+                admitidos[index1].certificadoEPS=r.certificadoEPS;
+              }
+            });
+            console.log(`${admitidos.length - 1} == ${index1}`);
+            if(parseInt(index1) == (admitidos.length-1) ){ this.admitidos = admitidos; console.log(admitidos);
+             }
+          });
+        }else{
+          this.admitidos = admitidos;
+        }
+      });
     });
   }
 
@@ -107,13 +134,71 @@ export class PanelAdmitidosVerComponent implements OnInit {
   }
 
 
-  detallesAdmitidos(id){
+  detallesAdmitido(id, content){
+    let admitidos
+    if(admitidos = this.admitidos){ //Mapeando como un array la promesa
+      for(let i = 0; i< admitidos.length; i++){
+        if(admitidos[i].id==id){ 
+          this.adm = admitidos[i]; 
+        }  
+      };
+    }
     
+    this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   editarAdmitidos(id){
 
   }
+
+  requerimientosModal(admitido, content){
+    this.admitido = admitido;
+    this._admitidosService.obtenerRequerimientos(admitido.pin).then((data)=>{
+      console.log(data);
+      if(data){
+        console.log("entro");
+        
+        this.documentoID=data.documentoID;
+        this.fotos=data.fotos;
+        this.pago=data.pago;
+        this.certificadoMedico=data.certificadoMedico;
+        this.certificadoEPS=data.certificadoEPS;
+      }
+        this.modalService.open(content, {size: 'sm' as 'sm'}).result.then((result) => {
+        //this.closeResult = `Closed with: ${result}`;
+        //this.admitido[admitido.id]=false;               //Devolviendo switch a su estado original 
+      }, (reason) => {
+        let closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        console.log("cerre");
+      });
+    
+
+   });
+  }
+
+  guardarRequerimientos(){
+   
+    let data = {
+      documentoID:this.documentoID ? this.documentoID : false,
+      fotos:this.fotos ? this.fotos : false,
+      pago:this.pago ? this.pago : false,
+      certificadoMedico:this.certificadoMedico ? this.certificadoMedico : false,
+      certificadoEPS:this.certificadoEPS ? this.certificadoEPS : false,
+      pin:this.admitido.pin,
+    }
+    this._admitidosService.guardarRequerimientos(this.admitido.pin, data).then((response)=>{
+      this.exito="Los requerimientos han sido guardados con exito."
+      this.listarAdmitidos();
+    }).catch((error)=>{
+      this.error="Ups... algo a salido mal, intentelo mas tarde."
+    });
+  }
+
+
 
 
 }

@@ -47,7 +47,7 @@
               <td class="text-center"><!-- Rounded switch -->
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="admitido[inscrito.id]" (change)="admitirModal(inscrito, contentAdd)"
-                  [disabled]="!inscrito.calificacionCastellano && !inscrito.calificacionMatematica && !inscrito.calificacionLectura && !inscrito.calificacionEntrevista">
+                  [disabled]="!inscrito.calificacionCastellano || !inscrito.calificacionMatematica || !inscrito.calificacionLectura || !inscrito.calificacionEntrevista">
                   <span class="slider round"></span>
                 </label>
               </td>               

@@ -29,4 +29,28 @@ export class AdmitidosService {
     return this.db.database.ref(`admitidos/${pin}`).remove();          
   }
 
+  obtenerRequerimientos(pin){
+    return this.db.database.ref(`requisitosMatricula/${pin}`).once('value').then(function(data){
+      return data.val();
+    }).catch((error)=>{
+      return error
+    });
+  }
+
+  obtenerRequerimientos2(){
+    return this.db.database.ref(`requisitosMatricula/`).once('value').then(function(data){
+      return _.map(data.val());
+    }).catch((error)=>{
+      return error
+    });
+  }
+
+  guardarRequerimientos(pin, data){
+    return this.db.database.ref(`requisitosMatricula/${pin}/`).set(data).then(function(data){
+      return _.map(data.val());
+    }).catch((error)=>{
+      return error
+    });
+  }
+
 }

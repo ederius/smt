@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h3 class="text-center titulo ">Niños inscritos</h3>
+        <h3 class="text-center titulo ">Niños admitidos</h3>
       </div>
       <!-- Opciones de tabla -->
       <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
@@ -28,6 +28,7 @@
             <th class="text-center">Teléfonos</th>
             <th class="text-center">Email</th>
             <th class="text-center">Curso</th>
+            <th class="text-center">Opciones</th>
             <th>Matricular</th>
           </tr>
         </thead>
@@ -39,10 +40,15 @@
             <td class="text-center">{{admitido.telefonos}}{{admitido.celularMama}}</td>
             <td class="text-center">{{admitido.correoMama}}</td>
             <td class="text-center">{{admitido.grado}}</td>
-            
+            <td class="text-center">
+              <button class="btn" title="Requisitos" (click)="requerimientosModal(admitido, contentRequerimientos)"><i class="fa fa-list" aria-hidden="true"></i></button>
+              <button class="btn" title="Detalles" (click)="detallesAdmitido(admitido.id, content)"><i class="fa fa-file-text-o" aria-hidden="true"></i></button>
+            </td>            
             <td class="text-center">
               <label class="switch">
-                <input type="checkbox" [(ngModel)]="admitido[admitido.id]" (change)="matricularModal(admitido, contentAdd)" />
+                <input type="checkbox" [(ngModel)]="admitido[admitido.id]" (change)="matricularModal(admitido, contentAdd)" 
+                [disabled]="!admitido.documentoID || !admitido.fotos || !admitido.pago || !admitido.certificadoMedico || !admitido.certificadoEPS"
+                />
                 <span class="slider round"></span>
               </label>
             </td>
@@ -54,20 +60,577 @@
   </div>
 
 
-    <!-- MODAL ADMITIR INSCRITOS -->
-    <ng-template #contentAdd let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title">Admisión</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <!-- MODAL REQUISITOS PARA SER MATRICULADO -->
+  <ng-template #contentRequerimientos let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">REQUISITOS PARA METRICULA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Este listado representa los requirimientos en papeleo pagos o tramites que debe cumplir un acudiente considere matriculado su niño.</p>
+      <br><br>
+        <div class="checkbox-bottom">
+          <label>
+            <input type="checkbox" name="documentoID" [(ngModel)]="documentoID" > Registro cilvil o tarjeta de identidad.
+          </label>
         </div>
-        <div class="modal-body">
-          <p>¿Esta seguro que desea aprotar la niño como matriculado?</p>
+        <div class="checkbox-bottom">
+          <label>
+            <input type="checkbox" name="fotos" [(ngModel)]="fotos" > 2 fotos fondo azul tipo carnet.
+          </label>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
-          <button type="button" class="btn btn-outline-dark" (click)="matricular()">Matricular</button>        
+        <div class="checkbox-bottom">
+          <label>
+            <input type="checkbox" name="pago" [(ngModel)]="pago" > Comprobante pago de matricula.
+          </label>
         </div>
-      </ng-template>
-      <!--FIN MODAL ADMITIR INSCRITO -->
+        <div class="checkbox-bottom">
+          <label>
+            <input type="checkbox" name="CertificadoMedico" [(ngModel)]="certificadoMedico" > Certificado medico.
+          </label>
+        </div>
+        <div class="checkbox-bottom">
+          <label>
+            <input type="checkbox" name="certificadoEPS" [(ngModel)]="certificadoEPS" > Comprobante de afiliación EPS.
+          </label>
+        </div>
+    </div>
+    <hr>
+    <div *ngIf="exito" class="alert alert-success text-center" role="alert">
+      Actualizado con exito!!
+    </div>
+    <div *ngIf="error" class="alert alert-danger text-center" role="alert">
+      <strong>Error,</strong>{{error}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="guardarRequerimientos()">Guardar</button>        
+    </div>
+  </ng-template>
+  <!--FIN MODAL REQUISITOS PARA SER MATRICULADO-->
+
+ 
+ <!-- MODAL DETALLES DE ADMITIDO -->
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Detalles de niño inscrito</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+          <h5 class="subtitulo text-center"> INFORMACIÓN DEL NIÑO(A)</h5>
+          <div class="row">
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="id" [(ngModel)]="adm.id" placeholder="N. de identificacion" readonly />
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fechaExp" [(ngModel)]="adm.fechaExp" placeholder="Fecha de expedicion de documento" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="nombres" [(ngModel)]="adm.nombres" placeholder="Nombres" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="" [(ngModel)]="adm.apellidos" placeholder="Apellidos" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="lugarN" [(ngModel)]="adm.lugarN" placeholder="Lugar de nacimiento" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fechaN" [(ngModel)]="adm.fechaN" placeholder="Fecha de nacimiento" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="direccion" [(ngModel)]="adm.direccion" placeholder="Dirección" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="barrio" [(ngModel)]="adm.barrio" placeholder="Barrio" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="telefonos" [(ngModel)]="adm.telefonos" placeholder="Teléfonos" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="colegioPro" [(ngModel)]="adm.colegioPro" placeholder="Colegio de procedencia" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="ciudad" [(ngModel)]="adm.ciudad" placeholder="Ciudad" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4 text-left">
+              <p>El niño(a) presenta algun tipo de discapacidad</p>
+
+              <div class="radio-button">
+                <input type="radio" name="discapacidad" [(ngModel)]="adm.discapacidad" value="Fisica" disabled>
+                <label> Fisica </label>
+              </div>
+
+              <div class="radio-button">
+                <input type="radio" name="discapacidad" [(ngModel)]="adm.discapacidad" value="Sensorial" disabled>
+                <label> Sensorial </label>
+              </div>
+
+              <div class="radio-button">
+                <input type="radio" name="discapacidad" [(ngModel)]="adm.discapacidad" value="Cognitiva" disabled>
+                <label> Cognitiva </label>
+              </div>
+
+              <div class="radio-button">
+                <input type="radio" name="discapacidad" [(ngModel)]="adm.discapacidad" value="No" disabled>
+                <label> No </label>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="eps" [(ngModel)]="adm.eps" placeholder="EPS" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <select name="viveCPadres" [(ngModel)]="adm.viveCPadres" class="form-control" disabled>
+                <option value="">Convive con los padres</option>
+                <option value="si"> Si </option>
+                <option value="no"> No </option>
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="viveCOtros" [(ngModel)]="adm.viveCOtros" placeholder="Vive con otro? Con quien (Opcional)" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <select name="estrato" [(ngModel)]="adm.estrato" class="form-control" disabled>
+                <option value="">Estracto</option>
+                <option value="#1"> 1 </option>
+                <option value="#2"> 2 </option>
+                <option value="#3"> 3 </option>
+                <option value="#4"> 4 </option>
+                <option value="#5"> 5 </option>
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <select name="sexo" [(ngModel)]="adm.sexo" class="form-control" disabled>
+                <option value="">Sexo</option>
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8 col-lg-4">
+              <select name="tipoSangre" [(ngModel)]="adm.tipoSangre" class="form-control" disabled>
+                <option value=""> Tipo de sangre </option>
+                <option value="a+"> A+ </option>
+                <option value="a-"> A- </option>
+                <option value="b+"> B+ </option>
+                <option value="ab"> B- </option>
+                <option value="ab"> AB+ </option>
+                <option value="ab"> AB- </option>
+                <option value="ab"> O- </option>
+                <option value="ab"> O+ </option>
+                
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8 col-lg-4">
+              <select name="jornada" [(ngModel)]="adm.jornada" class="form-control" disabled>
+                <option value=""> Jornada </option>
+                <option value="mañana"> Mañana </option>
+                <option value="tarde"> Tarde </option>
+                <option value="continua"> Continua </option>
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8 col-lg-4">
+              <select name="grado" [(ngModel)]="adm.grado" class="form-control" disabled>
+                <option value="">Grado</option>
+                <option value="salacuna"> Sala cuna </option>
+                <option value="caminadores"> Caminadores </option>
+                <option value="parvulo"> Parvulo </option>
+                <option value="pre-jardin"> Pre-jardin </option>
+                <option value="jardin"> Jardin </option>
+                <option value="transicion"> Transicion </option>
+                <option value="primero"> Primero </option>
+                <option value="segundo"> Segundo </option>
+                <option value="tercero"> Tercero </option>
+                <option value="cuarto"> Cuarto </option>
+                <option value="quinto"> Quinto </option>
+              </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8 col-lg-4">
+              <div class="radio-button text-left">
+                <p> Indigena </p>
+              </div>
+
+              <div class="radio-button">
+                <input type="radio" name="indigena" [(ngModel)]="adm.indigena" value="si" disabled>
+                <label> Si </label>
+              </div>
+
+              <div class="radio-button">
+                <input type="radio" name="indigena" [(ngModel)]="adm.indigena" value="no" disabled>
+                <label> No </label>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="etnia" [(ngModel)]="adm.etnia" placeholder="Etnia (Opcional)" readonly> 
+              </div>
+            </div>
+
+
+
+          </div>
+          <!--DIV DEV ROW -->
+
+
+        </div>
+        <!-- DIV DE CAR -->
+
+        <!---Infomacion del padre-->
+
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+          <div class="row ">
+
+            <div class="col-xs-12 col-md-12 col-lg-12">
+              <h5 class="subtitulo text-center"> INFORMACIÓN DEL PADRE</h5>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="cedulaPapa" [(ngModel)]="adm.cedulaPapa" placeholder="Cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fechaExpPapa" [(ngModel)]="adm.fechaExpPapa" placeholder="Fecha de expedición de la cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="correoPapa" [(ngModel)]="adm.correoPapa" placeholder="correo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="	text" class="form-control" name="nombresPapa" [(ngModel)]="adm.nombresPapa" placeholder="Nombres" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="apellidosPapa" [(ngModel)]="adm.apellidosPapa" placeholder="Apellidos" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="profesionPapa" [(ngModel)]="adm.profesionPapa" placeholder="Profesion" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="LugarTrabajoPapa" [(ngModel)]="adm.LugarTrabajoPapa" placeholder="Lugar de trabajo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="cargoPapa" [(ngModel)]="adm.cargoPapa" placeholder="Cargo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="celularPapa" [(ngModel)]="adm.celularPapa" placeholder="Telefono" readonly>
+              </div>
+            </div>
+
+          </div>
+          <!-- div medidas del card-->
+        </div>
+        <!-- div card -->
+
+        <!---Infomacion de la madre-->
+
+
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+          <div class="row ">
+
+            <div class="col-xs-12 col-md-12 col-lg-12">
+
+              <h5 class="subtitulo text-center"> INFORMACIÓN DEL MADRE</h5>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="cedulaMama" [(ngModel)]="adm.cedulaMama" placeholder="Cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fechaExpMama" [(ngModel)]="adm.fechaExpMama" placeholder="Fecha de expedición de la cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="correoMama" [(ngModel)]="adm.correoMama" placeholder="correo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="	text" class="form-control" name="nombresMama" [(ngModel)]="adm.nombresMama" placeholder="Nombres" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="apellidosMama" [(ngModel)]="adm.apellidosMama" placeholder="Apellidos" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="profesionMama" [(ngModel)]="adm.profesionMama" placeholder="Profesion" readonly> 
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="LugarTrabajoMama" [(ngModel)]="adm.LugarTrabajoMama" placeholder="Lugar de trabajo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="cargoMama" [(ngModel)]="adm.cargoMama" placeholder="Cargo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="celularMama" [(ngModel)]="adm.celularMama" placeholder="Telefono" readonly>
+              </div>
+            </div>
+
+          </div>
+          <!-- div medidas del card-->
+        </div>
+        <!-- div card -->
+
+        <!---Otras referencias-->
+
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+          <div class="row ">
+
+            <div class="col-xs-12 col-md-12 col-lg-12">
+
+              <h5 class="subtitulo text-center"> OTRAS REFERENCIAS</h5>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="cedulaOtraR" [(ngModel)]="adm.cedulaOtraR" placeholder="Cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="fechaExpOtraR" [(ngModel)]="adm.fechaExpOtraR" placeholder="Fecha de expedición de la cédula" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="correoOtraR" [(ngModel)]="adm.correoOtraR" placeholder="correo" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="	text" class="form-control" name="nombresOtraR" [(ngModel)]="adm.nombresOtraR" placeholder="Nombres" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="apellidosOtraR" [(ngModel)]="adm.apellidosOtraR" placeholder="Apellidos" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="parentescoOtraR" [(ngModel)]="adm.parentescoOtraR" placeholder="Parentezco" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="ocupacionOtraR" [(ngModel)]="adm.ocupacionOtraR" placeholder="Ocupacion" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="direccionOtraR" [(ngModel)]="adm.direccionOtraR" placeholder="Direccion" readonly>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-8  col-lg-4">
+              <div class="form-group">
+                <input type="number" class="form-control" name="celularOtraR" [(ngModel)]="adm.celularOtraR" placeholder="Telefonos" readonly>
+              </div>
+            </div>
+
+          </div>
+          <!-- div medidas del card-->
+        </div>
+        <!-- div card -->
+
+        <!---Habilidades y actitudes-->
+
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+          <div class="row ">
+
+            <div class="col-xs-12 col-md-12 col-lg-12">
+
+              <h5 class="subtitulo text-center"> HABILIDADES Y ACTITUDES</h5>
+            </div>
+
+            <div class="col-xs-12 col-md-8 col-lg-4 text-left">
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="musica" [(ngModel)]="adm.musica" disabled> Musica
+                </label>
+              </div>
+
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="RelacionPersonales" [(ngModel)]="adm.RelacionPersonales" disabled> Relacion con los demas
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="baile" [(ngModel)]="adm.baile" disabled> Baile
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="amorNaturaleza" [(ngModel)]="adm.amorNaturaleza" disabled> Amor a la naturaleza
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="arte" [(ngModel)]="adm.arte" disabled> Arte
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="armarFiguras" [(ngModel)]="adm.armarFiguras" disabled> Armar figuras
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="lenguaje" [(ngModel)]="adm.lenguaje" disabled> Lenguaje
+                </label>
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="otraCual" [(ngModel)]="adm.otraCual" placeholder="Otra, Cual? (Opcional)" readonly/>
+              </div>
+
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <hr>
+
+        </div>
+        <!-- DIV DE PRIMER ROW-->
+
+
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+  <!--FIN MODAL DETALLES DE ADMITIDO -->
+
+
+  <!-- MODAL ADMITIR INSCRITOS -->
+  <ng-template #contentAdd let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Admisión</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>¿Esta seguro que desea aprotar la niño como matriculado?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="matricular()">Matricular</button>        
+    </div>
+  </ng-template>
+  <!--FIN MODAL ADMITIR INSCRITO -->
