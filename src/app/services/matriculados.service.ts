@@ -17,4 +17,12 @@ export class MatriculadosService {
     });
   }
 
+  listarMatriculados(){
+    return this.db.database.ref(`matriculados`).once("value").then(function(data){
+      return _.map(data.val());
+    }).catch((error)=>{
+      return error
+    });
+  }
+
 }

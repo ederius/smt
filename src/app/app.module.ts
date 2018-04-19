@@ -32,6 +32,7 @@ import { EmailsService } from "./services/emails.service";
 import { AgendaService } from "./services/agenda.service";
 import { AdmitidosService } from "./services/admitidos.service";
 import { MatriculadosService } from "./services/matriculados.service";
+import { CajaMenorService } from "./services/caja-menor.service";
 
 
 //rutas - routes // componentes (ROUTES_APP)
@@ -49,6 +50,7 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { OrdenarPipe } from './pipes/ordenar.pipe';
 import { PanelCalificacionComponent } from './components/panel-calificacion/panel-calificacion.component';
+import { PanelCajaMenorComponent } from './components/panel-caja-menor/panel-caja-menor.component';
 
 
 
@@ -64,7 +66,8 @@ import { PanelCalificacionComponent } from './components/panel-calificacion/pane
     ReversePipe,
     SearchPipe,
     OrdenarPipe,
-    PanelCalificacionComponent
+    PanelCalificacionComponent,
+    PanelCajaMenorComponent
 
   ],
   imports: [
@@ -93,7 +96,8 @@ import { PanelCalificacionComponent } from './components/panel-calificacion/pane
     EmailsService,
     AgendaService,
     AdmitidosService,
-    MatriculadosService
+    MatriculadosService,
+    CajaMenorService
   ],
   bootstrap: [AppComponent]
 })

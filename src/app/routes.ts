@@ -15,6 +15,8 @@ import { PanelRegisterUserComponent }   from "./components/panel-register-user/p
 import { PanelPinesGeneradosComponent } from './components/panel-pines-generados/panel-pines-generados.component';
 import { PanelAgendaComponent } from "./components/panel-agenda/panel-agenda.component";
 import { PanelCalificacionComponent } from "./components/panel-calificacion/panel-calificacion.component";
+import { PanelCajaMenorComponent } from "./components/panel-caja-menor/panel-caja-menor.component";
+
 //panel de padres de familia o niños
 import { PinComponent }               from "./components/pin/pin.component";
 import { PinLoginComponent }          from './components/pin-login/pin-login.component';
@@ -43,8 +45,8 @@ const ROUTES: Routes = [
       { path: 'transacciones',  component:PanelTransaccionesComponent },
       { path: 'administradores',component:PanelAdministradoresComponent },
       { path: 'agenda',         component:PanelAgendaComponent },
-      { path: 'calificacion',   component:PanelCalificacionComponent }
-      
+      { path: 'calificacion',   component:PanelCalificacionComponent },
+      { path: 'caja-menor',   component:PanelCajaMenorComponent } 
       
     ],
     canActivate: [ GuardiaService ]
