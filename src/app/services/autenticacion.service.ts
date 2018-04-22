@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth, } from 'angularfire2/auth';
+import { AngularFireDatabase } from "angularfire2/database";
 import * as firebase from 'firebase/app';
 import * as _ from "lodash";
 import 'rxjs/add/operator/first';
@@ -14,15 +15,18 @@ export class AutenticacionService{
   result:Observable<any>;
   authState:any=null;
 
-  constructor(public afAuth: AngularFireAuth, private router:Router) { 
+  constructor(public afAuth: AngularFireAuth, private router:Router, private db:AngularFireDatabase) { 
 
 
   }
 
 
-  registrar(correo, contrasena){
-
-     return this.afAuth.auth.createUserWithEmailAndPassword(correo, contrasena);
+  registrar(usuario){
+    return this.afAuth.auth.createUserWithEmailAndPassword(usuario.correo, usuario.contrasena).then(user=>{
+      return this.db.database.ref(`usuarios/${user.uid}`).set(usuario).then(function(snapshop){
+        return snapshop;
+      });
+     });
 
   }
 

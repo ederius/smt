@@ -17,25 +17,24 @@
                 <th class="text-center">Haber</th>
                 <th class="text-center">Saldo</th>
                 <th class="text-center">Acciones</th>
-
               </tr>
             </thead>
             <tbody>
               <tr >
-                  <td class="text-center">{{fechaApertura}}</td>
-                  <td class="text-center">Apertura caja</td>
-                  <td class="text-center">{{saldoApertura | currency}}</td>
-                  <td class="text-center"></td>
-                  <td class="text-center">{{saldoApertura | currency}}</td>
-                  <td class="text-center"></td>
-                </tr>
+                <td class="text-center">{{fechaApertura}}</td>
+                <td class="text-center">Apertura caja</td>
+                <td class="text-center">{{saldoApertura | currency}}</td>
+                <td class="text-center"></td>
+                <td class="text-center">{{saldoApertura | currency}}</td>
+                <td class="text-center"></td>
+              </tr>
               <tr *ngFor="let gasto of gastos; index">
                 <td class="text-center">{{gasto.fecha}}</td>
                 <td class="text-center">{{gasto.concepto}}</td>
                 <td class="text-center"></td>
-                <td class="text-center">{{gasto.gasto | currency}}</td>
+                <td class="text-center">{{gasto.haber | currency}}</td>
                 <td class="text-center">{{gasto.saldo | currency}}  </td>
-                <td class="text-center"></td>
+                <td class="text-center"><button class="btn btn-info btn-sm" (click)="editarGasto(contentEdit, gasto)">Editar</button></td>
               </tr>
               <tr>
                 <td><input type="text" class="form-control" name="fecha" [(ngModel)]="fecha" placeholder="Fecha" /></td>
@@ -59,3 +58,28 @@
 
     </div>
   </div>
+
+
+    <!-- MODAL EDITAR GASTO -->
+    <ng-template #contentEdit let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Editar gasto</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>A continuación se mostrara la información del gasto que usted procedera a editar.</p>
+        <br>
+        <input type="text" class="form-control" name="fecha" [(ngModel)]="gastoEditar.fecha" placeholder="Fecha" />
+        <input type="text" class="form-control" name="concepto" [(ngModel)]="gastoEditar.concepto" placeholder="Concepto"/>
+        <input type="number" class="form-control" name="haber" [(ngModel)]="gastoEditar.haber" placeholder="Haber"/>
+      </div>
+      <div class="alert alert-success text-center" *ngIf="successUpdate">{{successUpdate}}</div>
+      <div class="alert alert-error text-center" *ngIf="errorUpdate">{{errorUpdate}}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="ActualizarUnGasto()">Guardar</button>        
+      </div>
+    </ng-template>
+    <!--FIN MODAL EDITAR GASTO -->

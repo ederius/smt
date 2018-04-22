@@ -36,8 +36,11 @@
             <li class="nav-item" ><a class="nav-link" [routerLink]="['matriculados']" routerLinkActive="active" ><em class="fa fa-folder-o"></em> <strong>Matriculados</strong> </a></li>
             <li class="nav-item"><a class="nav-link" [routerLink]="['caja-menor']" routerLinkActive="active" ><em class="fa fa-exchange"></em> <strong>Caja menor</strong> </a></li>
             <!--<li class="nav-item"><a class="nav-link" href="https://www.psepagos.co/PSEHostingUI/BasicTicketOffice.aspx?ID=3973" target="_blank" ><em class="fa fa-exchange"></em> <strong>Transacciones</strong> </a></li>-->
-            <li class="nav-item"><a class="nav-link" [routerLink]="['administradores']" routerLinkActive="active" ><em class="fa fa-user-o"></em> <strong>Administradores</strong> </a></li>
-
+            <li class="nav-item" data-toggle="collapse" href="#config-submenu"><a class="nav-link"><em class="fa fa-cog"></em> <strong>Configuración</strong> <i class="float-right fa fa-sort-desc" aria-hidden="true"></i></a></li>
+            <div class="submenu collapse"  id="config-submenu">
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['configuracion-caja-menor']" routerLinkActive="active">Caja menor</a></li>
+                <li class="nav-item"> <a class="nav-link" [routerLink]="['configuracion-crear-usuario']" routerLinkActive="active">Crear usuario</a></li>
+            </div>
 
             <li class="nav-item logout-button" (click)="cerrarSesion()"><a class="nav-link" ><em class="fa fa-power-off"></em> Salir </a></li>
             

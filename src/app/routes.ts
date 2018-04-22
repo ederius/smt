@@ -16,6 +16,9 @@ import { PanelPinesGeneradosComponent } from './components/panel-pines-generados
 import { PanelAgendaComponent } from "./components/panel-agenda/panel-agenda.component";
 import { PanelCalificacionComponent } from "./components/panel-calificacion/panel-calificacion.component";
 import { PanelCajaMenorComponent } from "./components/panel-caja-menor/panel-caja-menor.component";
+import { PanelConfiguracionCajaMenorComponent } from './components/panel-configuracion-caja-menor/panel-configuracion-caja-menor.component';
+import { PanelConfiguracionCrearUsuarioComponent } from './components/panel-configuracion-crear-usuario/panel-configuracion-crear-usuario.component';
+
 
 //panel de padres de familia o niños
 import { PinComponent }               from "./components/pin/pin.component";
@@ -46,8 +49,10 @@ const ROUTES: Routes = [
       { path: 'administradores',component:PanelAdministradoresComponent },
       { path: 'agenda',         component:PanelAgendaComponent },
       { path: 'calificacion',   component:PanelCalificacionComponent },
-      { path: 'caja-menor',   component:PanelCajaMenorComponent } 
-      
+      { path: 'caja-menor',     component:PanelCajaMenorComponent },
+      { path: 'configuracion-caja-menor', component:PanelConfiguracionCajaMenorComponent },
+      { path: 'configuracion-crear-usuario', component:PanelConfiguracionCrearUsuarioComponent } 
+
     ],
     canActivate: [ GuardiaService ]
   },
@@ -87,5 +92,9 @@ export const routedComponents = [
   PinInscripcionesComponent,
   PinAdmitidosComponent,
   PinEntrevistasComponent,
-  PinMatriculadosComponent
+  PinMatriculadosComponent,
+  PanelCalificacionComponent,
+  PanelCajaMenorComponent,
+  PanelConfiguracionCajaMenorComponent,
+  PanelConfiguracionCrearUsuarioComponent
 ];

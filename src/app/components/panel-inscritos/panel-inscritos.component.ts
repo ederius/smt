@@ -8,10 +8,6 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
-
-
-
 //services
 import { AutenticacionService } from "../../services/autenticacion.service";
 import { InscripcionesService } from "../../services/inscripciones.service";

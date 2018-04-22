@@ -1,0 +1,41 @@
+
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center titulo ">Crear usuario</h3>
+      </div>
+      <hr>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 offset-md-4 offset-lg-6">
+          <div class="account-wall">
+              <div class="text-center">
+                  <img src="./assets/img/logo.jpg" alt="">
+              </div>
+              <form [formGroup]="forma" (ngSubmit)="registrarUsuario()"  novalidate="" class="form-signin">
+                <select class="form-control" name="tipo" formControlName="tipo" required>
+                  <option value="1">General</option>
+                  <option value="2">Administrador</option>
+                </select>
+                <input type="text" class="form-control" name="correo" formControlName="correo" placeholder="Correo" autofocus="">
+                <input type="password" class="form-control" name="contrasena" formControlName="contrasena" placeholder="Contraseña" required="">
+                <br>  
+                <div *ngIf="loginError" class="alert alert-danger text-center" role="alert">
+                  {{loginError}}!!
+                </div>
+                <div *ngIf="registro" class="alert alert-success text-center" role="alert">
+                    registro exito!! <br>
+                    Antes de iniciar sesión verifique su correo.
+                  </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="forma.invalid  ">
+                    Registrar usuario
+                </button>         
+                <label class="checkbox pull-left"></label>
+              </form>
+            </div>
+      </div>
+
+
+    </div>
+  </div>

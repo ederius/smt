@@ -33,6 +33,7 @@ import { AgendaService } from "./services/agenda.service";
 import { AdmitidosService } from "./services/admitidos.service";
 import { MatriculadosService } from "./services/matriculados.service";
 import { CajaMenorService } from "./services/caja-menor.service";
+import { ConfiguracionService } from "./services/configuracion.service";
 
 
 //rutas - routes // componentes (ROUTES_APP)
@@ -49,10 +50,6 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { OrdenarPipe } from './pipes/ordenar.pipe';
-import { PanelCalificacionComponent } from './components/panel-calificacion/panel-calificacion.component';
-import { PanelCajaMenorComponent } from './components/panel-caja-menor/panel-caja-menor.component';
-
-
 
 
 @NgModule({
@@ -65,10 +62,7 @@ import { PanelCajaMenorComponent } from './components/panel-caja-menor/panel-caj
     PinHeaderComponent,
     ReversePipe,
     SearchPipe,
-    OrdenarPipe,
-    PanelCalificacionComponent,
-    PanelCajaMenorComponent
-
+    OrdenarPipe
   ],
   imports: [
     BrowserModule,
@@ -97,7 +91,9 @@ import { PanelCajaMenorComponent } from './components/panel-caja-menor/panel-caj
     AgendaService,
     AdmitidosService,
     MatriculadosService,
-    CajaMenorService
+    CajaMenorService,
+    ConfiguracionService
+    
   ],
   bootstrap: [AppComponent]
 })

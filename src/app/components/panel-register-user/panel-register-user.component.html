@@ -5,7 +5,6 @@
         <div class="text-center">
             <img src="./assets/img/logo.jpg" alt="">
         </div>
-          
           <form [formGroup]="forma" (ngSubmit)="registrarUsuario()"  novalidate="" class="form-signin">
           <input type="text" class="form-control" name="correo" formControlName="correo" placeholder="Correo" autofocus="">
           <input type="password" class="form-control" name="contrasena" formControlName="contrasena" placeholder="Contraseña" required="">

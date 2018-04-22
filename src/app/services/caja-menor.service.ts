@@ -19,6 +19,12 @@ export class CajaMenorService {
     });
   }
 
+  guardarUnGasto(gasto){
+    return this.db.database.ref(`cajaMenor/${gasto.key}`).set(gasto).then(function(snapshop){
+      return snapshop;
+    });
+  }
+
   obtenerGastos(){
     return this.db.database.ref('cajaMenor').once('value').then(function(snapshop){
       return _.map(snapshop.val());
