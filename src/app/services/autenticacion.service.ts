@@ -24,7 +24,7 @@ export class AutenticacionService{
   registrar(usuario){
     return this.afAuth.auth.createUserWithEmailAndPassword(usuario.correo, usuario.contrasena).then(user=>{
       return this.db.database.ref(`usuarios/${user.uid}`).set(usuario).then(function(snapshop){
-        return snapshop;
+        return user;
       });
      });
 
@@ -41,6 +41,20 @@ export class AutenticacionService{
     return this.afAuth.authState.subscribe((auth) => {
       this.authState = auth
       return this.authState;      
+    });
+  }
+
+  getRollUser(){
+    this.authenticated
+    return new Promise((resolve, reject)=>{
+      if(this.authState){
+        var user = this.authState;
+          return this.db.database.ref(`usuarios/${user.uid}`).once('value').then((user)=>{
+            resolve(user.val().tipo);
+          });
+      }else{
+        resolve(null);
+      }
     });
   }
 

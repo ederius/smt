@@ -6,6 +6,10 @@
             <img src="./assets/img/logo.jpg" alt="">
         </div>
           <form [formGroup]="forma" (ngSubmit)="registrarUsuario()"  novalidate="" class="form-signin">
+          <select class="form-control" name="tipo" formControlName="tipo" required>
+            <option value="1">General</option>
+            <option value="2">Administrador</option>
+          </select>
           <input type="text" class="form-control" name="correo" formControlName="correo" placeholder="Correo" autofocus="">
           <input type="password" class="form-control" name="contrasena" formControlName="contrasena" placeholder="Contraseña" required="">
           <br>  

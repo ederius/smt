@@ -33,7 +33,7 @@ export class PanelRegisterUserComponent implements OnInit {
     this._usuarioService.registrar(this.forma.value)
     .then(data=>{
       console.log(data);
-      data.refreshToken ? this.registro=true : this.registro=false;
+      this.registro=true;
       data.sendEmailVerification().then(              //Enviando correo de verificación
         (success) => {
           console.log("please verify your email");

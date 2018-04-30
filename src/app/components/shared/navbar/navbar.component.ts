@@ -9,7 +9,16 @@ import { AutenticacionService } from "../../../services/autenticacion.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private _auht:AutenticacionService) { }
+  rollUsuario:Number;
+
+  constructor(private _auht:AutenticacionService) {
+    this._auht.getRollUser().then((roll)=>{
+      //1 -> general, 2-> administrator
+      this.rollUsuario = Number(roll);
+      console.log(this.rollUsuario);
+      
+    });
+   }
 
   ngOnInit() {
   }

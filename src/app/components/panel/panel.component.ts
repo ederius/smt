@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from "../../services/autenticacion.service";
 import { Router } from "@angular/router";
+import { log } from 'util';
 
 
 @Component({
@@ -10,9 +11,9 @@ import { Router } from "@angular/router";
 })
 export class PanelComponent implements OnInit{
 
+  rollUsuario:Number;
+
   constructor(private _auht:AutenticacionService, private router:Router) {
-
-
    }
 
   ngOnInit() {

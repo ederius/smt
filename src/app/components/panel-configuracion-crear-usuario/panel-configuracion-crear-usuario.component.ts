@@ -31,7 +31,11 @@ export class PanelConfiguracionCrearUsuarioComponent implements OnInit {
     .then(data=>{
       console.log(data);
       this.loginError = "";
-      data.refreshToken ? this.registro=true : this.registro=false;
+      this.registro=true;
+      this.forma.reset();
+      setTimeout(()=>{
+        this.registro=false;
+      },5000)
       data.sendEmailVerification().then(              //Enviando correo de verificación
         (success) => {
           console.log("please verify your email");
