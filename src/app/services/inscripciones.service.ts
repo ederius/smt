@@ -21,6 +21,7 @@ export class InscripcionesService {
 
     let fechaHora = moment().format();      //obteniendo fecha y hora actual  
     forma.creado = fechaHora;
+    forma.admitido=false;
 
     this.db.database.ref(`inscripciones/${pin}`).set(forma);                              //Guardando datos de inscripcion
     this.db.database.ref(`pines/${pin}`).update({"estado":2, "actualizado":fechaHora});  //Actualizando estado de pin
@@ -86,7 +87,8 @@ export class InscripcionesService {
     this.db.database.ref(`citasExamenesAdmision/${pin}`).set(citas);                              //Guardando datos de inscripcion
   }
 
-
-    
+  admitirInscrito(pin){
+    return this.db.database.ref(`inscripciones/${pin}`).update({admitido:true});      
+  }
 
 }

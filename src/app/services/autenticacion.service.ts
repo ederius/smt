@@ -23,11 +23,18 @@ export class AutenticacionService{
 
   registrar(usuario){
     return this.afAuth.auth.createUserWithEmailAndPassword(usuario.correo, usuario.contrasena).then(user=>{
+      usuario.uid=user.uid;
       return this.db.database.ref(`usuarios/${user.uid}`).set(usuario).then(function(snapshop){
         return user;
       });
      });
 
+  }
+
+  listarUsuarios(){
+    return this.db.database.ref(`usuarios`).once('value').then(function(snapshop){
+      return _.map(snapshop.val());
+    });
   }
 
 

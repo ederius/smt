@@ -17,6 +17,7 @@ export class PanelConfiguracionCrearUsuarioComponent implements OnInit {
   constructor(public _usuarioService:AutenticacionService) {
     this.forma = new FormGroup({
       'tipo': new FormControl('', [Validators.required, Validators.required]),
+      'nombre': new FormControl('', [Validators.required, Validators.required]),
       'correo': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
       'contrasena': new FormControl('', [Validators.required, Validators.minLength(6)]),
     });

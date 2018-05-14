@@ -118,11 +118,12 @@ export class PanelCalificacionComponent implements OnInit {
   admitir(){
     let inscrito = this.inscrito;
     this._admitidosService.agregar(inscrito).then((response1)=>{
-      return this._inscripcionesService.eliminarInscrito(inscrito.pin);
+      return this._inscripcionesService.admitirInscrito(inscrito.pin);
     }).then((response2)=>{
       return this._pinesService.actualizarEstado(inscrito.pin, 3)
     }).then((response3)=>{
       this.listarInscritos();
+      this.getDismissReason
     })
     .catch((error)=>{
       console.log(error);

@@ -6,21 +6,21 @@
         <h3 class="text-center titulo ">Niños inscritos</h3>
       </div>
       <!-- Opciones de tabla -->
-      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
         <input type="text" name="buscar" id="buscar" placeholder="Buscar" class="form-control" [(ngModel)]="buscar">
       </div>
-      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
         <select name="ordenar" id="ordenar" class="form-control" [(ngModel)]="tipoOrden" >
           <option *ngFor="let orden of ordenar" [value]="orden.value" >{{orden.name}}</option>
         </select>
       </div>
-      <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
          <button class="btn btn-success" (click)="exportarExcel()"> <i class="fa fa-download" aria-hidden="true"></i> Excel</button>
       </div>
       <!-- Opciones de tabla -->
 
       <br><br>
-      <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <table class="table">
         <thead>
           <tr>
             <th class="text-center">T.I. </th>              
@@ -560,10 +560,6 @@
     </div>
   </ng-template>
   <!--FIN MODAL DETALLES DE INSCRITOS -->
-
-
-
-
 
   <!-- MODAL EDITAR DE INSCRITOS -->
   <ng-template #contentEdit let-c="close" let-d="dismiss">
@@ -1199,8 +1195,6 @@
   </ng-template>
   <!--FIN MODAL EDITAR DE INSCRITOS -->
 
-
-
   <!-- MODAL ELIMINAR INSCRITOS -->
   <ng-template #contentDelete let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -1214,12 +1208,10 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
-      <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito()">Eliminar</button>        
+      <button type="button" class="btn btn-outline-dark" (click)="eliminarInscrito();c('Close click')">Eliminar</button>        
     </div>
   </ng-template>
   <!--FIN MODAL ELIMINAR INSCRITO -->
-
-
 
   <!-- MODAL EXAMANES DE INSCRIPCIÓN -->
   <ng-template #contentQuiz let-c="close" let-d="dismiss">

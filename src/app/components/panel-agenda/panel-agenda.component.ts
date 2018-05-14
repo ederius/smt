@@ -79,7 +79,7 @@ export class PanelAgendaComponent implements OnInit {
   }
 
   modalAsignarCalificacionEntrevista(inscrito, contentModal){
-    
+      this.actualizadaExitosamenteEntrevista=false;
       this.inscrito = inscrito; 
       let closeResult
       //consultando calificacion si en caso de que tenga algunas
@@ -98,7 +98,7 @@ export class PanelAgendaComponent implements OnInit {
   }
 
   modalAsignarCalificacionExamenes(inscrito, contentModal){
-    
+      this.actualizadaExitosamenteCalificaciones=false;
       this.inscrito = inscrito; 
       let closeResult
       //consultando calificacion si en caso de que tenga algunas
@@ -123,6 +123,9 @@ export class PanelAgendaComponent implements OnInit {
     let calificacion = { calificacionEntrevista:this.calificacionEntrevista };
     this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
       this.actualizadaExitosamenteEntrevista=true;
+      setTimeout(function(){
+        this.actualizadaExitosamenteEntrevista=false;
+      }, 5000)
     }).catch((error)=>{
       console.error(error);
     })
@@ -139,6 +142,9 @@ export class PanelAgendaComponent implements OnInit {
      };
     this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
       this.actualizadaExitosamenteCalificaciones=true;
+      setTimeout(function(){
+        this.actualizadaExitosamenteCalificaciones=false;
+      }, 5000)
     }).catch((error)=>{
       console.error(error);
     });

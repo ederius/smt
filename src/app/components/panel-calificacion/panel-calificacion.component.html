@@ -46,8 +46,8 @@
               <td class="text-center">{{inscrito.calificacionEntrevista || 'N/A'}}</td>
               <td class="text-center"><!-- Rounded switch -->
                 <label class="switch">
-                  <input type="checkbox" [(ngModel)]="admitido[inscrito.id]" (change)="admitirModal(inscrito, contentAdd)"
-                  [disabled]="!inscrito.calificacionCastellano || !inscrito.calificacionMatematica || !inscrito.calificacionLectura || !inscrito.calificacionEntrevista">
+                  <input type="checkbox" [(ngModel)]="inscrito.admitido" (change)="admitirModal(inscrito, contentAdd)"
+                  [disabled]="!inscrito.calificacionCastellano || !inscrito.calificacionMatematica || !inscrito.calificacionLectura || !inscrito.calificacionEntrevista || inscrito.admitido">
                   <span class="slider round"></span>
                 </label>
               </td>               
@@ -73,7 +73,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
-        <button type="button" class="btn btn-outline-dark" (click)="admitir()">Admitir</button>        
+        <button type="button" class="btn btn-outline-dark" (click)="admitir();c('Close click')">Admitir</button>        
       </div>
     </ng-template>
     <!--FIN MODAL ADMITIR INSCRITO -->

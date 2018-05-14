@@ -31,18 +31,18 @@
               <tr *ngFor="let gasto of gastos; index">
                 <td class="text-center">{{gasto.fecha}}</td>
                 <td class="text-center">{{gasto.concepto}}</td>
-                <td class="text-center"></td>
+                <td class="text-center">{{gasto.debe | currency}}</td>
                 <td class="text-center">{{gasto.haber | currency}}</td>
-                <td class="text-center">{{gasto.saldo | currency}}  </td>
+                <td class="text-center">{{gasto.saldo | currency}}</td>
                 <td class="text-center"><button class="btn btn-info btn-sm" (click)="editarGasto(contentEdit, gasto)">Editar</button></td>
               </tr>
               <tr>
                 <td><input type="text" class="form-control" name="fecha" [(ngModel)]="fecha" placeholder="Fecha" /></td>
                 <td><input type="text" class="form-control" name="concepto" [(ngModel)]="concepto" placeholder="Concepto"/></td>
-                <td></td>
-                <td><input type="number" class="form-control" name="haber" [(ngModel)]="haber" placeholder="Haber"/></td>
+                <td><input type="number" class="form-control" name="debe" [(ngModel)]="debe" placeholder="Debe" [disabled]="haber"/></td>
+                <td><input type="number" class="form-control" name="haber" [(ngModel)]="haber" placeholder="Haber" [disabled]="debe"/></td>
                 <td>{{saldoTotal - haber | currency}}</td>
-                <td class="text-center"> <button class="btn btn-success" (click)="guardarGasto()">Guardar</button></td>
+                <td class="text-center"> <button class="btn btn-success" (click)="guardarGasto()" [disabled]="!concepto || (debe==0 && haber==0)">Guardar</button></td>
               </tr>
               <tr>
                   <td></td>
@@ -73,13 +73,14 @@
         <br>
         <input type="text" class="form-control" name="fecha" [(ngModel)]="gastoEditar.fecha" placeholder="Fecha" />
         <input type="text" class="form-control" name="concepto" [(ngModel)]="gastoEditar.concepto" placeholder="Concepto"/>
-        <input type="number" class="form-control" name="haber" [(ngModel)]="gastoEditar.haber" placeholder="Haber"/>
+        <input type="number" class="form-control" name="haber" [(ngModel)]="gastoEditar.debe" placeholder="Debe" [disabled]="gastoEditar.haber"/>
+        <input type="number" class="form-control" name="haber" [(ngModel)]="gastoEditar.haber" placeholder="Haber" [disabled]="gastoEditar.debe"/>
       </div>
       <div class="alert alert-success text-center" *ngIf="successUpdate">{{successUpdate}}</div>
       <div class="alert alert-error text-center" *ngIf="errorUpdate">{{errorUpdate}}</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
-        <button type="button" class="btn btn-success" (click)="ActualizarUnGasto()">Guardar</button>        
+        <button type="button" class="btn btn-success" (click)="ActualizarUnGasto()" [disabled]="!gastoEditar.concepto || (gastoEditar.debe==0 && gastoEditar.haber==0)">Actualizar</button>        
       </div>
     </ng-template>
     <!--FIN MODAL EDITAR GASTO -->

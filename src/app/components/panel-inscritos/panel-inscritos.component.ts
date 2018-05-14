@@ -215,7 +215,7 @@ export class PanelInscritosComponent implements OnInit {
     });
   }
 
-  private getDismissReason(reason: any): string {
+  private getDismissReason(reason: any): string {   
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -328,6 +328,7 @@ export class PanelInscritosComponent implements OnInit {
   }
 
   modalExamenes(inscrito, content){
+    this.actualizadoExitosamente = false;
     this.inscrito = inscrito;
     let pin = inscrito.pin;
     this._inscripcionesService.consultarCitas(pin).then((data)=>{
@@ -345,6 +346,7 @@ export class PanelInscritosComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log("sdfsdfsdf close");
     });
 
    
@@ -389,6 +391,9 @@ export class PanelInscritosComponent implements OnInit {
 
     this._inscripcionesService.asignarCitas(citas, pin);
     this.actualizadoExitosamente = true;
+    setTimeout(()=>{
+       this.actualizadoExitosamente = false;
+    }, 5000);
     this.enviarEmail();    
 
   }

@@ -731,3 +731,48 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.scroll-table{
+  overflow-x: auto;
+}
+
+  /* Small devices (landscape phones, 576px and up) 
+@media (min-width: 576px) { 
+  .scroll-table{
+    overflow-x: scroll;
+    white-space: nowrap; 
+    max-width: 768px;
+    border: #2196F3 solid 1px;
+  }
+ }
+
+/* Medium devices (tablets, 768px and up) 
+@media (min-width: 768px) { 
+  .scroll-table{
+    overflow-x: scroll;
+    white-space: nowrap; 
+    max-width: 992px;
+    border: #fbbd19 solid 1px;
+  }
+ }
+
+/* Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+  .scroll-table{
+    overflow-x: scroll;
+    white-space: nowrap; 
+    max-width: 1200px;
+    border: #8ad919 solid 1px;
+  }
+ }
+
+/* Extra large devices (large desktops, 1200px and up) 
+@media (min-width: 1200px) { 
+  .scroll-table{
+    overflow-x: scroll;
+    white-space: nowrap; 
+    max-width: 1200px;
+    border: #3c763d solid 1px;
+  }
+ }
+ */

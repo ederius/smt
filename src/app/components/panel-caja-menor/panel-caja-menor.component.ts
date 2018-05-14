@@ -46,10 +46,13 @@ export class PanelCajaMenorComponent implements OnInit {
     this._cajaMejorServices.obtenerGastos().then((data)=>{
       this.gastos = data;
       this.haber = 0 ;
-      var saldoTotal, saldo=0, saldoApertura=this.saldoApertura;
+      this.debe = 0 ;
+
+      var saldoTotal, saldo=0, saldoApertura=parseInt(this.saldoApertura);
       _.forEach(this.gastos, (o, index)=>{
-        saldo += o.haber;
-        this.gastos[index].saldo=saldoApertura-saldo;
+        saldoApertura -= parseInt(o.haber);
+        saldoApertura += parseInt(o.debe);
+        this.gastos[index].saldo=saldoApertura;
         if(data.length-1 == index){
           saldoTotal = saldoApertura - saldo;
           this.saldoTotal = saldoTotal;                 
@@ -63,6 +66,7 @@ export class PanelCajaMenorComponent implements OnInit {
     var gasto = {
       fecha:this.fecha,
       concepto:this.concepto,
+      debe:this.debe,
       haber:this.haber
     }
     this._cajaMejorServices.guardarGasto(gasto).then((response)=>{

@@ -181,7 +181,7 @@ export class PanelAdmitidosVerComponent implements OnInit {
   }
 
   guardarRequerimientos(){
-   
+   this.exito="";
     let data = {
       documentoID:this.documentoID ? this.documentoID : false,
       fotos:this.fotos ? this.fotos : false,

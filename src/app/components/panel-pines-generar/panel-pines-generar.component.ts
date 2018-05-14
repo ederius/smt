@@ -41,7 +41,7 @@ export class PanelPinesGenerarComponent implements OnInit {
     //Obteniendo datos del formulario
     let campo = this.forma.value;
 
-    //Validando que la cedula mo este duplicada.
+    //Validando que la identificacion no este duplicada.
     this._pines.obtenerPines().then(data=>{                                             //Obteniendo pines guardados
       let datos:Array<any>= data;
       let duplicidad = _.find(datos, function (o) { return o.cedula == campo.cedula });  //Buscando cedula en pines guardados
@@ -81,6 +81,39 @@ export class PanelPinesGenerarComponent implements OnInit {
   //genrando PDF descargable con pin
   generarPDF(campo, pin){
 
+
+    (function(API){
+      API.myText = function(txt, options, x, y) {
+          options = options ||{};
+          /* Use the options align property to specify desired text alignment
+           * Param x will be ignored if desired text alignment is 'center'.
+           * Usage of options can easily extend the function to apply different text 
+           * styles and sizes 
+          */
+          if( options.align == "center" ){
+              // Get current font size
+              var fontSize = this.internal.getFontSize();
+  
+              // Get page width
+              var pageWidth = this.internal.pageSize.width;
+  
+              // Get the actual text's width
+              /* You multiply the unit width of your string by your font size and divide
+               * by the internal scale factor. The division is necessary
+               * for the case where you use units other than 'pt' in the constructor
+               * of jsPDF.
+              */
+              var txtWidth = this.getStringUnitWidth(txt)*fontSize/this.internal.scaleFactor;
+  
+              // Calculate text's x coordinate
+              x = ( pageWidth - txtWidth ) / 2;
+          }
+  
+          // Draw text at x,y
+          this.text(txt,x,y);
+      }
+  })(jspdf.API);
+
       //Generando un nuevo docuento PDF  
       let doc = new jspdf();
         
@@ -94,21 +127,22 @@ export class PanelPinesGenerarComponent implements OnInit {
       doc.text(57, 75, `INSCRIPCIÓN`);
       
 
-      doc.text(84, 155, ` ${pin}`);
+      doc.myText(`${pin}`,{align: "center"},0, 155);
 
       doc.setFontSize(20);
       doc.setFont('times');
       doc.setFontType('nolmal');    
-      doc.text(74, 200, `${campo.nombres.toUpperCase()} ${campo.apellidos.toUpperCase()}`);
+      doc.myText(`${campo.nombres.toUpperCase()} ${campo.apellidos.toUpperCase()}`,{align: "center"},0, 200);
 
       doc.setFontSize(18);
-      doc.text(84, 210, `CC: ${campo.cedula}`);
+      doc.myText(`CC: ${campo.cedula}`, {align: "center"},0, 210);
 
       doc.setFontSize(18);
       doc.text(89, 230, `Instrucciones`);
-      doc.text(20, 240, `Se debe ingresar a la pagina http://app.happykids.edu.co/pin/login, luego se 
-  inserta el codigo obtenido para validarlo y empezar a diligenciar
-                              el formulario de inscripción.`);
+      doc.myText(`Se debe ingresar a la página http://app.happykids.edu.co/pin/login, `,{align: "center"},0, 240);
+      doc.myText(`luego se inserta el código obtenido para validarlo y empezar a diligenciar `,{align: "center"},0, 247);
+      doc.myText(`el formulario de inscripción.`,{align: "center"},0, 254);
+
       
       doc.addImage(this.logo(), 'JPEG', 90, 255, 30, 30);    
 

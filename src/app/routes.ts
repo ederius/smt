@@ -18,6 +18,7 @@ import { PanelCalificacionComponent } from "./components/panel-calificacion/pane
 import { PanelCajaMenorComponent } from "./components/panel-caja-menor/panel-caja-menor.component";
 import { PanelConfiguracionCajaMenorComponent } from './components/panel-configuracion-caja-menor/panel-configuracion-caja-menor.component';
 import { PanelConfiguracionCrearUsuarioComponent } from './components/panel-configuracion-crear-usuario/panel-configuracion-crear-usuario.component';
+import { PanelConfiguracionListarUsuariosComponent } from './components/panel-configuracion-listar-usuarios/panel-configuracion-listar-usuarios.component';
 
 
 //panel de padres de familia o niños
@@ -51,7 +52,9 @@ const ROUTES: Routes = [
       { path: 'calificacion',   component:PanelCalificacionComponent },
       { path: 'caja-menor',     component:PanelCajaMenorComponent },
       { path: 'configuracion-caja-menor', component:PanelConfiguracionCajaMenorComponent },
-      { path: 'configuracion-crear-usuario', component:PanelConfiguracionCrearUsuarioComponent } 
+      { path: 'configuracion-crear-usuario', component:PanelConfiguracionCrearUsuarioComponent },
+      { path: 'configuracion-listar-usuarios', component:PanelConfiguracionListarUsuariosComponent }
+
 
     ],
     canActivate: [ GuardiaService ]
@@ -96,5 +99,6 @@ export const routedComponents = [
   PanelCalificacionComponent,
   PanelCajaMenorComponent,
   PanelConfiguracionCajaMenorComponent,
-  PanelConfiguracionCrearUsuarioComponent
+  PanelConfiguracionCrearUsuarioComponent,
+  PanelConfiguracionListarUsuariosComponent
 ];

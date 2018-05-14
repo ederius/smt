@@ -15,10 +15,12 @@
               </div>
               <form [formGroup]="forma" (ngSubmit)="registrarUsuario()"  novalidate="" class="form-signin">
                 <select class="form-control" name="tipo" formControlName="tipo" required>
+                  <option >Tipo usuario</option>
                   <option value="1">General</option>
                   <option value="2">Administrador</option>
                 </select>
-                <input type="text" class="form-control" name="correo" formControlName="correo" placeholder="Correo" autofocus="">
+                <input type="text" class="form-control" name="nombre" formControlName="nombre" placeholder="Nombre" autofocus="">
+                <input type="email" class="form-control" name="correo" formControlName="correo" placeholder="Correo" autofocus="">
                 <input type="password" class="form-control" name="contrasena" formControlName="contrasena" placeholder="Contraseña" required="">
                 <br>  
                 <div *ngIf="loginError" class="alert alert-danger text-center" role="alert">
