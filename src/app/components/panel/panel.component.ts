@@ -13,7 +13,13 @@ export class PanelComponent implements OnInit{
 
   rollUsuario:Number;
 
-  constructor(private _auht:AutenticacionService, private router:Router) {
+  constructor(private _auth:AutenticacionService, private router:Router) {
+    //Validandoo si se inicio session
+    this._auth.getSession().then(user=>{
+      if(!user){
+        this.router.navigate(['/login']);
+      }
+    });
    }
 
   ngOnInit() {

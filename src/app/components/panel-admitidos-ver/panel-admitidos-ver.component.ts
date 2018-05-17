@@ -43,15 +43,9 @@ export class PanelAdmitidosVerComponent implements OnInit {
       private modalService: NgbModal,
       private _pinesService:PinesService,
       private _matriculadosService:MatriculadosService
-
-
   ) {
-        //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
-        if(!this._auth.currentUser){
-          this.router.navigate(['/login']);
-        }   
         
-        this.listarAdmitidos();
+      this.listarAdmitidos();
    }
 
   ngOnInit() {

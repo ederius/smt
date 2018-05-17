@@ -16,7 +16,7 @@ export class PanelLoginComponent implements OnInit {
   authState:any;
   errorSendEmail:any;
 
-  constructor(public _usuarioService:AutenticacionService, public router:Router) {
+  constructor(public _authService:AutenticacionService, public router:Router) {
 
     this.forma = new FormGroup({
       'correo'      : new FormControl('', [Validators.email, Validators.required]),
@@ -24,11 +24,11 @@ export class PanelLoginComponent implements OnInit {
     });
 
     //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
-    if(!this._usuarioService.currentUser){
-      this.router.navigate(['/panel']);
-    }  
-
-    
+    this._authService.getSession().then(user=>{
+      if(user){
+        this.router.navigate(['/panel']);
+      }
+    });
 
    }
 
@@ -38,9 +38,11 @@ export class PanelLoginComponent implements OnInit {
 
   login() {
     
-        this._usuarioService.login(this.forma.value.correo, this.forma.value.contrasena)
+        this._authService.login(this.forma.value.correo, this.forma.value.contrasena)
         .then(data=>{
-          this.authState = data;          
+          this.authState = data;     
+          console.log(data);
+               
           if (data.emailVerified) {
               this.router.navigate(['/panel']);
           }else{

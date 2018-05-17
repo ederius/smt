@@ -45,9 +45,11 @@ export class AutenticacionService{
   }
 
   getSession(){
-    return this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth
-      return this.authState;      
+    return new Promise((resolved, reject)=>{
+      this.afAuth.authState.subscribe((auth) => {
+        this.authState = auth.toJSON();
+        resolved(auth.toJSON());
+      });
     });
   }
 
@@ -65,8 +67,13 @@ export class AutenticacionService{
     });
   }
 
-  get authenticated(): boolean {    
-    return this.getSession() != null;
+  authenticated() {   
+    return new Promise((resolved, reject)=>{
+      this.getSession().then(user=>{
+        console.log(user);
+        user ? resolved(true) : resolved(false) ;
+       });
+    });
   }
 
   // Returns current user data

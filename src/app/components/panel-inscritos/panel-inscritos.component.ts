@@ -101,8 +101,6 @@ interface cita {
   horaEntrevista:hora,
   fechaExamenes:fecha,
   horaExamenes:hora
-
-
 }
 
 @Component({
@@ -152,12 +150,7 @@ export class PanelInscritosComponent implements OnInit {
     private modalService: NgbModal,
     private _emailSerice: EmailsService,
     private http:Http
-    ) { 
-
-    //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
-    if(!this._auth.currentUser){
-      this.router.navigate(['/login']);
-    }   
+    ) {
     
     this.listarInscritos();
     

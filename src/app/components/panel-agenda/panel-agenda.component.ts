@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
 //SERVICES
+import { AutenticacionService } from "../../services/autenticacion.service";
 import { AgendaService } from "../../services/agenda.service";
 import { UtilsService } from "../../services/utils.service";
 import { InscripcionesService } from "../../services/inscripciones.service";
@@ -32,11 +35,15 @@ export class PanelAgendaComponent implements OnInit {
   actualizadaExitosamenteCalificaciones:boolean=false;
 
   constructor(
+    private _auth: AutenticacionService, 
     private _agendaSevice:AgendaService, 
     public _Utils:UtilsService, 
+    private router: Router,
     private _inscripcionesServices:InscripcionesService,
     private modalService: NgbModal    
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
   }

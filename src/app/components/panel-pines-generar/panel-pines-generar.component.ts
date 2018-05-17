@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import * as jspdf from "jspdf";
 import * as _ from "lodash";
-
+import { Router } from "@angular/router";
 
 //services
 import { PinesService } from "../../services/pines.service";
 import { StoreFileService } from "../../services/store-file.service";
+import { AutenticacionService } from "../../services/autenticacion.service";
+
 
 @Component({
   selector: 'app-panel-pines-generar',
@@ -21,15 +23,16 @@ export class PanelPinesGenerarComponent implements OnInit {
 
   
 
-  constructor(public _pines:PinesService, private _fStore:StoreFileService) {
+  constructor(
+    public _pines:PinesService, private _fStore:StoreFileService,
+    public _authService:AutenticacionService, public router:Router) {
 
     this.forma = new FormGroup({
       'cedula': new FormControl('', [Validators.required, Validators.min(11111)]),
       'nombres': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'apellidos': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'telefono': new FormControl('', [Validators.required, Validators.min(111111)])
-
-    })
+    });
 
    }
 

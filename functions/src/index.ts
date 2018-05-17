@@ -11,12 +11,12 @@ import * as sendgrid from "sendgrid";
 const client = sendgrid("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");
 
 function parseBody(body) {
-  let helper = sendgrid.mail;
-  let fromEmail = new helper.Email(body.from);
-  let toEmail = new helper.Email(body.to);
-  let subject = body.subject;
-  let content = new helper.Content('text/html', body.content);
-  let mail = new helper.Mail(fromEmail, subject, toEmail, content);
+  var helper = sendgrid.mail;
+  var fromEmail = new helper.Email(body.from);
+  var toEmail = new helper.Email(body.to);
+  var subject = body.subject;
+  var content = new helper.Content('text/html', body.content);
+  var mail = new helper.Mail(fromEmail, subject, toEmail, content);
   return  mail.toJSON();
 }
 

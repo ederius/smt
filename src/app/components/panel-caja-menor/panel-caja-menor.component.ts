@@ -4,10 +4,14 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import * as _ from "lodash";
 moment.locale('es');
 moment.tz("America/Los_Angeles");
+import { Router } from "@angular/router";
+
 
 //SERVICES
 import { CajaMenorService } from "../../services/caja-menor.service";
 import { log } from 'util';
+import { AutenticacionService } from "../../services/autenticacion.service";
+
 
 @Component({
   selector: 'app-panel-caja-menor',
@@ -32,7 +36,13 @@ export class PanelCajaMenorComponent implements OnInit {
   closeResult:any;
 
 
-  constructor(private _cajaMejorServices:CajaMenorService, private modalService: NgbModal) { 
+  constructor(
+    private _cajaMejorServices:CajaMenorService, 
+    private modalService: NgbModal,
+    private _auth: AutenticacionService,
+    private router: Router
+
+  ) { 
     this.listarGastos();
     this.fecha = moment().format('MMMM Do YYYY, h:mm a');      //obteniendo fecha y hora actual  
     this.fechaApertura = moment().format('MMMM Do YYYY, h:mm a');

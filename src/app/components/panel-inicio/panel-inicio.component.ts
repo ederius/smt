@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { AutenticacionService } from "../../services/autenticacion.service";
 
 @Component({
   selector: 'app-panel-inicio',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelInicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _authService:AutenticacionService, public router:Router) {
+
+   }
 
   ngOnInit() {
   }

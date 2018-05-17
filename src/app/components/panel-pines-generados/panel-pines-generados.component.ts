@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as _ from "lodash";
-
+import { Router } from "@angular/router";
 
 //Services
 import { PinesService } from "../../services/pines.service";
 import { UtilsService } from "../../services/utils.service";
+import { AutenticacionService } from "../../services/autenticacion.service";
+
 
 
 @Component({
@@ -36,9 +38,12 @@ export class PanelPinesGeneradosComponent implements OnInit {
   constructor(
     private _pinesServices:PinesService, 
     public db:AngularFireDatabase,
-    public Utils:UtilsService 
+    public Utils:UtilsService,
+    public _authService:AutenticacionService, 
+    public router:Router
   ) { 
-    this.listarPines();
+
+      this.listarPines();
    }
 
   ngOnInit() {}

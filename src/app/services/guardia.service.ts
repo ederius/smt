@@ -7,14 +7,14 @@ import { AutenticacionService } from "./autenticacion.service";
 export class GuardiaService implements CanActivate {
   constructor(private _auth:AutenticacionService) { }
   canActivate(next:ActivatedRouteSnapshot, state:RouterStateSnapshot){
-
-    if (this._auth.currentUser) {
-      console.log("paso");
-      return true;
-    }else{   
-      console.log("no paso");
-      return true;
-    }
+    return this._auth.getSession().then(user=>{
+      if (user) {
+        console.log("paso");
+        return true;
+      }else{   
+        console.log("no paso");
+        return false;
+      }
+    })
   }
-
 }

@@ -50,13 +50,7 @@ export class PanelMatriculadosComponent implements OnInit {
     private http:Http
     ) { 
 
-    //Validando si el usuario tiene una sesion iniciada, si la tiene se redirige a panel
-    if(!this._auth.currentUser){
-      this.router.navigate(['/login']);
-    }   
-    
     this.listarMatriculados();
-    
   }
 
   ngOnInit() {

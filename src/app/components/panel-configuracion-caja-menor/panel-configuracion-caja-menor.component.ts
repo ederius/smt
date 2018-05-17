@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
+//services
+import { AutenticacionService } from "../../services/autenticacion.service";
+
 
 @Component({
   selector: 'app-panel-configuracion-caja-menor',
@@ -7,7 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelConfiguracionCajaMenorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _auth: AutenticacionService, 
+    private router: Router,
+  ) { 
+
+  }
 
   ngOnInit() {
   }
