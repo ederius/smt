@@ -19,6 +19,7 @@ import { PanelCajaMenorComponent } from "./components/panel-caja-menor/panel-caj
 import { PanelConfiguracionCajaMenorComponent } from './components/panel-configuracion-caja-menor/panel-configuracion-caja-menor.component';
 import { PanelConfiguracionCrearUsuarioComponent } from './components/panel-configuracion-crear-usuario/panel-configuracion-crear-usuario.component';
 import { PanelConfiguracionListarUsuariosComponent } from './components/panel-configuracion-listar-usuarios/panel-configuracion-listar-usuarios.component';
+import { PanelRemenberPasswordUserComponent } from './components/panel-remenber-password-user/panel-remenber-password-user.component';
 
 
 //panel de padres de familia o niños
@@ -36,7 +37,9 @@ import { GuardiaPinService }  from "./services/guardia-pin.service";
 const ROUTES: Routes = [
 
   { path: 'login', component: PanelLoginComponent },
-  { path: 'registrar-usuario', component: PanelRegisterUserComponent },    
+  { path: 'registrar-usuario', component: PanelRegisterUserComponent },   
+  { path: 'recuperar-contrasena', component: PanelRemenberPasswordUserComponent },    
+ 
   { path: 'panel', component: PanelComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'inicio'},
@@ -89,16 +92,17 @@ export const routedComponents = [
   PanelAdministradoresComponent,
   PanelPinesGeneradosComponent,
   PanelAgendaComponent,
+  PanelCalificacionComponent,
+  PanelCajaMenorComponent,
+  PanelConfiguracionCajaMenorComponent,
+  PanelConfiguracionCrearUsuarioComponent,
+  PanelConfiguracionListarUsuariosComponent,
+  PanelRemenberPasswordUserComponent,
   //pin components - componentes de pines 
   PinComponent,
   PinLoginComponent,
   PinInscripcionesComponent,
   PinAdmitidosComponent,
   PinEntrevistasComponent,
-  PinMatriculadosComponent,
-  PanelCalificacionComponent,
-  PanelCajaMenorComponent,
-  PanelConfiguracionCajaMenorComponent,
-  PanelConfiguracionCrearUsuarioComponent,
-  PanelConfiguracionListarUsuariosComponent
+  PinMatriculadosComponent
 ];

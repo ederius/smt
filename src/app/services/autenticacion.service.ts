@@ -8,6 +8,7 @@ import * as _ from "lodash";
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { NullAstVisitor } from '@angular/compiler';
 
 @Injectable()
 export class AutenticacionService{
@@ -47,8 +48,8 @@ export class AutenticacionService{
   getSession(){
     return new Promise((resolved, reject)=>{
       this.afAuth.authState.subscribe((auth) => {
-        this.authState = auth.toJSON();
-        resolved(auth.toJSON());
+        this.authState = auth!=null ? auth.toJSON() : auth;
+        resolved(this.authState);
       });
     });
   }
@@ -94,10 +95,15 @@ export class AutenticacionService{
   // Sends email allowing user to reset password
   resetPassword(email: string) {
     var auth = firebase.auth();
-
     return auth.sendPasswordResetEmail(email)
-      .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
+      .then(() =>{ 
+        console.log("email sent")
+        return true;
+      })
+      .catch((error) =>{
+        console.log(error);
+        return  false;
+      });
   }
 
 
