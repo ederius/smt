@@ -28,10 +28,11 @@ export class PanelCajaMenorComponent implements OnInit {
   saldoApertura:any;
   saldoFila:Number;
   saldoTotal:any;
-  gastos:Array<any>;
-  gastoEditar:String;
+  movimientos:Array<any>;
+  movimientoEditar:String;
   successUpdate:String;
   errorUpdate:String;
+  cajaActiva:any;
 
   closeResult:any;
 
@@ -43,63 +44,68 @@ export class PanelCajaMenorComponent implements OnInit {
     private router: Router
 
   ) { 
-    this.listarGastos();
+    this.listarMovimientos();
     this.fecha = moment().format('MMMM Do YYYY, h:mm a');      //obteniendo fecha y hora actual  
-    this.fechaApertura = moment().format('MMMM Do YYYY, h:mm a');
-    this.saldoApertura = 5000000
   }
 
   ngOnInit() {
   }
 
-  listarGastos(){
-    this._cajaMejorServices.obtenerGastos().then((data)=>{
-      this.gastos = data;
+  listarMovimientos(){
+    this._cajaMejorServices.listarCajasMenor().then(cajasMenores=>{
+      this.cajaActiva = cajasMenores.pop();     
+      this.movimientos = this.cajaActiva.movimientos ? _.map(this.cajaActiva.movimientos) : [];
+      this.fechaApertura = this.cajaActiva.fechaApertura;
+      this.saldoApertura = this.cajaActiva.saldoApertura;
       this.haber = 0 ;
       this.debe = 0 ;
-
       var saldoTotal, saldo=0, saldoApertura=parseInt(this.saldoApertura);
-      _.forEach(this.gastos, (o, index)=>{
+      _.forEach(this.movimientos, (o, index)=>{
         saldoApertura -= parseInt(o.haber);
         saldoApertura += parseInt(o.debe);
-        this.gastos[index].saldo=saldoApertura;
-        if(data.length-1 == index){
+        this.movimientos[index].saldo=saldoApertura;
+        if(this.movimientos.length-1 == index){
           saldoTotal = saldoApertura - saldo;
           this.saldoTotal = saldoTotal;                 
         }
       });
-
     });
   }
 
-  guardarGasto(){ 
-    var gasto = {
+  guardarMovimiento(){ 
+    var movimiento = {
       fecha:this.fecha,
       concepto:this.concepto,
       debe:this.debe,
       haber:this.haber
     }
-    this._cajaMejorServices.guardarGasto(gasto).then((response)=>{
+    var saldo = this.saldoTotal;
+    saldo -= this.haber;
+    saldo -= this.debe;
+    this._cajaMejorServices.guardarMovimiento(this.cajaActiva.key, movimiento, saldo).then((response)=>{
       this.concepto="";
       this.haber=0;
     }).catch(function(error){
       console.error(error);
     });
-    this.listarGastos();
+    this.listarMovimientos();
   }
 
 
-  editarGasto(contentEdit, gasto){
-    this.gastoEditar = gasto;
+  modalActualizarMovimineto(contentEdit, movimiento){
+    this.movimientoEditar = movimiento;
     this.modalService.open(contentEdit, {size: 'sm' as 'sm'}).result.then((result) => {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  ActualizarUnGasto(){
-    this._cajaMejorServices.guardarUnGasto(this.gastoEditar).then((response)=>{
-      this.listarGastos();    
+  ActualizarMovimiento(){
+    var saldo = this.saldoTotal;
+    saldo -= this.movimientoEditar.haber;
+    saldo -= this.movimientoEditar.debe;
+    this._cajaMejorServices.actualizarMovimiento(this.cajaActiva.key, this.movimientoEditar, saldo).then((response)=>{
+      this.listarMovimientos();    
       this.successUpdate="Se actualizo exitosamente!!"
     }).catch(function(error){
       this.errorUpdate="Upsss... algo a salido mal, intentalo mas tarde!!";

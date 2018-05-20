@@ -1,3 +1,100 @@
-<p>
-  panel-configuracion-caja-menor works!
-</p>
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+  
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3 class="text-center titulo ">Configuración caja menor</h3>
+        </div>
+        <hr>      
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              <button type="button" class="btn btn-success text-center" (click)="modalCrearCajaMenor(content)"> 
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                Crear caja menor
+              </button>        
+            </div>  
+            <br>
+            <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <thead>
+                <tr>
+                  <th class="text-center">F. apertura</th>              
+                  <th class="text-center">F. cierre</th>
+                  <th class="text-center">Saldo A.</th>
+                  <th class="text-center">Saldo C.</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cajaMenor of ListaCajas; index">
+                  <td class="text-center">{{cajaMenor.fechaApertura}}</td>
+                  <td class="text-center">{{cajaMenor.fechaCierre}}</td>
+                  <td class="text-center">{{cajaMenor.saldoApertura | currency}}</td>
+                  <td class="text-center">{{cajaMenor.saldoCierre | currency}}</td>
+                  <td class="text-center">
+                    <span *ngIf="cajaMenor.activa">Activa</span>
+                    <span *ngIf="!cajaMenor.activa">Cerrada</span>
+                  </td>
+                  <td class="text-center">
+                      <button class="btn btn-info btn-sm" (click)="modalDetallesCajaMenor(contentDetails)">Detalles</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" *ngIf="ListaCajas?.length==0">
+              <br><br>
+               <h3> No hay registros</h3>
+               <i class="fa fa-hdd-o fa-5x  " aria-hidden="true"></i> 
+            </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  
+      <!-- MODAL EDITAR GASTO -->
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Crear caja meno</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>En esta sección se puede hacer apertura de una nueva caja menor con la fecha y hora de este isntante, tenga en cuenta en que si procede realizar la apertura de una nueva caja menor la caja menor anterior quedara cerrada y no podra seguir usandola y esta nueva caja menor que abrio sera la unica que podra usar.</p>
+          <br>
+          <input type="text" class="form-control" name="fecha" [(ngModel)]="fechaApertura" placeholder="Fecha de apertura" disabled="true" />
+          <input type="number" class="form-control" name="concepto" [(ngModel)]="saldoApertura" placeholder="Salto de apertura"/>
+        </div>
+        <div class="alert alert-success text-center" *ngIf="successUpdate">{{successUpdate}}</div>
+        <div class="alert alert-error text-center" *ngIf="errorUpdate">{{errorUpdate}}</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-success" (click)="crearCajaMenor()" [disabled]="!saldoApertura || !fechaApertura">Crear caja menor</button>        
+        </div>
+      </ng-template>
+      <!--FIN MODAL EDITAR GASTO -->
+
+      <!-- MODAL EDITAR GASTO -->
+      <ng-template #contentDetails let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Crear caja meno</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>En esta sección se puede hacer apertura de una nueva caja menor con la fecha y hora de este isntante, tenga en cuenta en que si procede realizar la apertura de una nueva caja menor la caja menor anterior quedara cerrada y no podra seguir usandola y esta nueva caja menor que abrio sera la unica que podra usar.</p>
+          <br>
+          <input type="text" class="form-control" name="fecha" [(ngModel)]="fechaApertura" placeholder="Fecha de apertura" disabled="true" />
+          <input type="number" class="form-control" name="concepto" [(ngModel)]="saldoApertura" placeholder="Salto de apertura"/>
+        </div>
+        <div class="alert alert-success text-center" *ngIf="successUpdate">{{successUpdate}}</div>
+        <div class="alert alert-error text-center" *ngIf="errorUpdate">{{errorUpdate}}</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-success" (click)="crearCajaMenor()" [disabled]="!saldoApertura || !fechaApertura">Crear caja menor</button>        
+        </div>
+      </ng-template>
+      <!--FIN MODAL EDITAR GASTO -->
