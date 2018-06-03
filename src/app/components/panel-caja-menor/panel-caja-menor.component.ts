@@ -20,16 +20,16 @@ import { AutenticacionService } from "../../services/autenticacion.service";
 })
 export class PanelCajaMenorComponent implements OnInit {
 
-  debe:Number;
   concepto:String;
   fecha:Date;
   haber:Number;
+  debe:Number;
   fechaApertura:Date;
   saldoApertura:any;
   saldoFila:Number;
   saldoTotal:any;
   movimientos:Array<any>;
-  movimientoEditar:String;
+  movimientoEditar:any;
   successUpdate:String;
   errorUpdate:String;
   cajaActiva:any;
@@ -45,7 +45,7 @@ export class PanelCajaMenorComponent implements OnInit {
 
   ) { 
     this.listarMovimientos();
-    this.fecha = moment().format('MMMM Do YYYY, h:mm a');      //obteniendo fecha y hora actual  
+    this.fecha = moment().format('MMMM Do YYYY, h:mm:ss a');      //obteniendo fecha y hora actual  
   }
 
   ngOnInit() {
@@ -79,9 +79,9 @@ export class PanelCajaMenorComponent implements OnInit {
       debe:this.debe,
       haber:this.haber
     }
-    var saldo = this.saldoTotal;
-    saldo -= this.haber;
-    saldo -= this.debe;
+    var saldo = Number(this.saldoTotal);
+    saldo -= Number(this.haber);
+    saldo += Number(this.debe);
     this._cajaMejorServices.guardarMovimiento(this.cajaActiva.key, movimiento, saldo).then((response)=>{
       this.concepto="";
       this.haber=0;

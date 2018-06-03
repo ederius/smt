@@ -28,6 +28,7 @@ export class PanelPinesGenerarComponent implements OnInit {
     public _authService:AutenticacionService, public router:Router) {
 
     this.forma = new FormGroup({
+      'tipoIdentificacion': new FormControl('', [Validators.required]),
       'cedula': new FormControl('', [Validators.required, Validators.min(11111)]),
       'nombres': new FormControl('', [Validators.required, Validators.minLength(4)]),
       'apellidos': new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -51,7 +52,7 @@ export class PanelPinesGenerarComponent implements OnInit {
       
       if(duplicidad){
         this.result = null;        
-        this.error = "Cedula duplicada!"
+        this.error = "Identificación duplicada!"
       }else{
 
         //Obteniendo codigo de pin
@@ -119,6 +120,8 @@ export class PanelPinesGenerarComponent implements OnInit {
 
       //Generando un nuevo docuento PDF  
       let doc = new jspdf();
+
+      let tipoIdentificacion = this.forma.value.tipoIdentificacion == 1 ? 'R.C.:' : 'T.I.:' ;
         
       //Generando pdf para descarga
 
@@ -138,11 +141,11 @@ export class PanelPinesGenerarComponent implements OnInit {
       doc.myText(`${campo.nombres.toUpperCase()} ${campo.apellidos.toUpperCase()}`,{align: "center"},0, 200);
 
       doc.setFontSize(18);
-      doc.myText(`CC: ${campo.cedula}`, {align: "center"},0, 210);
+      doc.myText(`${tipoIdentificacion} ${campo.cedula}`, {align: "center"},0, 210);
 
       doc.setFontSize(18);
       doc.text(89, 230, `Instrucciones`);
-      doc.myText(`Se debe ingresar a la página http://app.happykids.edu.co/pin/login, `,{align: "center"},0, 240);
+      doc.myText(`Se debe ingresar a la página https://smt.happykids.edu.co, `,{align: "center"},0, 240);
       doc.myText(`luego se inserta el código obtenido para validarlo y empezar a diligenciar `,{align: "center"},0, 247);
       doc.myText(`el formulario de inscripción.`,{align: "center"},0, 254);
 

@@ -1,49 +1,43 @@
-"use strict";
+'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
-const sendgrid = require("sendgrid");
+const nodemailer = require("nodemailer");
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
 // export const helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
-const client = sendgrid("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");
-function parseBody(body) {
-    let helper = sendgrid.mail;
-    let fromEmail = new helper.Email(body.from);
-    let toEmail = new helper.Email(body.to);
-    let subject = body.subject;
-    let content = new helper.Content('text/html', body.content);
-    let mail = new helper.Mail(fromEmail, subject, toEmail, content);
-    return mail.toJSON();
-}
-exports.httpEmail = functions.https.onRequest((req, res) => {
-    return Promise.resolve()
-        .then(() => {
-        if (req.method !== 'POST') {
-            const error = new Error('Only POST requests are accepted');
-            //error.code = 405;
-            throw error;
-        }
-        const request = client.emptyRequest({
-            method: 'POST',
-            path: '/v3/mail/send',
-            body: parseBody(req.body)
-        });
-        return client.API(request);
-    })
-        .then((response) => {
-        if (response.body) {
-            res.send(response.body);
-        }
-        else {
-            res.end();
-        }
-    })
-        .catch((err) => {
-        console.error(err);
-        return Promise.reject(err);
+// Configure the email transport using the default SMTP transport and a GMail account.
+// For Gmail, enable these:
+// 1. https://www.google.com/settings/security/lesssecureapps
+// 2. https://accounts.google.com/DisplayUnlockCaptcha
+// For other types of transports such as Sendgrid see https://nodemailer.com/transports/
+// TODO: Configure the `gmail.email` and `gmail.password` Google Cloud environment variables.
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: gmailEmail,
+        pass: gmailPassword
+    },
+});
+exports.emailNotificationPathers = functions.https.onRequest((req, res) => {
+    console.log("llego solicitud");
+    console.log(req.body);
+    // The user subscribed to the newsletter.
+    const mailOptions = {
+        from: req.body.from,
+        to: req.body.to,
+        subject: req.body.subject,
+        text: req.body.content
+    };
+    mailTransport.sendMail(mailOptions).then(() => {
+        console.log('New welcome email sent to:');
+        res.send({ message: "hola mundo" });
+    }).catch(error => {
+        res.status(400).send({ error: error });
     });
 });
 //# sourceMappingURL=index.js.map

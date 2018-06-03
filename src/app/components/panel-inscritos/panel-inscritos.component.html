@@ -139,7 +139,7 @@
             </div>
 
             <div class="col-xs-12 col-md-8  col-lg-4 text-left">
-              <p>El niño(a) presenta algun tipo de discapacidad</p>
+              <p>El niño(a) presenta algún tipo de discapacidad</p>
 
               <div class="radio-button">
                 <input type="radio" name="discapacidad" [(ngModel)]="inscrito.discapacidad" value="Fisica" disabled>
@@ -230,7 +230,7 @@
                 <option value="">Grado</option>
                 <option value="salacuna"> Sala cuna </option>
                 <option value="caminadores"> Caminadores </option>
-                <option value="parvulo"> Parvulo </option>
+                <option value="parvulo"> Párvulo </option>
                 <option value="pre-jardin"> Pre-jardin </option>
                 <option value="jardin"> Jardin </option>
                 <option value="transicion"> Transicion </option>
@@ -493,14 +493,14 @@
             <div class="col-xs-12 col-md-8 col-lg-4 text-left">
               <div class="checkbox-bottom">
                 <label>
-                  <input type="checkbox" name="musica" [(ngModel)]="inscrito.musica" disabled> Musica
+                  <input type="checkbox" name="musica" [(ngModel)]="inscrito.musica" disabled> Música
                 </label>
               </div>
 
 
               <div class="checkbox-bottom">
                 <label>
-                  <input type="checkbox" name="RelacionPersonales" [(ngModel)]="inscrito.RelacionPersonales" disabled> Relacion con los demas
+                  <input type="checkbox" name="RelacionPersonales" [(ngModel)]="inscrito.RelacionPersonales" disabled> Relación con los demas
                 </label>
               </div>
 
@@ -531,6 +531,12 @@
               <div class="checkbox-bottom">
                 <label>
                   <input type="checkbox" name="lenguaje" [(ngModel)]="inscrito.lenguaje" disabled> Lenguaje
+                </label>
+              </div>
+
+              <div class="checkbox-bottom">
+                <label>
+                  <input type="checkbox" name="ninguna" [(ngModel)]="inscrito.ninguna" disabled> Ninguna
                 </label>
               </div>
 
@@ -674,7 +680,7 @@
               </div>
 
               <div class="col-xs-12 col-md-8  col-lg-4 text-left" [ngClass]="{'has-danger':forma.controls.discapacidad.errors?.required && forma.controls.discapacidad.touched || ( forma.controls.discapacidad.errors?.required && sended ) }">
-                <p>El niño(a) presenta algun tipo de discapacidad</p>
+                <p>El niño(a) presenta algún tipo de discapacidad</p>
 
                 <div class="radio-button">
                   <input type="radio" name="discapacidad" formControlName="discapacidad" value="Fisica">
@@ -786,7 +792,7 @@
                   <option value="">Grado</option>
                   <option value="salacuna"> Sala cuna </option>
                   <option value="caminadores"> Caminadores </option>
-                  <option value="parvulo"> Parvulo </option>
+                  <option value="parvulo"> Párvulo </option>
                   <option value="pre-jardin"> Pre-jardin </option>
                   <option value="jardin"> Jardin </option>
                   <option value="transicion"> Transicion </option>
@@ -1216,7 +1222,7 @@
   <!-- MODAL EXAMANES DE INSCRIPCIÓN -->
   <ng-template #contentQuiz let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Asignar entrevista y examenes de admisión</h4>
+      <h4 class="modal-title">Asignar entrevista y exámenes de admisión</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1244,7 +1250,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
-            <ul><li>Examenes de admisión.</li></ul>
+            <ul><li>Exámenes de admisión.</li></ul>
   
             <section class="row">
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">

@@ -30,7 +30,14 @@
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.fechaExp.errors?.required && forma.controls.fechaExp.touched || ( forma.controls.fechaExp.errors?.required && sended ) }">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="fechaExp" formControlName="fechaExp" placeholder="Fecha de expedición de documento">
+                  <div class="input-group">
+                    <input ngbDatepicker #fe="ngbDatepicker" (click)="fe.toggle()" class="form-control" name="fechaExp" formControlName="fechaExp" placeholder="Fecha de expedición de documento">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="fe.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
                   <div *ngIf="(forma.controls.fechaExp.errors?.required && forma.controls.fechaExp.touched) || ( forma.controls.fechaExp.errors?.required && sended ) " class="form-control-feedback">
                     Este campo es requerido
                   </div>
@@ -66,7 +73,14 @@
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.fechaN.errors?.required && forma.controls.fechaN.touched || ( forma.controls.fechaN.errors?.required && sended ) }">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="fechaN" formControlName="fechaN" placeholder="Fecha de nacimiento">
+                  <div class="input-group">
+                    <input ngbDatepicker #fn="ngbDatepicker" (click)="fn.toggle()" class="form-control" name="fechaN" formControlName="fechaN" placeholder="Fecha de nacimiento">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="fn.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
                   <div *ngIf="(forma.controls.fechaN.errors?.required && forma.controls.fechaN.touched) || ( forma.controls.fechaN.errors?.required && sended ) " class="form-control-feedback">
                     Este campo es requerido
                   </div>
@@ -228,7 +242,7 @@
                   <option value="">Grado</option>
                   <option value="salacuna"> Sala cuna </option>
                   <option value="caminadores"> Caminadores </option>
-                  <option value="parvulo"> Parvulo </option>
+                  <option value="parvulo"> Párvulo </option>
                   <option value="pre-jardin"> Pre-jardin </option>
                   <option value="jardin"> Jardin </option>
                   <option value="transicion"> Transicion </option>
@@ -297,7 +311,14 @@
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.fechaExpPapa.errors?.required && forma.controls.fechaExpPapa.touched) || ( forma.controls.fechaExpPapa.errors?.required && sended )}">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="fechaExpPapa" formControlName="fechaExpPapa" placeholder="Fecha de expedición de la cédula">
+                  <div class="input-group">
+                    <input ngbDatepicker #fecp="ngbDatepicker" (click)="fecp.toggle()" class="form-control" name="fechaExpPapa" formControlName="fechaExpPapa" placeholder="Fecha de expedición de la cédula">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="fecp.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
                   <div *ngIf="(forma.controls.fechaExpPapa.errors?.required && forma.controls.fechaExpPapa.touched) || ( forma.controls.fechaExpPapa.errors?.required && sended )" class="form-control-feedback">
                     Este campo es requerido
                   </div>
@@ -385,7 +406,14 @@
 
               <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.fechaExpMama.errors?.required && forma.controls.fechaExpMama.touched) || ( forma.controls.fechaExpMama.errors?.required && sended )}">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="fechaExpMama" formControlName="fechaExpMama" placeholder="Fecha de expedición de la cédula">
+                  <div class="input-group">
+                    <input ngbDatepicker #fecm="ngbDatepicker" (click)="fecm.toggle()" class="form-control" name="fechaExpMama" formControlName="fechaExpMama" placeholder="Fecha de expedición de la cédula">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="fecm.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
                   <div *ngIf="(forma.controls.fechaExpMama.errors?.required && forma.controls.fechaExpMama.touched) || ( forma.controls.fechaExpMama.errors?.required && sended )" class="form-control-feedback">
                     Este campo es requerido
                   </div>
@@ -472,7 +500,14 @@
 
               <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.fechaExpOtraR.errors?.required && forma.controls.fechaExpOtraR.touched) || ( forma.controls.fechaExpOtraR.errors?.required && sended )}">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="fechaExpOtraR" formControlName="fechaExpOtraR" placeholder="Fecha de expedición de la cédula">
+                  <div class="input-group">
+                    <input ngbDatepicker #fecor="ngbDatepicker" (click)="fecor.toggle()" class="form-control" name="fechaExpOtraR" formControlName="fechaExpOtraR" placeholder="Fecha de expedición de la cédula">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="fecor.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
                   <div *ngIf="(forma.controls.fechaExpOtraR.errors?.required && forma.controls.fechaExpOtraR.touched) || ( forma.controls.fechaExpOtraR.errors?.required && sended )" class="form-control-feedback">
                     Este campo es requerido
                   </div>
@@ -592,6 +627,12 @@
                 <div class="checkbox-bottom">
                   <label>
                     <input type="checkbox" name="armarFiguras" formControlName="armarFiguras"> Armar figuras
+                  </label>
+                </div>
+                
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="ninguna" formControlName="ninguna"> Ninguna
                   </label>
                 </div>
 

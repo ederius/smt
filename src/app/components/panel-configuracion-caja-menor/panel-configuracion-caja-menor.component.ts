@@ -24,6 +24,7 @@ export class PanelConfiguracionCajaMenorComponent implements OnInit {
   saldoApertura:Number;
   saldoCierre:Number;
   ListaCajas:Array<any>;
+  cajaMenor:any;
 
   constructor(
     private _auth: AutenticacionService, 
@@ -39,13 +40,12 @@ export class PanelConfiguracionCajaMenorComponent implements OnInit {
 
   listarCajas(){
     this._cajaMenorService.listarCajasMenor().then(cajasMenor=>{
-      console.log(cajasMenor);
       this.ListaCajas = cajasMenor;
     })
   }
 
   modalCrearCajaMenor(content){
-    this.fechaApertura = moment().format('MMMM Do YYYY, h:mm a');
+    this.fechaApertura = moment().format('MMMM Do YYYY, h:mm:ss a');
     this.saldoApertura = 0;
     this.modalService.open(content, {size: 'sm' as 'sm'}).result.then((result) => {
     }, (reason) => {
@@ -55,11 +55,11 @@ export class PanelConfiguracionCajaMenorComponent implements OnInit {
   crearCajaMenor(){
     this._cajaMenorService.listarCajasMenor().then(cajasMenores=>{
       if(cajasMenores.length>0){
-        var cajaActica = _.find(cajasMenores, function(o) { return o.activa == true; });
-        cajaActica.saldoCierre == undefined ? cajaActica.saldoCierre = cajaActica.saldoApertura : cajaActica ;
-        cajaActica.fechaCierre = moment().format('MMMM Do YYYY, h:mm:ss a');
-        cajaActica.activa = false;
-        return this._cajaMenorService.actualizarCajaMenor(cajaActica);         
+        var cajaActiva:any = _.find(cajasMenores, function(o:any) { return o.activa == true; });
+        cajaActiva.saldoCierre == undefined ? cajaActiva.saldoCierre = cajaActiva.saldoApertura : cajaActiva ;
+        cajaActiva.fechaCierre = moment().format('MMMM Do YYYY, h:mm:ss a');
+        cajaActiva.activa = false;
+        return this._cajaMenorService.actualizarCajaMenor(cajaActiva);         
       }else{
         return ;
       }
@@ -69,9 +69,16 @@ export class PanelConfiguracionCajaMenorComponent implements OnInit {
       this.listarCajas();
     }).catch(error=>{
       console.log("error crean caja menor :", error);
-      
-    })
-    
+    });
+  }
+
+
+  modalDetallesCajaMenor(content, cajaMejor){
+    this.cajaMenor = cajaMejor;
+    this.cajaMenor.movimientos = _.map(cajaMejor.movimientos);    
+    this.modalService.open(content, {size: 'md' as 'lg'}).result.then((result) => {
+    }, (reason) => {
+    });
   }
 
 }

@@ -3,21 +3,28 @@
     <h3 class="text-center titulo ">Generar pín</h3>
 
         <p class="grey-text">
-          Este módulo fue creado con el fin de generar pines únicos, para poder tener acceso por medio de estos, a los
-          formularios de inscripciones para aspirar a un cupo dentro del centro de enseñanza Happy kids.
-        </p>
-        <p class="grey-text">
-          En el siguiente formulario ingrese el numero de identificación del registro civil o tarjeta de identidad, nombres y apellidos del niño.
+          En el siguiente formulario ingrese el número de identificación del registro civil o tarjeta de identidad, nombres y apellidos del niño.
         </p>
         
         <form name="form" id="formulario" [formGroup]="forma" (ngSubmit)="generarPin()">
 
           <div class="form-group row">
-            <label for="cedula" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 col-form-label">N° de identificacion:</label>
+            <label for="tipoIdentificacion" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 col-form-label">tipo de identificacion:</label>
             <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4">
-              <input class="form-control" type="number" id="cedula" formControlName="cedula" placeholder="Cédula">
+              <select name="tipoIdentidad" class="form-control" id="" formControlName="tipoIdentificacion" >
+                <option value="">Selecione</option>
+                <option value="1">Registro civil</option>
+                <option value="2">Tarjeta de identidad</option>
+              </select>
             </div>
           </div>
+
+          <div class="form-group row">
+              <label for="cedula" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 col-form-label">N° de identificación:</label>
+              <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4">
+                <input class="form-control" type="number" id="cedula" formControlName="cedula" placeholder="N° de identificacion:">
+              </div>
+            </div>
 
           <div class="form-group row">
               <label for="nombres" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 col-form-label">Nombres:</label>
@@ -52,6 +59,7 @@
                 Generar <i class="fa fa-refresh" aria-hidden="true" ></i>
               </button>
             </div>
+
 
         </form>
 

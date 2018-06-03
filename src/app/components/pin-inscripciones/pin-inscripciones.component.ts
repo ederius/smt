@@ -17,6 +17,7 @@ export class PinInscripcionesComponent implements OnInit {
   errorForma:String;
   exitoForma:String;
   sended:Boolean;
+  sesionPin:any;
 
   constructor(
 
@@ -27,20 +28,22 @@ export class PinInscripcionesComponent implements OnInit {
   ) {
       
       this._auth.verificarSesionActivaPin();        //validando si ya inicio sesion
+      this.sesionPin = JSON.parse(localStorage.sesionPin);
+      console.log(this.sesionPin);
 
       //Definiendo los campos del formulario y sus validaciones
       this.forma = new FormGroup({
 
         //datos de niño
-        'id'        : new FormControl('', Validators.required),
+        'id'        : new FormControl(this.sesionPin.cedula, Validators.required),
         'fechaExp'  : new FormControl('', Validators.required),
-        'nombres'   : new FormControl('', Validators.required),
-        'apellidos' : new FormControl('', Validators.required),
+        'nombres'   : new FormControl(this.sesionPin.nombres, Validators.required),
+        'apellidos' : new FormControl(this.sesionPin.apellidos, Validators.required),
         'lugarN'    : new FormControl('', Validators.required),
         'fechaN'    : new FormControl('', Validators.required),    
         'direccion' : new FormControl('', Validators.required),
         'barrio'    : new FormControl('', Validators.required),        
-        'telefonos' : new FormControl(''),
+        'telefonos' : new FormControl(this.sesionPin.telefono),
         'colegioPro': new FormControl('', Validators.required),
         'ciudad'    : new FormControl('', Validators.required),
         'discapacidad': new FormControl('', Validators.required),        
@@ -96,7 +99,9 @@ export class PinInscripcionesComponent implements OnInit {
         'arte'            : new FormControl(''),
         'armarFiguras'    : new FormControl(''),                
         'lenguaje'        : new FormControl(''),
+        'ninguna'        : new FormControl(''),
         'otraCual'        : new FormControl('')
+
         
       });  
 

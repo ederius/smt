@@ -21,7 +21,7 @@ export class PanelPinesGeneradosComponent implements OnInit {
 
   ordenar:any=[
     {name:"Ordenar por", value:""},
-    {name:"Por Cedula", value:"cedula"},    
+    {name:"Por identificación", value:"cedula"},    
     {name:"Por Nombres", value:"nombres"},
     {name:"Por Apellidos", value:"apellidos"},
     {name:"Por Teléfonos", value:"telefono"},
@@ -56,17 +56,18 @@ export class PanelPinesGeneradosComponent implements OnInit {
      });    
   }
   
-  exportarExcel(){
-
-    let pines = _.map(this.pines)[1];         //Mapeando como un array la promesa
+  exportarExcel(){   
+    var pines:any = this.pines, self = this
     _.forEach(pines, function(pin, index){    //eliminando actualizado de los objetos dentor del array
       if(pin.actualizado != undefined){
         delete pin.actualizado;
         pines[index] = pin;
       }
+      if(pines.length == index+1){
+        self.Utils.exportarExcel(pines, 'Reporte-pines-generados');
+      }
     });
 
-    this.Utils.exportarExcel(pines, 'Reporte-pines-generados');
 
     
   }

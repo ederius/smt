@@ -351,7 +351,7 @@ export class PanelInscritosComponent implements OnInit {
   }
 
   enviarEmail(){
-    let url = `https://us-central1-smt-1-7b0e8.cloudfunctions.net/httpEmail`
+    let url = `https://us-central1-smt-1-7b0e8.cloudfunctions.net/emailNotificationPathers`
     let params: URLSearchParams = new URLSearchParams();
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -359,15 +359,19 @@ export class PanelInscritosComponent implements OnInit {
     let options = new RequestOptions({headers:headers});
 
     params.set('to', 'ederitodiaz@gmail.com');
-    params.set('from', 'you@yoursupercoolapp.com');
+    params.set('from', '"Eder Diaz Toro" <ederdiaz_@hotmail.com>');
     params.set('subject', 'test-email');
-    params.set('content', 'Hello World');
+    params.set('content', `Buenos dias, con este correo queremos informarle que se le ha asignado ya una fecha y hora para su proxima entrevista. Coordial saludi`);
 
     return this.http.post(url, params, options)
                     .toPromise()
                     .then( res => {
+                      console.log("enviado con exito");
+                      
                     })
                     .catch(err => {
+                      console.log("error");
+                      
                       console.log(err)
                     })
   }

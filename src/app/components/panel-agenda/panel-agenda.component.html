@@ -13,7 +13,7 @@
 
       <!-- tabla de citados a entrevistas --> 
       <div class="text-center subtituloAgenda col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4>Niños citados para entrevista con papas 
+        <h4>Niños citados para entrevista con padres 
           <button class="btn btn-success btn-sm button-right" (click)="imprimir('tablaCitasPapas')">Imprimir</button>
         </h4>
       </div>
@@ -54,7 +54,7 @@
         </table>
         <div *ngIf="entrevistasInscritos.length == 0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
-          <h4>No hay niños citados este dia</h4>
+          <h4>No hay niños citados este día</h4>
         </div>
       </div>
 
@@ -99,7 +99,7 @@
         </table>
         <div *ngIf="examenesInscritos.length == 0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
-          <h4>No hay niños citados este dia</h4>
+          <h4>No hay niños citados este día</h4>
         </div>
       </div>
     
@@ -123,13 +123,26 @@
           <hr>
           <section class="row">
     
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
               <ul><li>Entrevista con padres.</li></ul>
               <section class="row">
-                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
                     <div class="input-group">
                         <span class="input-group-addon">Calificación entrevista</span>
-                        <input type="number" class="form-control" name="entrevista" [(ngModel)]="calificacionEntrevista" maxlength="10" minlength="1">
+                        <select name="tipoIdentidad" class="form-control" id="" name="calificacionEntrevista" [(ngModel)]="calificacionEntrevista" >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                    <div class="input-group">
+                        <span class="input-group-addon">Observaciones</span>
+                        <textarea name="tipoIdentidad" class="form-control" id="" name="observacionEntrevista" [(ngModel)]="observacionEntrevista" >
+                        </textarea>
                     </div>
                   </div>
               </section>
@@ -171,24 +184,66 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
               <ul><li>Examenes de admisión.</li></ul>
               <section class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
                   <div class="input-group">
-                    <span class="input-group-addon">Calificación matematicas:</span>
-                    <input type="number" class="form-control" name="EMatematica" [(ngModel)]="calificacionMatematica" maxlength="10" minlength="1">
+                    <span class="input-group-addon">Calificación matemáticas:</span>
+                    <select name="tipoIdentidad" class="form-control" id="" name="calificacionMatematica" [(ngModel)]="calificacionMatematica" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                  <div class="input-group">
+                      <span class="input-group-addon">Observaciones exa. mat.</span>
+                      <textarea name="tipoIdentidad" class="form-control" id="" name="observacionMatematicas" [(ngModel)]="observacionMatematicas" >
+                      </textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
                   <div class="input-group">
                     <span class="input-group-addon">Calificación castellano:</span>                        
-                    <input type="number" class="form-control" name="ECastellano" [(ngModel)]="calificacionCastellano" maxlength="10" minlength="1">
+                    <select name="tipoIdentidad" class="form-control" id="" name="calificacionCastellano" [(ngModel)]="calificacionCastellano" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-                    <div class="input-group">
-                      <span class="input-group-addon">Calificación comprención de lectura:</span>                        
-                      <input type="number" class="form-control" name="ECastellano" [(ngModel)]="calificacionLectura" maxlength="10" minlength="1">
-                    </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                  <div class="input-group">
+                      <span class="input-group-addon">Observaciones exa. cast.</span>
+                      <textarea name="tipoIdentidad" class="form-control" id="" name="observacionCastellano" [(ngModel)]="observacionCastellano" >
+                      </textarea>
                   </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                  <div class="input-group">
+                    <span class="input-group-addon">Calificación comprención de lectura:</span>                        
+                    <select name="tipoIdentidad" class="form-control" id="" name="calificacionLectura" [(ngModel)]="calificacionLectura" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                  <div class="input-group">
+                      <span class="input-group-addon">Observaciones exa. lect.</span>
+                      <textarea name="tipoIdentidad" class="form-control" id="" name="observacionLectura" [(ngModel)]="observacionLectura" >
+                      </textarea>
+                  </div>
+                </div>
+
               </section>
             </div>
 

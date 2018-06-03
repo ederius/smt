@@ -29,7 +29,7 @@ export class PanelCalificacionComponent implements OnInit {
 
   ordenar:any=[
     {name:"Ordenar por", value:""},
-    {name:"Por tarjeta de I.", value:"id"},    
+    {name:"Por identificación", value:"id"},    
     {name:"Por nombres", value:"nombres"},
     {name:"Por apellidos", value:"apellidos"},
     {name:"Por grado", value:"grado"}    

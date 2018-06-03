@@ -11,6 +11,7 @@ import { InscripcionesService } from "../../services/inscripciones.service";
 //PACKAGE
 import * as _ from "lodash";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { log } from 'util';
 
 
 
@@ -42,10 +43,15 @@ export class PanelAgendaComponent implements OnInit {
     private _inscripcionesServices:InscripcionesService,
     private modalService: NgbModal    
   ) { 
+
     
+
+    //this.consultarAgenda();
   }
 
   ngOnInit() {
+    const now = new Date();
+    this.agenda = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
   }
 
   consultarAgenda(){
