@@ -57,7 +57,6 @@ export class PanelAdmitidosVerComponent implements OnInit {
         if(requisitos){
           _.forEach(admitidos, (a, index1)=>{ 
             _.forEach(requisitos, (r, index2)=>{               
-              console.log(`${a.pin} == ${r.pin}`);
               if(a.pin == r.pin){ 
                 admitidos[index1].documentoID=r.documentoID;
                 admitidos[index1].fotos=r.fotos;
@@ -152,10 +151,7 @@ export class PanelAdmitidosVerComponent implements OnInit {
   requerimientosModal(admitido, content){
     this.admitido = admitido;
     this._admitidosService.obtenerRequerimientos(admitido.pin).then((data)=>{
-      console.log(data);
-      if(data){
-        console.log("entro");
-        
+      if(data){       
         this.documentoID=data.documentoID;
         this.fotos=data.fotos;
         this.pago=data.pago;

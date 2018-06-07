@@ -34,6 +34,7 @@ import { AdmitidosService } from "./services/admitidos.service";
 import { MatriculadosService } from "./services/matriculados.service";
 import { CajaMenorService } from "./services/caja-menor.service";
 import { ConfiguracionService } from "./services/configuracion.service";
+import { SemestresService } from "./services/semestres.service";
 
 
 //rutas - routes // componentes (ROUTES_APP)
@@ -92,7 +93,8 @@ import { OrdenarPipe } from './pipes/ordenar.pipe';
     AdmitidosService,
     MatriculadosService,
     CajaMenorService,
-    ConfiguracionService
+    ConfiguracionService,
+    SemestresService
     
   ],
   bootstrap: [AppComponent]

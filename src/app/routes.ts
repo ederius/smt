@@ -19,6 +19,7 @@ import { PanelCajaMenorComponent } from "./components/panel-caja-menor/panel-caj
 import { PanelConfiguracionCajaMenorComponent } from './components/panel-configuracion-caja-menor/panel-configuracion-caja-menor.component';
 import { PanelConfiguracionCrearUsuarioComponent } from './components/panel-configuracion-crear-usuario/panel-configuracion-crear-usuario.component';
 import { PanelConfiguracionListarUsuariosComponent } from './components/panel-configuracion-listar-usuarios/panel-configuracion-listar-usuarios.component';
+import { PanelConfiguracionSemestreComponent } from './components/panel-configuracion-semestre/panel-configuracion-semestre.component';
 import { PanelRemenberPasswordUserComponent } from './components/panel-remenber-password-user/panel-remenber-password-user.component';
 
 
@@ -56,8 +57,9 @@ const ROUTES: Routes = [
       { path: 'caja-menor',     component:PanelCajaMenorComponent },
       { path: 'configuracion-caja-menor', component:PanelConfiguracionCajaMenorComponent },
       { path: 'configuracion-crear-usuario', component:PanelConfiguracionCrearUsuarioComponent },
-      { path: 'configuracion-listar-usuarios', component:PanelConfiguracionListarUsuariosComponent }
-
+      { path: 'configuracion-listar-usuarios', component:PanelConfiguracionListarUsuariosComponent },
+      { path: 'configuracion-de-semestres', component:PanelConfiguracionSemestreComponent },
+      { path: '**', pathMatch: 'full', redirectTo:'inicio' }
 
     ],
     canActivate: [ GuardiaService ]
@@ -97,6 +99,7 @@ export const routedComponents = [
   PanelConfiguracionCajaMenorComponent,
   PanelConfiguracionCrearUsuarioComponent,
   PanelConfiguracionListarUsuariosComponent,
+  PanelConfiguracionSemestreComponent,
   PanelRemenberPasswordUserComponent,
   //pin components - componentes de pines 
   PinComponent,

@@ -1,0 +1,203 @@
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="text-center titulo ">Configuración de semestres</h3>
+      </div>
+      <hr>      
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <br>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <button type="button" class="btn btn-success text-center" (click)="modalAbrirSemestrer(contentCreateSemester)"> 
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              Abrir semestres
+            </button> 
+            <button type="button" class="btn btn-success text-center" (click)="modalCerrarSemestre(content)"> 
+              <i class="fa fa-times-circle" aria-hidden="true"></i>
+              Cerrar semestres
+            </button>          
+          </div> 
+          <br>
+          <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <thead>
+              <tr>
+                <th class="text-center">F. apertura</th>              
+                <th class="text-center">F. cierre</th>
+                <th class="text-center">Semestre</th>
+                <th class="text-center">A. inscritos</th>
+                <th class="text-center">A. no admitidos</th>
+                <th class="text-center">A. admitidos</th>
+                <th class="text-center">A. matriculados</th>
+                <th class="text-center">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let semestre of ListaSemestres; index">
+                <td class="text-center">{{semestre.fechaApertura}}</td>
+                <td class="text-center">{{semestre.fechaCierre}}</td>
+                <td class="text-center">{{semestre.semestre}}</td>
+                <td class="text-center">{{semestre.isncritos | currency}}</td>
+                <td class="text-center">{{semestre.admitidos | currency}}</td>
+                <td class="text-center">{{semestre.noAdmidos | currency}}</td>
+                <td class="text-center">{{semestre.matriculados | currency}}</td>
+                <td class="text-center">
+                  <span *ngIf="semestre.activa">Activa</span>
+                  <span *ngIf="!semestre.activa">Cerrada</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" *ngIf="ListaCajas?.length==0">
+            <br><br>
+             <h3> No hay registros</h3>
+             <i class="fa fa-hdd-o fa-5x  " aria-hidden="true"></i> 
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- MODAL CREAR SEMESTRE -->
+    <ng-template #contentCreateSemester let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Crear semestre</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br>
+        <form [formGroup]="forma" (ngSubmit)="registrarSemestre()"  novalidate="" class="form-signin">
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <h5 class="subtitulo">Cupos por grado</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cupoSalaCula.errors?.required && forma.controls.cupoSalaCula.touched) || ( forma.controls.cupoSalaCula.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cupoSalaCula" formControlName="cupoSalaCula" placeholder="Sala cuna">
+                  <div *ngIf="(forma.controls.cupoSalaCula.errors?.required && forma.controls.cupoSalaCula.touched) || ( forma.controls.cupoSalaCula.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposCaminadores.errors?.required && forma.controls.cuposCaminadores.touched) || ( forma.controls.cuposCaminadores.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposCaminadores" formControlName="cuposCaminadores" placeholder="cuposCaminadores">
+                  <div *ngIf="(forma.controls.cuposCaminadores.errors?.required && forma.controls.cuposCaminadores.touched) || ( forma.controls.cuposCaminadores.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposParvulo.errors?.required && forma.controls.cuposParvulo.touched) || ( forma.controls.cuposParvulo.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposParvulo" formControlName="cuposParvulo" placeholder="Párvulo">
+                  <div *ngIf="(forma.controls.cuposParvulo.errors?.required && forma.controls.cuposParvulo.touched) || ( forma.controls.cuposParvulo.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposPreJardin.errors?.required && forma.controls.cuposPreJardin.touched) || ( forma.controls.cuposPreJardin.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposPreJardin" formControlName="cuposPreJardin" placeholder="Pre-Járdin">
+                  <div *ngIf="(forma.controls.cuposPreJardin.errors?.required && forma.controls.cuposPreJardin.touched) || ( forma.controls.cuposPreJardin.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposJardin.errors?.required && forma.controls.cuposJardin.touched) || ( forma.controls.cuposJardin.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposJardin" formControlName="cuposJardin" placeholder="Járdin">
+                  <div *ngIf="(forma.controls.cuposJardin.errors?.required && forma.controls.cuposJardin.touched) || ( forma.controls.cuposJardin.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposTrancision.errors?.required && forma.controls.cuposTrancision.touched) || ( forma.controls.cuposTrancision.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposTrancision" formControlName="cuposTrancision" placeholder="Trancisión">
+                  <div *ngIf="(forma.controls.cuposTrancision.errors?.required && forma.controls.cuposTrancision.touched) || ( forma.controls.cuposTrancision.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposPrimero.errors?.required && forma.controls.cuposPrimero.touched) || ( forma.controls.cuposPrimero.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposPrimero" formControlName="cuposPrimero" placeholder="Primero">
+                  <div *ngIf="(forma.controls.cuposPrimero.errors?.required && forma.controls.cuposPrimero.touched) || ( forma.controls.cuposPrimero.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposSegundo.errors?.required && forma.controls.cuposSegundo.touched) || ( forma.controls.cuposSegundo.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposSegundo" formControlName="cuposSegundo" placeholder="Segundo">
+                  <div *ngIf="(forma.controls.cuposSegundo.errors?.required && forma.controls.cuposSegundo.touched) || ( forma.controls.cuposSegundo.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposTercero.errors?.required && forma.controls.cuposTercero.touched) || ( forma.controls.cuposTercero.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposTercero" formControlName="cuposTercero" placeholder="Tercero">
+                  <div *ngIf="(forma.controls.cuposTercero.errors?.required && forma.controls.cuposTercero.touched) || ( forma.controls.cuposTercero.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposCuarto.errors?.required && forma.controls.cuposCuarto.touched) || ( forma.controls.cuposCuarto.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposCuarto" formControlName="cuposCuarto" placeholder="Cuarto">
+                  <div *ngIf="(forma.controls.cuposCuarto.errors?.required && forma.controls.cuposCuarto.touched) || ( forma.controls.cuposCuarto.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cuposQuinto.errors?.required && forma.controls.cuposQuinto.touched) || ( forma.controls.cuposQuinto.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cuposQuinto" formControlName="cuposQuinto" placeholder="Quinto">
+                  <div *ngIf="(forma.controls.cuposQuinto.errors?.required && forma.controls.cuposQuinto.touched) || ( forma.controls.cuposQuinto.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+
+          <br>  
+          <div *ngIf="loginError" class="alert alert-danger text-center" role="alert">
+            {{loginError}}!!
+          </div>
+          <div *ngIf="registro" class="alert alert-success text-center" role="alert">
+              registro exito!! <br>
+              Antes de iniciar sesión verifique su correo.
+            </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit" ><!--[disabled]="forma.invalid  "-->
+              Abrir semestre
+          </button>         
+          <label class="checkbox pull-left"></label>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+      </div>
+    </ng-template>
+    <!--FIN MODAL EDITAR GASTO -->
+
+

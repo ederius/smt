@@ -32,6 +32,10 @@ export class PanelAgendaComponent implements OnInit {
   calificacionMatematica:number;
   calificacionLectura:number;  
   calificacionEntrevista:number;
+  observacionEntrevista:String;
+  observacionMatematicas:String;
+  observacionCastellano:String;
+  observacionLectura:String;
   actualizadaExitosamenteEntrevista:boolean=false;
   actualizadaExitosamenteCalificaciones:boolean=false;
 
@@ -98,6 +102,8 @@ export class PanelAgendaComponent implements OnInit {
       //consultando calificacion si en caso de que tenga algunas
       this._agendaSevice.consultarCalificacion(inscrito.pin).then((data)=>{
         this.calificacionEntrevista = data.calificacionEntrevista;
+        this.observacionEntrevista = data.observacionEntrevista;
+
       }).catch((error)=>{
         console.error(error);
       })
@@ -119,6 +125,9 @@ export class PanelAgendaComponent implements OnInit {
         this.calificacionCastellano = data.calificacionCastellano;
         this.calificacionMatematica = data.calificacionMatematica;
         this.calificacionLectura = data.calificacionLectura;
+        this.observacionMatematicas = data.observacionCastellano;
+        this.observacionCastellano = data.observacionMatematicas;
+        this.observacionLectura = data.observacionLectura;
       }).catch((error)=>{
         console.error(error);
       })
@@ -133,7 +142,7 @@ export class PanelAgendaComponent implements OnInit {
 
   guardarCalificacionEntrevista(){
     let pin = this.inscrito.pin
-    let calificacion = { calificacionEntrevista:this.calificacionEntrevista };
+    let calificacion = { calificacionEntrevista:this.calificacionEntrevista, observacionEntrevista:this.observacionEntrevista };
     this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
       this.actualizadaExitosamenteEntrevista=true;
       setTimeout(function(){
@@ -151,7 +160,10 @@ export class PanelAgendaComponent implements OnInit {
     let calificacion = { 
       calificacionCastellano : this.calificacionCastellano,
       calificacionMatematica : this.calificacionMatematica,
-      calificacionLectura : this.calificacionLectura
+      calificacionLectura : this.calificacionLectura,
+      observacionMatematicas : this.observacionCastellano,
+      observacionCastellano : this.observacionMatematicas,
+      observacionLectura : this.observacionLectura
      };
     this._agendaSevice.guardarCalificacion(pin,calificacion).then((data)=>{
       this.actualizadaExitosamenteCalificaciones=true;
