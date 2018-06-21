@@ -15,6 +15,7 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
 
   ListaSemestres:Array<any>;
   forma:FormGroup;
+  semestre:any;
 
 
   constructor(
@@ -34,11 +35,28 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
       'cuposCuarto': new FormControl('', [Validators.required]),
       'cuposQuinto': new FormControl('', [Validators.required]),
       'cerrado': new FormControl(false)
-
-    }); 
+    });
+    this.listarSemestes();
   }
 
   ngOnInit() {
+  }
+
+  listarSemestes(){
+    this._semestreServices.obtenerSemestres().then(data=>{
+      this.ListaSemestres = [];
+      _.forEach(data, (anos, index)=>{
+          anos = _.map(anos);
+        _.forEach(anos, (semestre, index2)=>{
+          if(semestre){
+            this.ListaSemestres.push(semestre);
+          }
+        })
+      });
+    }).catch(error=>{
+      console.error("error obteniendo listado de semestres");
+      console.error(error);
+    })
   }
 
   modalAbrirSemestrer(content){
@@ -67,7 +85,7 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
       }else{
         return this._semestreServices.crearSemestre(1, this.forma.value );       //Si existe
       }
-      }).then((response1)=>{
+      }).then((response1)=>{       
         if(dataSemestre){
           var ultimoS=dataSemestre[ultimoAno][numSemestresUltimoAno];
           ultimoS.cerrado=true
@@ -76,11 +94,19 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
           return;
         }
       }).then((response2)=>{
+        this.listarSemestes();
         console.log("respuesta de cerrar semestre");
         console.log(response2);
       }).catch((error=>{
         console.log(error);
       }));
+  }
+
+  modalDetalleSemestre(content, semestre){
+    this.semestre=semestre;
+    this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
+    }, (reason) => {
+    });
   }
 
 

@@ -23,14 +23,14 @@ export class SemestresService {
     });
   }
 
-
-
   crearSemestre(numSemestre, forma){
     let date = new Date();
     forma.fechaApertura = moment().format();      //obteniendo fecha y hora actual  
     let ano = date.getFullYear();
+    forma.semestre = `${numSemestre}/${ano}`;
+    forma.fechaCierre = 'N/A'; 
     return this.db.database.ref(`semestres/${ano}/${numSemestre}`).set(forma).then(function(snapshop){
-      return _.map(snapshop);
+      return snapshop;
     });
   }
 

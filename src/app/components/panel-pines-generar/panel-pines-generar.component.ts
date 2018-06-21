@@ -88,6 +88,7 @@ export class PanelPinesGenerarComponent implements OnInit {
 
     (function(API){
       API.myText = function(txt, options, x, y) {
+        
           options = options ||{};
           /* Use the options align property to specify desired text alignment
            * Param x will be ignored if desired text alignment is 'center'.
@@ -110,16 +111,21 @@ export class PanelPinesGenerarComponent implements OnInit {
               var txtWidth = this.getStringUnitWidth(txt)*fontSize/this.internal.scaleFactor;
   
               // Calculate text's x coordinate
-              x = ( pageWidth - txtWidth ) / 2;
+              x = ( 210 - txtWidth ) / 2;
           }
   
-          // Draw text at x,y
+          // Draw text at x,y         
           this.text(txt,x,y);
       }
   })(jspdf.API);
 
+      var lMargin=15; //left margin in mm
+      var rMargin=15; //right margin in mm
+      var pdfInMM=210;  // width of A4 in mm
+      var pageCenter=pdfInMM/2;
+
       //Generando un nuevo docuento PDF  
-      let doc = new jspdf();
+      let doc = new jspdf("p","mm","a4");
 
       let tipoIdentificacion = this.forma.value.tipoIdentificacion == 1 ? 'R.C.:' : 'T.I.:' ;
         

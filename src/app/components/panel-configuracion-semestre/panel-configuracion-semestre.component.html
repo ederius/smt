@@ -22,29 +22,36 @@
           <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <thead>
               <tr>
-                <th class="text-center">F. apertura</th>              
-                <th class="text-center">F. cierre</th>
-                <th class="text-center">Semestre</th>
-                <th class="text-center">A. inscritos</th>
-                <th class="text-center">A. no admitidos</th>
-                <th class="text-center">A. admitidos</th>
-                <th class="text-center">A. matriculados</th>
-                <th class="text-center">Estado</th>
+                <th class="text-center font-table">F. apertura</th>              
+                <th class="text-center font-table">F. cierre</th>
+                <th class="text-center font-table">Semestre</th>
+                <th class="text-center font-table">A. inscritos</th>
+                <th class="text-center font-table">A. no admitidos</th>
+                <th class="text-center font-table">A. admitidos</th>
+                <th class="text-center font-table">A. matriculados</th>
+                <th class="text-center font-table">Estado</th>
+                <th class="text-center font-table">Opciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let semestre of ListaSemestres; index">
-                <td class="text-center">{{semestre.fechaApertura}}</td>
-                <td class="text-center">{{semestre.fechaCierre}}</td>
-                <td class="text-center">{{semestre.semestre}}</td>
-                <td class="text-center">{{semestre.isncritos | currency}}</td>
-                <td class="text-center">{{semestre.admitidos | currency}}</td>
-                <td class="text-center">{{semestre.noAdmidos | currency}}</td>
-                <td class="text-center">{{semestre.matriculados | currency}}</td>
-                <td class="text-center">
-                  <span *ngIf="semestre.activa">Activa</span>
-                  <span *ngIf="!semestre.activa">Cerrada</span>
+                <td class="text-center font-table">{{semestre.fechaApertura}}</td>
+                <td class="text-center font-table">{{semestre.fechaCierre}}</td>
+                <td class="text-center font-table">{{semestre.semestre}}</td>
+                <td class="text-center font-table">{{semestre.isncritos || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.admitidos || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.noAdmidos || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.matriculados || 0 | number}}</td>
+                <td class="text-center font-table">
+                  <span *ngIf="!semestre.cerrado">Activa</span>
+                  <span *ngIf="semestre.cerrado">Cerrada</span>
                 </td>
+                <td class="text-center font-table">
+                  <button type="button" class="btn btn-sm btn-primary text-center" (click)="modalDetalleSemestre(contentDetalleSemestre, semestre)"> 
+                    Detalles
+                  </button> 
+                </td>
+
               </tr>
             </tbody>
           </table>
@@ -57,6 +64,127 @@
 
     </div>
   </div>
+
+
+    <!-- MODAL DETALLES SEMESTRE -->
+    <ng-template #contentDetalleSemestre let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Detalles de semestre</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br>
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <h5 class="subtitulo">Cupos por grado</h5>
+              </div>
+
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block card card-block">
+                <strong>Sala cuna : </strong>
+                <p>
+                  Inscritos : {{inscritosSalaCula || 0}}<br>
+                  admitidos : {{admitidosSalaCula || 0}}<br>
+                  cupos : {{cupoSalaCula || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Caminadores : </strong>
+                <p>
+                  Inscritos : {{inscritosCaminadores || 0}}<br>
+                  admitidos : {{admitidosCaminadores || 0}}<br>
+                  cupos : {{cuposCaminadores || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Parvulo : </strong>
+                <p>
+                  Inscritos : {{inscritosParvulo || 0}}<br>
+                  admitidos : {{admitidosParvulo || 0}}<br>
+                  cupos : {{cuposParvulo || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Pre-Járdin : </strong>
+                <p>
+                  Inscritos : {{inscritosPreJardin || 0}}<br>
+                  admitidos : {{admitidosPreJardin || 0}}<br>
+                  cupos : {{cuposPreJardin || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Járdin : </strong>
+                <p>
+                  Inscritos : {{inscritosJardin || 0}}<br>
+                  admitidos : {{admitidosJardin || 0}}<br>
+                  cupos : {{cuposJardin || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Trancisión : </strong>
+                <p>
+                  Inscritos : {{inscritosTrancision || 0}}<br>
+                  admitidos : {{admitidosTrancision || 0}}<br>
+                  cupos : {{cuposTrancision || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Primero : </strong>
+                <p>
+                  Inscritos : {{inscritosPrimero || 0}}<br>
+                  admitidos : {{admitidosPrimero || 0}}<br>
+                  cupos : {{cuposPrimero || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Segundo : </strong>
+                <p>
+                  Inscritos : {{inscritosSegundo || 0}}<br>
+                  admitidos : {{admitidosSegundo || 0}}<br>
+                  cupos : {{cuposSegundo || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Tercero : </strong>
+                <p>
+                  Inscritos : {{inscritosTercero || 0}}<br>
+                  admitidos : {{admitidosTercero || 0}}<br>
+                  cupos : {{cuposTercero || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Cuarto : </strong>
+                <p>
+                  Inscritos : {{inscritosCuarto || 0}}<br>
+                  admitidos : {{admitidosCuarto || 0}}<br>
+                  cupos : {{cuposCuarto || 0}}
+                </p>
+              </div>
+              <div class="col-xs-3 col-md-3 col-lg-3 card card-block">
+                <strong>Quinto : </strong>
+                <p>
+                  Inscritos : {{inscritosQuinto || 0}}<br>
+                  admitidos : {{admitidosQuinto || 0}}<br>
+                  cupos : {{cuposQuinto || 0}}
+                </p>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+
+          <br>    
+          <label class="checkbox pull-left"></label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+      </div>
+    </ng-template>
+    <!--FIN MODAL EDITAR GASTO -->
 
     <!-- MODAL CREAR SEMESTRE -->
     <ng-template #contentCreateSemester let-c="close" let-d="dismiss">
