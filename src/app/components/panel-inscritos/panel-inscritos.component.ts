@@ -114,7 +114,7 @@ export class PanelInscritosComponent implements OnInit {
   exitoConsulta:String;
   exitoForma:Boolean;
 
-  inscritos:Array<any>;
+  inscritos:any;
   inscrito:interfaceInscrito;
   forma:FormGroup;  
 

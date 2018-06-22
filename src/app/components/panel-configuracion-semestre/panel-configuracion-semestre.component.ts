@@ -74,7 +74,7 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
 
   registrarSemestre(){
     let ultimoAno, dataSemestre, numSemestresUltimoAno;
-    this._semestreServices.obtenerUltimoSemestre().then((semestre)=>{
+    this._semestreServices.obtenerUltimoAno().then((semestre)=>{
       dataSemestre = semestre;
       if(semestre){                               //Preguntando si existe un semestre creado
         let keysAnosSemestre = Object.keys(semestre);       //Años 

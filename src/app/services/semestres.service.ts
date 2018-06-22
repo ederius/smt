@@ -17,9 +17,17 @@ export class SemestresService {
     });
   }
 
-  obtenerUltimoSemestre(){
+  obtenerUltimoAno(){
     return this.db.database.ref(`semestres`).limitToLast(1).once('value').then(function(snapshop){      
       return snapshop.val();
+    });
+  }
+
+  obtenerUltimoSemestre(){
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this.db.database.ref(`semestres/${ano}`).limitToLast(1).once('value').then(function(snapshop){      
+      return Object.keys(snapshop.val()).pop();
     });
   }
 

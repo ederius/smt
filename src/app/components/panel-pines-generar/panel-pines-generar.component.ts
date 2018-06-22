@@ -47,7 +47,7 @@ export class PanelPinesGenerarComponent implements OnInit {
 
     //Validando que la identificacion no este duplicada.
     this._pines.obtenerPines().then(data=>{                                             //Obteniendo pines guardados
-      let datos:Array<any>= data;
+      let datos:any= data;
       let duplicidad = _.find(datos, function (o) { return o.cedula == campo.cedula });  //Buscando cedula en pines guardados
       
       if(duplicidad){

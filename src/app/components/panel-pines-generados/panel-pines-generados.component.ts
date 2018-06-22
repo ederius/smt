@@ -33,7 +33,7 @@ export class PanelPinesGeneradosComponent implements OnInit {
   tipoOrden:String = "";
   orden:String = "";
 
-  pines:Array<{}>;
+  pines:any;
 
   constructor(
     private _pinesServices:PinesService, 

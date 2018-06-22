@@ -20,7 +20,7 @@ import { AdmitidosService } from "../../services/admitidos.service";
 })
 export class PanelCalificacionComponent implements OnInit {
 
-  inscritos:Array<any>;
+  inscritos:any;
   inscrito:any;
   buscar:string;
   tipoOrden:any;
@@ -54,7 +54,7 @@ export class PanelCalificacionComponent implements OnInit {
 
   listarInscritos(){
     let inscritos = [];
-    this._inscripcionesService.listarInscritos().then((data1)=>{
+    this._inscripcionesService.listarInscritos().then((data1:any)=>{
       this._agendaSevice.consultarCalificacion2().then((data2)=>{
         let keys = Object.keys(data2);
         _.forEach(data1, function(inscrito1:any, index1){

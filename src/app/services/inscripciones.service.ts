@@ -6,11 +6,13 @@ import * as _ from "lodash";
 moment.locale('es');
 moment.tz("America/Los_Angeles");
 
+//SERVICES
+import { SemestresService } from "../services/semestres.service";
 
 @Injectable()
 export class InscripcionesService {
 
-  constructor(private db:AngularFireDatabase) {
+  constructor(private db:AngularFireDatabase, private _semestresServices:SemestresService) {
   }
 
   guardarInscripcion(forma){
@@ -22,73 +24,131 @@ export class InscripcionesService {
     let fechaHora = moment().format();      //obteniendo fecha y hora actual  
     forma.creado = fechaHora;
     forma.admitido=false;
-
-    this.db.database.ref(`inscripciones/${pin}`).set(forma);                              //Guardando datos de inscripcion
-    this.db.database.ref(`pines/${pin}`).update({"estado":2, "actualizado":fechaHora});  //Actualizando estado de pin
-
+    let date = new Date();
+    let ano = date.getFullYear();
+    this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones/${pin}`).set(forma);                              //Guardando datos de inscripcion
+      this.db.database.ref(`semestres/${ano}/${semestre}/pines/${pin}`).update({"estado":2, "actualizado":fechaHora});  //Actualizando estado de pin
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
 
   listarInscritos(){
-    return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
-      return _.map(snapshop.val());
-    });
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones`).once('value').then(function(snapshop){
+        return _.map(snapshop.val());
+      });
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   obtenerInscritos(){
-    return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
-      return snapshop;
-    });
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones`).once('value').then(function(snapshop){
+        return snapshop;
+      });
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   detallesInscrito(id){
     let inscritos:Array<any>;
     return new Promise(function(resolve, reject){
-      return this.db.database.ref('inscripciones').once('value').then(function(snapshop){
-        inscritos = _.map(snapshop.val());
-        let keys = Object.keys(inscritos);
-        let inscrito;
-        for(var i = 0; i>keys.length;i++){
-          if(keys[i] == id){
-            inscrito = inscritos[i];
-            break;
+      let date = new Date();
+      let ano = date.getFullYear();
+      return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+        return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones`).once('value').then(function(snapshop){
+          inscritos = _.map(snapshop.val());
+          let keys = Object.keys(inscritos);
+          let inscrito;
+          for(var i = 0; i>keys.length;i++){
+            if(keys[i] == id){
+              inscrito = inscritos[i];
+              break;
+            }
           }
-        }
-        if(inscrito!=""){
-          resolve(inscrito);
-        }else{
-          resolve(false);
-        }
+          if(inscrito!=""){
+            resolve(inscrito);
+          }else{
+            resolve(false);
+          }
+        });
+      }).catch((error)=>{
+        console.error(error);
+      })
     });
-  });
   }
 
   consultarInscrito(pin){
-    return this.db.database.ref(`inscripciones/${pin}`).once('value').then(function(snapshop){
-      return snapshop.val();
-    });
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones/${pin}`).once('value').then(function(snapshop){
+        return snapshop.val();
+      });
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   actualizarInscrito(pin, inscrito){
-    return this.db.database.ref(`inscripciones/${inscrito.pin}`).update(inscrito);      
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones/${inscrito.pin}`).update(inscrito);      
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   eliminarInscrito(pin){
-    return this.db.database.ref(`inscripciones/${pin}`).remove();          
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones/${pin}`).remove();  
+    }).catch((error)=>{
+      console.error(error);
+    })        
   }
 
   consultarCitas(pin){
-    return this.db.database.ref(`citasExamenesAdmision/${pin}`).once('value').then(function(snapshop){
-      return snapshop.val();
-    });
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/citasExamenesAdmision/${pin}`).once('value').then(function(snapshop){
+        return snapshop.val();
+      });
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   asignarCitas(citas, pin){
-    this.db.database.ref(`citasExamenesAdmision/${pin}`).set(citas);                              //Guardando datos de inscripcion
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      this.db.database.ref(`semestres/${ano}/${semestre}/citasExamenesAdmision/${pin}`).set(citas);
+    }).catch((error)=>{
+      console.error(error);
+    })                              //Guardando datos de inscripcion
   }
 
   admitirInscrito(pin){
-    return this.db.database.ref(`inscripciones/${pin}`).update({admitido:true});      
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/inscripciones/${pin}`).update({admitido:true});
+    }).catch((error)=>{
+      console.error(error);
+    })      
   }
 
 }

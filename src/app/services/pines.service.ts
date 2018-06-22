@@ -7,12 +7,16 @@ import * as moment from "moment";
 import 'moment/locale/es-us';
 moment.locale('es');
 
+
+//SERVICES
+import { SemestresService } from "../services/semestres.service";
+
 @Injectable()
 export class PinesService {
 
   pines: Observable<any>; 
   
-  constructor(private db: AngularFireDatabase) {  }
+  constructor(private db: AngularFireDatabase, private _semestresServices:SemestresService) {  }
 
  generarPin(cc:any){
      cc = parseInt(cc);
@@ -21,25 +25,49 @@ export class PinesService {
 
   guardarPin(campos){
     campos.creado = moment().format(); //obteniendo fecha y hora actual  
-    this.db.database.ref(`pines/${campos.pin}`).set(campos);
+    let date = new Date();
+    let ano = date.getFullYear();
+    this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      this.db.database.ref(`semestres/${ano}/${semestre}/pines/${campos.pin}`).set(campos);
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   obtenerPines(){
-    return this.db.database.ref('pines').once('value').then(function(data){
-      return _.map(data.val());
-    });
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/pines`).once('value').then(function(data){        
+        return _.map(data.val());
+      });
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   listarPines(){
-    return this.db.list('pines').valueChanges()
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.list(`semestres/${ano}/${semestre}/pines`).valueChanges()
+    }).catch((error)=>{
+      console.error(error);
+    })
   }
 
   actualizarEstado(pin, estado){
-    return this.db.database.ref(`pines/${pin}`).update({estado:estado}).then(function(data){
-      return data;
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/pines/${pin}`).update({estado:estado}).then(function(data){
+        return data;
+      }).catch((error)=>{
+        return error
+      });
     }).catch((error)=>{
-      return error
-    });
+      console.error(error);
+    })
   }
   
   
