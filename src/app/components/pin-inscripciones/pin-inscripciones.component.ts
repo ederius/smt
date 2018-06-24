@@ -29,7 +29,6 @@ export class PinInscripcionesComponent implements OnInit {
       
       this._auth.verificarSesionActivaPin();        //validando si ya inicio sesion
       this.sesionPin = JSON.parse(localStorage.sesionPin);
-      console.log(this.sesionPin);
 
       //Definiendo los campos del formulario y sus validaciones
       this.forma = new FormGroup({
@@ -116,12 +115,14 @@ export class PinInscripcionesComponent implements OnInit {
       this._auth.verificarSesionActivaPin();      //validando si ya inicio sesion
       let forma = this.forma.value;               //Obteniendo datos del formario
       forma.fechaExp = `${forma.fechaExp.day}/${forma.fechaExp.month}/${forma.fechaExp.year}`;
+      forma.fechaN = `${forma.fechaN.day}/${forma.fechaN.month}/${forma.fechaN.year}`
       forma.fechaExpMama = `${forma.fechaExpMama.day}/${forma.fechaExpMama.month}/${forma.fechaExpMama.year}`
       forma.fechaExpPapa = `${forma.fechaExpPapa.day}/${forma.fechaExpPapa.month}/${forma.fechaExpPapa.year}`
       forma.fechaExpOtraR = `${forma.fechaExpOtraR.day}/${forma.fechaExpOtraR.month}/${forma.fechaExpOtraR.year}`
       let pin = JSON.parse(localStorage.sesionPin);
       forma.pin = pin.pin;                
       this._inscripcionesService.guardarInscripcion(forma);
+      this._inscripcionesService.sumarInscripcion();
       this.exitoForma = "Guardado exitosamente";
       this.sended = false;
       this.forma.reset();

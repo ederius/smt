@@ -16,6 +16,7 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
   ListaSemestres:Array<any>;
   forma:FormGroup;
   semestre:any;
+  registro:Boolean;
 
 
   constructor(
@@ -76,11 +77,12 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
     let ultimoAno, dataSemestre, numSemestresUltimoAno;
     this._semestreServices.obtenerUltimoAno().then((semestre)=>{
       dataSemestre = semestre;
+      this.forma.value.alumnNoAdmidos = {value: 0};                            
       if(semestre){                               //Preguntando si existe un semestre creado
         let keysAnosSemestre = Object.keys(semestre);       //Años 
         ultimoAno = keysAnosSemestre.pop();              //Ultimo año
         let keysSemestre = Object.keys(semestre[ultimoAno]);
-        numSemestresUltimoAno = keysSemestre.length;                             
+        numSemestresUltimoAno = keysSemestre.length; 
         return this._semestreServices.crearSemestre(numSemestresUltimoAno+1, this.forma.value);       //Si existe
       }else{
         return this._semestreServices.crearSemestre(1, this.forma.value );       //Si existe
@@ -88,13 +90,16 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
       }).then((response1)=>{       
         if(dataSemestre){
           var ultimoS=dataSemestre[ultimoAno][numSemestresUltimoAno];
-          ultimoS.cerrado=true
+          ultimoS.cerrado=true;
+          ultimoS.alumnNoAdmitidos ={value:Number(ultimoS.alumnInscritos.value)-Number(ultimoS.alumnAdmitidos.value)};
           return this._semestreServices.cerrarSemestre(numSemestresUltimoAno, ultimoAno, ultimoS);
         }else{
           return;
         }
       }).then((response2)=>{
         this.listarSemestes();
+        this.forma.reset();
+        this.registro = true;
         console.log("respuesta de cerrar semestre");
         console.log(response2);
       }).catch((error=>{

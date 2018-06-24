@@ -20,7 +20,6 @@ export class InscripcionesService {
     //obteniendo pin de sesion
     let ref = JSON.parse(localStorage.sesionPin);
     let pin = ref.pin;
-
     let fechaHora = moment().format();      //obteniendo fecha y hora actual  
     forma.creado = fechaHora;
     forma.admitido=false;
@@ -32,6 +31,30 @@ export class InscripcionesService {
     }).catch((error)=>{
       console.error(error);
     })
+  }
+
+  sumarInscripcion(){
+    let date = new Date();
+    let ano = date.getFullYear();
+    let self = this;
+    this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      this.db.database.ref(`semestres/${ano}/${semestre}/alumnInscritos`).once('value').then(function(snapshop){
+        let alumnInscritos = snapshop.val();
+        console.log("alumnInscritos mun");
+        console.log(alumnInscritos);
+        if(alumnInscritos){
+          alumnInscritos = { value : alumnInscritos.value + 1 };
+          self.db.database.ref(`semestres/${ano}/${semestre}/alumnInscritos`).update(alumnInscritos);  //Actualizando estado de pin
+        }else{
+          alumnInscritos = {value : 1 };
+          self.db.database.ref(`semestres/${ano}/${semestre}/alumnInscritos`).update(alumnInscritos);  //Actualizando estado de pin
+        }
+      }).catch((error)=>{
+        console.error(error);
+      })                             
+    }).catch((error)=>{
+      console.error(error);
+    })  
   }
 
 

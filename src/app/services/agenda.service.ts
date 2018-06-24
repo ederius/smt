@@ -2,35 +2,66 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import * as _ from "lodash";
 
+//SERVICES
+import { SemestresService } from "../services/semestres.service";
+
+
 @Injectable()
 export class AgendaService {
 
-  constructor(private db:AngularFireDatabase) { }
+  constructor(
+    private db:AngularFireDatabase,
+    private _semestresServices:SemestresService
+  ) { }
 
   consultarAgenda(){
-    return this.db.database.ref('citasExamenesAdmision').once('value').then(function(data){
-      return data.val();
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/citasExamenesAdmision`).once('value').then(function(data){
+        return data.val();
+      });
+    }).catch((error)=>{
+      return error
     });
   }
 
   guardarCalificacion(pin, calificacion){
-    return this.db.database.ref(`examenesAdmision/${pin}`).update(calificacion).then(function(data){
-      return data;
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/examenesAdmision/${pin}`).update(calificacion).then(function(data){
+        return data;
+      }).catch((error)=>{
+        return error
+      });
     }).catch((error)=>{
       return error
     });
   }
 
   consultarCalificacion(pin:string=""){
-    return this.db.database.ref(`examenesAdmision/${pin}`).once('value').then(function(data){
-      return data.val();
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/examenesAdmision/${pin}`).once('value').then(function(data){
+        return data.val();
+      });
+    }).catch((error)=>{
+      return error
     });
   }
 
 
   consultarCalificacion2(){
-    return this.db.database.ref(`examenesAdmision`).once('value').then(function(data){
-      return data.val();
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/examenesAdmision`).once('value').then(function(data){
+        return data.val();
+      });
+    }).catch((error)=>{
+      return error
     });
   }
 

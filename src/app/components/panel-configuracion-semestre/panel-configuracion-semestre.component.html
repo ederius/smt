@@ -12,11 +12,7 @@
             <button type="button" class="btn btn-success text-center" (click)="modalAbrirSemestrer(contentCreateSemester)"> 
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
               Abrir semestres
-            </button> 
-            <button type="button" class="btn btn-success text-center" (click)="modalCerrarSemestre(content)"> 
-              <i class="fa fa-times-circle" aria-hidden="true"></i>
-              Cerrar semestres
-            </button>          
+            </button>        
           </div> 
           <br>
           <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -26,8 +22,8 @@
                 <th class="text-center font-table">F. cierre</th>
                 <th class="text-center font-table">Semestre</th>
                 <th class="text-center font-table">A. inscritos</th>
-                <th class="text-center font-table">A. no admitidos</th>
                 <th class="text-center font-table">A. admitidos</th>
+                <th class="text-center font-table">A. no admitidos</th>
                 <th class="text-center font-table">A. matriculados</th>
                 <th class="text-center font-table">Estado</th>
                 <th class="text-center font-table">Opciones</th>
@@ -38,10 +34,10 @@
                 <td class="text-center font-table">{{semestre.fechaApertura}}</td>
                 <td class="text-center font-table">{{semestre.fechaCierre}}</td>
                 <td class="text-center font-table">{{semestre.semestre}}</td>
-                <td class="text-center font-table">{{semestre.isncritos || 0 | number}}</td>
-                <td class="text-center font-table">{{semestre.admitidos || 0 | number}}</td>
-                <td class="text-center font-table">{{semestre.noAdmidos || 0 | number}}</td>
-                <td class="text-center font-table">{{semestre.matriculados || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.alumnInscritos?.value || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.alumnAdmitidos?.value || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.alumnNoAdmitidos?.value || 0 | number}}</td>
+                <td class="text-center font-table">{{semestre.alumnMatriculados?.value || 0 | number}}</td>
                 <td class="text-center font-table">
                   <span *ngIf="!semestre.cerrado">Activa</span>
                   <span *ngIf="semestre.cerrado">Cerrada</span>
@@ -309,14 +305,13 @@
           </div>
 
           <br>  
-          <div *ngIf="loginError" class="alert alert-danger text-center" role="alert">
-            {{loginError}}!!
+          <div *ngIf="Error" class="alert alert-danger text-center" role="alert">
+            {{Error}}!!
           </div>
           <div *ngIf="registro" class="alert alert-success text-center" role="alert">
-              registro exito!! <br>
-              Antes de iniciar sesión verifique su correo.
-            </div>
-          <button class="btn btn-lg btn-success btn-block" type="submit" ><!--[disabled]="forma.invalid  "-->
+              Se realizo la apertura de un nuevo semestre con exito!
+          </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="forma.invalid"> <!--[disabled]="forma.invalid  "-->
               Abrir semestre
           </button>         
           <label class="checkbox pull-left"></label>

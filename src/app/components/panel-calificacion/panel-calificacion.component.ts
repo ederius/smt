@@ -116,7 +116,8 @@ export class PanelCalificacionComponent implements OnInit {
     this._admitidosService.agregar(inscrito).then((response1)=>{
       return this._inscripcionesService.admitirInscrito(inscrito.pin);
     }).then((response2)=>{
-      return this._pinesService.actualizarEstado(inscrito.pin, 3)
+      this._admitidosService.sumarAdmision();
+      return this._pinesService.actualizarEstado(inscrito.pin, 3);
     }).then((response3)=>{
       this.listarInscritos();
       this.getDismissReason
