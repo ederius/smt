@@ -115,4 +115,18 @@ export class AdmitidosService {
     });
   }
 
+  actualizar(pin, data){
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref(`semestres/${ano}/${semestre}/admitidos/${pin}`).update(data).then(function(data){
+        return data.val();
+      }).catch((error)=>{
+        return error
+      });
+    }).catch((error)=>{
+      return error
+    });
+  }
+
 }

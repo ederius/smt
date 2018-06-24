@@ -113,8 +113,9 @@ export class PanelAdmitidosVerComponent implements OnInit {
 
   matricular(){
     let admitido = this.admitido;
+    admitido.matriculado = true;
     this._matriculadosService.agregar(admitido).then((response1)=>{
-      return this._admitidosService.eliminarAdmitido(admitido.pin);
+      return this._admitidosService.actualizar(admitido.pin, admitido);
     }).then((response2)=>{
       this._matriculadosService.sumarMatriculado();
       return this._pinesService.actualizarEstado(admitido.pin, 4);

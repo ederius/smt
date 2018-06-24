@@ -17,6 +17,50 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
   forma:FormGroup;
   semestre:any;
   registro:Boolean;
+  inscritosSalaCula:any;
+  admitidosSalaCula:any;
+  matriculadosSalaCula:any;
+  cuposSalaCula:any;
+  inscritosCaminadores:any;
+  admitidosCaminadores:any;
+  matriculadosCaminadores:any;
+  cuposCaminadores:any;
+  inscritosParvulo:any;
+  admitidosParvulo:any;
+  matriculadosParvulo:any;
+  cuposParvulo:any;
+  inscritosPreJardin:any;
+  admitidosPreJardin:any;
+  matriculadosPreJardin:any;
+  cuposPreJardin:any;
+  inscritosJardin:any;
+  admitidosJardin:any;
+  matriculadosJardin:any;
+  cuposJardin:any;
+  inscritosTrancision:any;
+  admitidosTrancision:any;
+  matriculadosTrancision:any;
+  cuposTrancision:any;
+  inscritosPrimero:any;
+  admitidosPrimero:any;
+  matriculadosPrimero:any;
+  cuposPrimero:any;
+  inscritosSegundo:any;
+  admitidosSegundo:any;
+  matriculadosSegundo:any;
+  cuposSegundo:any;
+  inscritosTercero:any;
+  admitidosTercero:any;
+  matriculadosTercero:any;
+  cuposTercero:any;
+  inscritosCuarto:any;
+  admitidosCuarto:any;
+  matriculadosCuarto:any;
+  cuposCuarto:any;
+  inscritosQuinto:any;
+  admitidosQuinto:any;
+  matriculadosQuinto:any;
+  cuposQuinto:any;
 
 
   constructor(
@@ -109,6 +153,130 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
 
   modalDetalleSemestre(content, semestre){
     this.semestre=semestre;
+
+    let inscripciones = _.map(semestre.inscripciones)
+    let admitidos = _.map(semestre.admitidos)
+    let matriculados = _.map(semestre.matriculados)
+    console.log(inscripciones);
+    
+    _.forEach(inscripciones, (o:any)=>{ 
+      this.inscritosSalaCula=0;this.inscritosCaminadores=0;this.inscritosParvulo=0;this.inscritosPreJardin=0;this.inscritosJardin=0;
+      this.inscritosTrancision=0;this.inscritosPrimero=0;this.inscritosSegundo=0;this.inscritosTercero=0;this.inscritosCuarto=0;this.inscritosQuinto=0;
+      switch (o.grado) {
+        case 'salacuna':
+        this.inscritosSalaCula++;
+        break;
+        case 'caminadores':
+        this.inscritosCaminadores++;
+        break;
+        case 'parvulo':
+        this.inscritosParvulo++;
+        break;
+        case 'pre-jardin':
+        this.inscritosPreJardin++;
+        break;
+        case 'jardin':
+        this.inscritosJardin++;
+        break;
+        case 'transicion':
+        this.inscritosTrancision++;
+        break;
+        case 'primero':
+        this.inscritosPrimero++;
+        break;
+        case 'segundo':
+        this.inscritosSegundo++;
+        break;
+        case 'tercero':
+        this.inscritosTercero++;
+        break;
+        case 'cuarto':
+        this.inscritosCuarto++;
+        break;
+        case 'quinto':
+        this.inscritosQuinto++;
+        break;
+      }
+    });
+    _.forEach(admitidos, (o:any)=>{ 
+      this.admitidosSalaCula=0;this.admitidosCaminadores=0;this.admitidosParvulo=0;this.admitidosPreJardin=0;this.admitidosJardin=0
+      this.admitidosTrancision=0;this.admitidosPrimero=0;this.admitidosSegundo=0;this.admitidosTercero=0;this.admitidosCuarto=0;this.admitidosQuinto=0;
+      switch (o.grado) {
+        case 'salacuna':
+        this.admitidosSalaCula++;
+        break;
+        case 'caminadores':
+        this.admitidosCaminadores++;
+        break;
+        case 'parvulo':
+        this.admitidosParvulo++;
+        break;
+        case 'pre-jardin':
+        this.admitidosPreJardin++;
+        break;
+        case 'jardin':
+        this.admitidosJardin++;
+        break;
+        case 'transicion':
+        this.admitidosTrancision++;
+        break;
+        case 'primero':
+        this.admitidosPrimero++;
+        break;
+        case 'segundo':
+        this.admitidosSegundo++;
+        break;
+        case 'tercero':
+        this.admitidosTercero++;
+        break;
+        case 'cuarto':
+        this.admitidosCuarto++;
+        break;
+        case 'quinto':
+        this.admitidosQuinto++;
+        break;
+      }
+    });
+    _.forEach(matriculados, (o:any)=>{ 
+      this.matriculadosSalaCula=0;this.matriculadosCaminadores=0;this.matriculadosParvulo=0;this.matriculadosPreJardin=0;this.matriculadosJardin=0
+      this.matriculadosTrancision=0;this.matriculadosPrimero=0;this.matriculadosSegundo=0;this.matriculadosTercero=0;this.matriculadosCuarto=0;this.matriculadosQuinto=0;
+      switch (o.grado) {
+        case 'salacuna':
+        this.matriculadosSalaCula++;
+        break;
+        case 'caminadores':
+        this.matriculadosCaminadores++;
+        break;
+        case 'parvulo':
+        this.matriculadosParvulo++;
+        break;
+        case 'pre-jardin':
+        this.matriculadosPreJardin++;
+        break;
+        case 'jardin':
+        this.matriculadosJardin++;
+        break;
+        case 'transicion':
+        this.matriculadosTrancision++;
+        break;
+        case 'primero':
+        this.matriculadosPrimero++;
+        break;
+        case 'segundo':
+        this.matriculadosSegundo++;
+        break;
+        case 'tercero':
+        this.matriculadosTercero++;
+        break;
+        case 'cuarto':
+        this.matriculadosCuarto++;
+        break;
+        case 'quinto':
+        this.matriculadosQuinto++;
+        break;
+      }
+    });
+
     this.modalService.open(content, {size: 'xl' as 'lg'}).result.then((result) => {
     }, (reason) => {
     });

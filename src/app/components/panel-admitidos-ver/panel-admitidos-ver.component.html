@@ -37,7 +37,7 @@
             <td class="text-center">{{admitido.id}}</td>
             <td class="text-center">{{admitido.nombres}}</td>
             <td class="text-center">{{admitido.apellidos}} </td>
-            <td class="text-center">{{admitido.telefonos}}{{admitido.celularMama}}</td>
+            <td class="text-center">{{admitido.celularMama}}</td>
             <td class="text-center">{{admitido.correoMama}}</td>
             <td class="text-center">{{admitido.grado}}</td>
             <td class="text-center">
@@ -46,8 +46,8 @@
             </td>            
             <td class="text-center">
               <label class="switch">
-                <input type="checkbox" [(ngModel)]="admitido[admitido.id]" (change)="matricularModal(admitido, contentAdd)" 
-                [disabled]="!admitido.documentoID || !admitido.fotos || !admitido.pago || !admitido.certificadoMedico || !admitido.certificadoEPS"
+                <input type="checkbox" [(ngModel)]="admitido.matriculado" (change)="matricularModal(admitido, contentAdd)" 
+                [disabled]="admitido.matriculado || !admitido.documentoID || !admitido.fotos || !admitido.pago || !admitido.certificadoMedico || !admitido.certificadoEPS"
                 />
                 <span class="slider round"></span>
               </label>
@@ -626,7 +626,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <p>¿Esta seguro que desea aprotar la niño como matriculado?</p>
+      <p>¿Esta seguro que desea aprobar el niño como matriculado?</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>

@@ -1,0 +1,134 @@
+[debug] [2018-06-24T06:27:55.642Z] ----------------------------------------------------------------------
+[debug] [2018-06-24T06:27:55.647Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2018-06-24T06:27:55.647Z] CLI Version:   3.17.4
+[debug] [2018-06-24T06:27:55.648Z] Platform:      linux
+[debug] [2018-06-24T06:27:55.648Z] Node Version:  v6.14.2
+[debug] [2018-06-24T06:27:55.663Z] Time:          Sun Jun 24 2018 01:27:55 GMT-0500 (-05)
+[debug] [2018-06-24T06:27:55.663Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-24T06:27:55.765Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-24T06:27:55.766Z] > authorizing via signed-in user
+[debug] [2018-06-24T06:27:55.771Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/smt-1-7b0e8  
+  
+ Sun Jun 24 2018 01:27:55 GMT-0500 (-05)
+[debug] [2018-06-24T06:27:56.766Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:27:56.768Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/smt-1-7b0e8/tokens  
+  
+ Sun Jun 24 2018 01:27:56 GMT-0500 (-05)
+[debug] [2018-06-24T06:27:57.346Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'smt-1-7b0e8'...
+[info] 
+[info] i  deploying functions, hosting
+[info] Running command: npm --prefix $RESOURCE_DIR run lint
+[info] Running command: npm --prefix $RESOURCE_DIR run build
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2018-06-24T06:28:14.388Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "./node_modules/.bin/tslint -p tslint.json",
+    "build": "./node_modules/.bin/tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "~5.8.1",
+    "firebase-functions": "^0.8.1",
+    "nodemailer": "^4.6.4"
+  },
+  "devDependencies": {
+    "tslint": "^5.8.0",
+    "typescript": "^2.5.3"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-06-24T06:28:14.391Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/smt-1-7b0e8?view=CONSUMER_VIEW  
+  
+ Sun Jun 24 2018 01:28:14 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:14.392Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/smt-1-7b0e8?view=CONSUMER_VIEW  
+  
+ Sun Jun 24 2018 01:28:14 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:15.411Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:15.570Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2018-06-24T06:28:15.574Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/smt-1-7b0e8  
+  
+ Sun Jun 24 2018 01:28:15 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:15.575Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/smt-1-7b0e8/apiKeys  
+  
+ Sun Jun 24 2018 01:28:15 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:16.349Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:16.475Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-06-24T06:28:16.484Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/smt-1-7b0e8/configs  
+  
+ Sun Jun 24 2018 01:28:16 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:16.779Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:16.781Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/smt-1-7b0e8/configs/gmail/variables  
+  
+ Sun Jun 24 2018 01:28:16 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:17.003Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:17.006Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/smt-1-7b0e8/configs/gmail/variables/email  
+  
+ Sun Jun 24 2018 01:28:17 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:17.008Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/smt-1-7b0e8/configs/gmail/variables/password  
+  
+ Sun Jun 24 2018 01:28:17 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:17.496Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:17.499Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (5.6 KB) for uploading
+[debug] [2018-06-24T06:28:19.603Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.smt-1-7b0e8.appspot.com  
+  
+ Sun Jun 24 2018 01:28:19 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:20.249Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-24T06:28:20.252Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.smt-1-7b0e8.appspot.com/o?uploadType=media&name=firebase-functions-source  
+ ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 5735,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/tmp/firebase-functions-22269n5plwHvLRRHm.zip',
+  fd: 15,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: Infinity,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 5735 } 
+ Sun Jun 24 2018 01:28:20 GMT-0500 (-05)
+[debug] [2018-06-24T06:28:21.085Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-06-24T06:28:22.020Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/smt-1-7b0e8/uploads/-LFkTd5VDBVJPpn_p-F9?fileCount=20&message=  
+  
+ Sun Jun 24 2018 01:28:22 GMT-0500 (-05)
