@@ -54,6 +54,10 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="inscritos?.length==0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
+          <h4>No hay registros para mostrar</h4>
+        </div>
       </div>
     </div>
   
@@ -69,7 +73,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>¿Esta seguro que desea aprotar la niño como admitido?</p>
+        <p>¿Esta seguro que desea aprobar al niño como admitido?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>

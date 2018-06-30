@@ -35,14 +35,12 @@ export class PinLoginComponent implements OnInit {
   login(pin) {
     //Obteniendo los pines generados para ver si existe el que el usuario ingreso 
     this._pinesService.obtenerPines().then(data => {
-      let datos:any=data;
+      let datos:any=data, flat=false;
       _.forEach(datos, (value, index) => { 
           
           if (value.pin == pin) {
-
             localStorage.sesionPin = JSON.stringify(value);
-
-            //Redireccionando al usuario, dependiendo del estado en que se encuentre el proceso
+            flat=true;
             switch (value.estado) {
               case 1:
                 this.router.navigate(['/pin/inscripciones']);
@@ -54,17 +52,20 @@ export class PinLoginComponent implements OnInit {
                 this.router.navigate(['/pin/admitidos']);
                 break;
               case 4:
-                this.router.navigate(['/pin/matricula']);
+                this.router.navigate(['/pin/matriculados']);
                 break;
 
               default:
                 break;
             }
-
-          } else {
-            //Notificando que el pin no es valido.
-            this.loginError = "Pin incorrecto"
           }
+
+          if(datos.length == index+1){ 
+            if (!flat) {         
+              //Notificando que el pin no es valido.
+              this.loginError = "Pin incorrecto"
+            }
+           }
 
     });
 

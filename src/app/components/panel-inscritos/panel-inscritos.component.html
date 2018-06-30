@@ -51,6 +51,10 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="inscritos?.length==0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
+        <h4>No hay registros de inscritos</h4>
+      </div>
     </div>
   </div>
 

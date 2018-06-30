@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
+const express = require('express');
+const cookieParser = require('cookie-parser')();
+const cors = require('cors')({ origin: true });
+const app = express();
+app.use(cors);
+app.use(cookieParser);
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -20,24 +26,29 @@ const mailTransport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: gmailEmail,
-        pass: gmailPassword
+        pass: gmailPassword,
     },
 });
-exports.emailNotificationPathers = functions.https.onRequest((req, res) => {
-    console.log("llego solicitud");
-    console.log(req.body);
-    // The user subscribed to the newsletter.
+app.post('/emailNotificationPathers', (req, res) => {
+    // setup email data with unicode symbols
     const mailOptions = {
         from: req.body.from,
         to: req.body.to,
         subject: req.body.subject,
         text: req.body.content
     };
-    mailTransport.sendMail(mailOptions).then(() => {
-        console.log('New welcome email sent to:');
-        res.send({ message: "hola mundo" });
-    }).catch(error => {
-        res.status(400).send({ error: error });
+    // send mail with defined transport object
+    mailTransport.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.status(400).send({ error: error, message: "Error" });
+        }
+        res.send({ send: true, info: info });
+        //console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        //console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
 });
 //# sourceMappingURL=index.js.map

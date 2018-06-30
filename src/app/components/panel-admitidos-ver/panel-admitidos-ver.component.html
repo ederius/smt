@@ -6,10 +6,10 @@
         <h3 class="text-center titulo ">Niños admitidos</h3>
       </div>
       <!-- Opciones de tabla -->
-      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
         <input type="text" name="buscar" id="buscar" placeholder="Buscar" class="form-control" [(ngModel)]="buscar">
       </div>
-      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <select name="ordenar" id="ordenar" class="form-control" [(ngModel)]="tipoOrden">
           <option *ngFor="let orden of ordenar" [value]="orden.value" >{{orden.name}}</option>
         </select>
@@ -17,6 +17,11 @@
       <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
          <button class="btn btn-success" (click)="exportarExcel()"> <i class="fa fa-download" aria-hidden="true"></i> Excel</button>
       </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <button class="btn btn-success" (click)="modalAdmitirAlumnoAntiguo(contentEstudianteAntiguo)"> 
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+             Estudiante anti.</button>
+     </div>
       <!-- Opciones de tabla -->
       <br><br>
       <table class="table col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -46,7 +51,7 @@
             </td>            
             <td class="text-center">
               <label class="switch">
-                <input type="checkbox" [(ngModel)]="admitido.matriculado" (change)="matricularModal(admitido, contentAdd)" 
+                <input type="checkbox" [(ngModel)]="admitido.matriculado" (change)="matricularModal(admitido, index, contentAdd)" 
                 [disabled]="admitido.matriculado || !admitido.documentoID || !admitido.fotos || !admitido.pago || !admitido.certificadoMedico || !admitido.certificadoEPS"
                 />
                 <span class="slider round"></span>
@@ -56,6 +61,10 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="admitidos?.length==0" class="text-center tablaVacia col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <i class="fa fa-inbox fa-5x" aria-hidden="true"></i>           
+        <h4>No hay registros para mostrar</h4>
+      </div>
     </div>
   </div>
 
@@ -63,17 +72,17 @@
   <!-- MODAL REQUISITOS PARA SER MATRICULADO -->
   <ng-template #contentRequerimientos let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">REQUISITOS PARA METRICULA</h4>
+      <h4 class="modal-title">REQUISITOS PARA MATRICULA</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>Este listado representa los requirimientos en papeleo pagos o tramites que debe cumplir un acudiente considere matriculado su niño.</p>
+      <p>Este listado representa los requerimientos en papeleo, pagos o tramites que debe cumplir un acudiente considere matriculado su niño.</p>
       <br><br>
         <div class="checkbox-bottom">
           <label>
-            <input type="checkbox" name="documentoID" [(ngModel)]="documentoID" > Registro cilvil o tarjeta de identidad.
+            <input type="checkbox" name="documentoID" [(ngModel)]="documentoID" > Registro civil o tarjeta de identidad.
           </label>
         </div>
         <div class="checkbox-bottom">
@@ -634,3 +643,638 @@
     </div>
   </ng-template>
   <!--FIN MODAL ADMITIR INSCRITO -->
+
+
+  <!-- MODAL ADMITIR ESTUANTE ANTIGUO -->
+  <ng-template #contentEstudianteAntiguo let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Admisión de alumno antiguo</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form (ngSubmit)="agregarAlumnoAntiguo()" [formGroup]="forma">
+        <div class="row">
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <h5 class="subtitulo text-center"> INFORMACIÓN DEL NIÑO(A)</h5>
+            <div class="row">
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.id.errors?.required && forma.controls.id.touched) || ( forma.controls.id.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="id" formControlName="id" placeholder="N. de identificación"/>
+                  <div *ngIf="(forma.controls.id.errors?.required && forma.controls.id.touched) || ( forma.controls.id.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.fechaExp.errors?.required && forma.controls.fechaExp.touched || ( forma.controls.fechaExp.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExp" formControlName="fechaExp" placeholder="Fecha de expedición de documento">
+                  <div *ngIf="(forma.controls.fechaExp.errors?.required && forma.controls.fechaExp.touched) || ( forma.controls.fechaExp.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.nombres.errors?.required && forma.controls.nombres.touched || ( forma.controls.nombres.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="nombres" formControlName="nombres" placeholder="Nombres">
+                  <div *ngIf="(forma.controls.nombres.errors?.required && forma.controls.nombres.touched) || ( forma.controls.nombres.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':forma.controls.apellidos.errors?.required && forma.controls.apellidos.touched || ( forma.controls.apellidos.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="" formControlName="apellidos" placeholder="Apellidos">
+                  <div *ngIf="(forma.controls.apellidos.errors?.required && forma.controls.apellidos.touched) || ( forma.controls.apellidos.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.lugarN.errors?.required && forma.controls.lugarN.touched || ( forma.controls.lugarN.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="lugarN" formControlName="lugarN" placeholder="Lugar de nacimiento">
+                  <div *ngIf="(forma.controls.lugarN.errors?.required && forma.controls.lugarN.touched) || ( forma.controls.lugarN.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.fechaN.errors?.required && forma.controls.fechaN.touched || ( forma.controls.fechaN.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaN" formControlName="fechaN" placeholder="Fecha de nacimiento">
+                  <div *ngIf="(forma.controls.fechaN.errors?.required && forma.controls.fechaN.touched) || ( forma.controls.fechaN.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.direccion.errors?.required && forma.controls.direccion.touched || ( forma.controls.direccion.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="direccion" formControlName="direccion" placeholder="Dirección">
+                  <div *ngIf="(forma.controls.direccion.errors?.required && forma.controls.direccion.touched) || ( forma.controls.direccion.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.barrio.errors?.required && forma.controls.barrio.touched || ( forma.controls.barrio.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="barrio" formControlName="barrio" placeholder="Barrio">
+                  <div *ngIf="(forma.controls.barrio.errors?.required && forma.controls.barrio.touched) || ( forma.controls.barrio.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="telefonos" formControlName="telefonos" placeholder="Teléfonos">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':forma.controls.colegioPro.errors?.required && forma.controls.colegioPro.touched || ( forma.controls.colegioPro.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="colegioPro" formControlName="colegioPro" placeholder="Colegio de procedencia">
+                  <div *ngIf="(forma.controls.colegioPro.errors?.required && forma.controls.colegioPro.touched) || ( forma.controls.colegioPro.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':forma.controls.ciudad.errors?.required && forma.controls.ciudad.touched || ( forma.controls.ciudad.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="ciudad" formControlName="ciudad" placeholder="Ciudad">
+                  <div *ngIf="(forma.controls.ciudad.errors?.required && forma.controls.ciudad.touched) || ( forma.controls.ciudad.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4 text-left" [ngClass]="{'has-danger':forma.controls.discapacidad.errors?.required && forma.controls.discapacidad.touched || ( forma.controls.discapacidad.errors?.required && sended ) }">
+                <p>El niño(a) presenta algún tipo de discapacidad</p>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Fisica">
+                  <label> Fisica </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Sensorial">
+                  <label> Sensorial </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="Cognitiva">
+                  <label> Cognitiva </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="discapacidad" formControlName="discapacidad" value="No">
+                  <label> No </label>
+                </div>
+
+                <div *ngIf="(forma.controls.discapacidad.errors?.required && forma.controls.discapacidad.touched) || ( forma.controls.discapacidad.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.eps.errors?.required && forma.controls.eps.touched) || ( forma.controls.eps.errors?.required && sended ) }">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="eps" formControlName="eps" placeholder="EPS">
+                  <div *ngIf="(forma.controls.eps.errors?.required && forma.controls.eps.touched) || ( forma.controls.eps.errors?.required && sended ) " class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.viveCPadres.errors?.required && forma.controls.viveCPadres.touched) || ( forma.controls.viveCPadres.errors?.required && sended ) }">
+                <select name="viveCPadres" formControlName="viveCPadres" class="form-control">
+                  <option value="">Convive con los padres</option>
+                  <option value="si"> Si </option>
+                  <option value="no"> No </option>
+                </select>
+                <div *ngIf="(forma.controls.viveCPadres.errors?.required && forma.controls.viveCPadres.touched) || ( forma.controls.viveCPadres.errors?.required && sended ) " class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" >
+                <div class="form-group">
+                  <input type="text" class="form-control" name="viveCOtros" formControlName="viveCOtros" placeholder="Vive con otro? Con quien (Opcional)">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.estrato.errors?.required && forma.controls.estrato.touched) || ( forma.controls.estrato.errors?.required && sended ) }">
+                <select name="estrato" formControlName="estrato" class="form-control">
+                  <option value="">Estracto</option>
+                  <option value="#1"> 1 </option>
+                  <option value="#2"> 2 </option>
+                  <option value="#3"> 3 </option>
+                  <option value="#4"> 4 </option>
+                  <option value="#5"> 5 </option>
+                </select>
+                <div *ngIf="(forma.controls.estrato.errors?.required && forma.controls.estrato.touched) || ( forma.controls.estrato.errors?.required && sended ) " class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.sexo.errors?.required && forma.controls.sexo.touched) || ( forma.controls.sexo.errors?.required && sended )}">
+                <select name="sexo" formControlName="sexo" class="form-control">
+                  <option value="">Sexo</option>
+                  <option value="femenino">Femenino</option>
+                  <option value="masculino">Masculino</option>
+                </select>
+                <div *ngIf="(forma.controls.sexo.errors?.required && forma.controls.sexo.touched) || ( forma.controls.sexo.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.tipoSangre.errors?.required && forma.controls.tipoSangre.touched) || ( forma.controls.tipoSangre.errors?.required && sended )}">
+                <select name="tipoSangre" formControlName="tipoSangre" class="form-control">
+                  <option value=""> Tipo de sangre </option>
+                  <option value="a+"> A+ </option>
+                  <option value="a-"> A- </option>
+                  <option value="b+"> B+ </option>
+                  <option value="ab"> B- </option>
+                  <option value="ab"> AB+ </option>
+                  <option value="ab"> AB- </option>
+                  <option value="ab"> O- </option>
+                  <option value="ab"> O+ </option>
+                </select>
+                <div *ngIf="(forma.controls.tipoSangre.errors?.required && forma.controls.tipoSangre.touched) || ( forma.controls.tipoSangre.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.jornada.errors?.required && forma.controls.jornada.touched) || ( forma.controls.jornada.errors?.required && sended )}">
+                <select name="jornada" formControlName="jornada" class="form-control">
+                  <option value=""> Jornada </option>
+                  <option value="mañana"> Mañana </option>
+                  <option value="tarde"> Tarde </option>
+                  <option value="continua"> Continua </option>
+                </select>
+                <div *ngIf="(forma.controls.jornada.errors?.required && forma.controls.jornada.touched) || ( forma.controls.jornada.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.grado.errors?.required && forma.controls.grado.touched) || ( forma.controls.grado.errors?.required && sended )}">
+                <select name="grado" formControlName="grado" class="form-control">
+                  <option value="">Grado</option>
+                  <option value="salacuna"> Sala cuna </option>
+                  <option value="caminadores"> Caminadores </option>
+                  <option value="parvulo"> Párvulo </option>
+                  <option value="pre-jardin"> Pre-jardin </option>
+                  <option value="jardin"> Jardin </option>
+                  <option value="transicion"> Transicion </option>
+                  <option value="primero"> Primero </option>
+                  <option value="segundo"> Segundo </option>
+                  <option value="tercero"> Tercero </option>
+                  <option value="cuarto"> Cuarto </option>
+                  <option value="quinto"> Quinto </option>
+                </select>
+                <div *ngIf="(forma.controls.grado.errors?.required && forma.controls.grado.touched) || ( forma.controls.grado.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4" [ngClass]="{'has-danger':(forma.controls.indigena.errors?.required && forma.controls.indigena.touched) || ( forma.controls.indigena.errors?.required && sended )}">
+                <div class="radio-button text-left">
+                  <p> Indigena </p>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="indigena" formControlName="indigena" value="si">
+                  <label> Si </label>
+                </div>
+
+                <div class="radio-button">
+                  <input type="radio" name="indigena" formControlName="indigena" value="no">
+                  <label> No </label>
+                </div>
+                <div *ngIf="(forma.controls.indigena.errors?.required && forma.controls.indigena.touched) || ( forma.controls.indigena.errors?.required && sended )" class="form-control-feedback">
+                  Este campo es requerido
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" >
+                <div class="form-group">
+                  <input type="text" class="form-control" name="etnia" formControlName="etnia" placeholder="Etnia (Opcional)">
+                </div>
+              </div>
+
+
+            </div>
+            <!--DIV DEV ROW -->
+          </div>
+          <!-- DIV DE CAR -->
+
+          <!---Infomacion del padre-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <h5 class="subtitulo text-center"> INFORMACIÓN DEL PADRE</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaPapa.errors?.required && forma.controls.cedulaPapa.touched) || ( forma.controls.cedulaPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaPapa" formControlName="cedulaPapa" placeholder="Cédula">
+                  <div *ngIf="(forma.controls.cedulaPapa.errors?.required && forma.controls.cedulaPapa.touched) || ( forma.controls.cedulaPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.fechaExpPapa.errors?.required && forma.controls.fechaExpPapa.touched) || ( forma.controls.fechaExpPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpPapa" formControlName="fechaExpPapa" placeholder="Fecha de expedición de la cédula">
+                  <div *ngIf="(forma.controls.fechaExpPapa.errors?.required && forma.controls.fechaExpPapa.touched) || ( forma.controls.fechaExpPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.correoPapa.errors?.required && forma.controls.correoPapa.touched) || ( forma.controls.correoPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoPapa" formControlName="correoPapa" placeholder="correo">
+                  <div *ngIf="(forma.controls.correoPapa.errors?.required && forma.controls.correoPapa.touched) || ( forma.controls.correoPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.nombresPapa.errors?.required && forma.controls.nombresPapa.touched) || ( forma.controls.nombresPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresPapa" formControlName="nombresPapa" placeholder="Nombres">
+                  <div *ngIf="(forma.controls.nombresPapa.errors?.required && forma.controls.nombresPapa.touched) || ( forma.controls.nombresPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.apellidosPapa.errors?.required && forma.controls.apellidosPapa.touched) || ( forma.controls.apellidosPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosPapa" formControlName="apellidosPapa" placeholder="Apellidos">
+                  <div *ngIf="(forma.controls.apellidosPapa.errors?.required && forma.controls.apellidosPapa.touched) || ( forma.controls.apellidosPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="profesionPapa" formControlName="profesionPapa" placeholder="Profesión">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="LugarTrabajoPapa" formControlName="LugarTrabajoPapa" placeholder="Lugar de trabajo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="cargoPapa" formControlName="cargoPapa" placeholder="Cargo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.celularPapa.errors?.required && forma.controls.celularPapa.touched) || ( forma.controls.celularPapa.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularPapa" formControlName="celularPapa" placeholder="Teléfono">
+                  <div *ngIf="(forma.controls.celularPapa.errors?.required && forma.controls.celularPapa.touched) || ( forma.controls.celularPapa.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Infomacion de la madre-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo text-center"> INFORMACIÓN DEL MADRE</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaMama.errors?.required && forma.controls.cedulaMama.touched) || ( forma.controls.cedulaMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaMama" formControlName="cedulaMama" placeholder="Cédula">
+                  <div *ngIf="(forma.controls.cedulaMama.errors?.required && forma.controls.cedulaMama.touched) || ( forma.controls.cedulaMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.fechaExpMama.errors?.required && forma.controls.fechaExpMama.touched) || ( forma.controls.fechaExpMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpMama" formControlName="fechaExpMama" placeholder="Fecha de expedición de la cédula">
+                  <div *ngIf="(forma.controls.fechaExpMama.errors?.required && forma.controls.fechaExpMama.touched) || ( forma.controls.fechaExpMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.correoMama.errors?.required && forma.controls.correoMama.touched) || ( forma.controls.correoMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoMama" formControlName="correoMama" placeholder="correo">
+                  <div *ngIf="(forma.controls.correoMama.errors?.required && forma.controls.correoMama.touched) || ( forma.controls.correoMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.nombresMama.errors?.required && forma.controls.nombresMama.touched) || ( forma.controls.nombresMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresMama" formControlName="nombresMama" placeholder="Nombres">
+                  <div *ngIf="(forma.controls.nombresMama.errors?.required && forma.controls.nombresMama.touched) || ( forma.controls.nombresMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.apellidosMama.errors?.required && forma.controls.apellidosMama.touched) || ( forma.controls.apellidosMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosMama" formControlName="apellidosMama" placeholder="Apellidos">
+                  <div *ngIf="(forma.controls.apellidosMama.errors?.required && forma.controls.apellidosMama.touched) || ( forma.controls.apellidosMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="profesionMama" formControlName="profesionMama" placeholder="Profesión">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="LugarTrabajoMama" formControlName="LugarTrabajoMama" placeholder="Lugar de trabajo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="cargoMama" formControlName="cargoMama" placeholder="Cargo">
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4"[ngClass]="{'has-danger':(forma.controls.celularMama.errors?.required && forma.controls.celularMama.touched) || ( forma.controls.celularMama.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularMama" formControlName="celularMama" placeholder="Teléfono">
+                  <div *ngIf="(forma.controls.celularMama.errors?.required && forma.controls.celularMama.touched) || ( forma.controls.celularMama.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Otras referencias-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo  text-center"> OTRAS REFERENCIAS</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.cedulaOtraR.errors?.required && forma.controls.cedulaOtraR.touched) || ( forma.controls.cedulaOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="cedulaOtraR" formControlName="cedulaOtraR" placeholder="Cédula">
+                  <div *ngIf="(forma.controls.cedulaOtraR.errors?.required && forma.controls.cedulaOtraR.touched) || ( forma.controls.cedulaOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.fechaExpOtraR.errors?.required && forma.controls.fechaExpOtraR.touched) || ( forma.controls.fechaExpOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="fechaExpOtraR" formControlName="fechaExpOtraR" placeholder="Fecha de expedición de la cédula">
+                  <div *ngIf="(forma.controls.fechaExpOtraR.errors?.required && forma.controls.fechaExpOtraR.touched) || ( forma.controls.fechaExpOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.correoOtraR.errors?.required && forma.controls.correoOtraR.touched) || ( forma.controls.correoOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="correoOtraR" formControlName="correoOtraR" placeholder="correo">
+                  <div *ngIf="(forma.controls.correoOtraR.errors?.required && forma.controls.correoOtraR.touched) || ( forma.controls.correoOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.nombresOtraR.errors?.required && forma.controls.nombresOtraR.touched) || ( forma.controls.nombresOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="	text" class="form-control" name="nombresOtraR" formControlName="nombresOtraR" placeholder="Nombres">
+                  <div *ngIf="(forma.controls.nombresOtraR.errors?.required && forma.controls.nombresOtraR.touched) || ( forma.controls.nombresOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.apellidosOtraR.errors?.required && forma.controls.apellidosOtraR.touched) || ( forma.controls.apellidosOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="apellidosOtraR" formControlName="apellidosOtraR" placeholder="Apellidos">
+                  <div *ngIf="(forma.controls.apellidosOtraR.errors?.required && forma.controls.apellidosOtraR.touched) || ( forma.controls.apellidosOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.parentescoOtraR.errors?.required && forma.controls.parentescoOtraR.touched) || ( forma.controls.parentescoOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="parentescoOtraR" formControlName="parentescoOtraR" placeholder="Parentezco">
+                  <div *ngIf="(forma.controls.parentescoOtraR.errors?.required && forma.controls.parentescoOtraR.touched) || ( forma.controls.parentescoOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.ocupacionOtraR.errors?.required && forma.controls.ocupacionOtraR.touched) || ( forma.controls.ocupacionOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="ocupacionOtraR" formControlName="ocupacionOtraR" placeholder="Ocupación">
+                  <div *ngIf="(forma.controls.ocupacionOtraR.errors?.required && forma.controls.ocupacionOtraR.touched) || ( forma.controls.ocupacionOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.direccionOtraR.errors?.required && forma.controls.direccionOtraR.touched) || ( forma.controls.direccionOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="direccionOtraR" formControlName="direccionOtraR" placeholder="Dirección">
+                  <div *ngIf="(forma.controls.direccionOtraR.errors?.required && forma.controls.direccionOtraR.touched) || ( forma.controls.direccionOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-8  col-lg-4" [ngClass]="{'has-danger':(forma.controls.celularOtraR.errors?.required && forma.controls.celularOtraR.touched) || ( forma.controls.celularOtraR.errors?.required && sended )}">
+                <div class="form-group">
+                  <input type="number" class="form-control" name="celularOtraR" formControlName="celularOtraR" placeholder="Teléfonos">
+                  <div *ngIf="(forma.controls.celularOtraR.errors?.required && forma.controls.celularOtraR.touched) || ( forma.controls.celularOtraR.errors?.required && sended )" class="form-control-feedback">
+                    Este campo es requerido
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- div medidas del card-->
+          </div>
+          <!-- div card -->
+
+          <!---Habilidades y actitudes-->
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 card card-block">
+            <div class="row ">
+
+              <div class="col-xs-12 col-md-12 col-lg-12">
+
+                <h5 class="subtitulo text-center"> HABILIDADES Y ACTITUDES</h5>
+              </div>
+
+              <div class="col-xs-12 col-md-8 col-lg-4 text-left">
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="musica" formControlName="musica"> Música
+                  </label>
+                </div>
+
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="RelacionPersonales" formControlName="RelacionPersonales"> Relació                                                                                n con los demas
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="baile" formControlName="baile"> Baile
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="amorNaturaleza" formControlName="amorNaturaleza"> Amor a la naturaleza
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="arte" formControlName="arte"> Arte
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="armarFiguras" formControlName="armarFiguras"> Armar figuras
+                  </label>
+                </div>
+
+                <div class="checkbox-bottom">
+                  <label>
+                    <input type="checkbox" name="lenguaje" formControlName="lenguaje"> Lenguaje
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="otraCual" formControlName="otraCual" placeholder="Otra, Cual? (Opcional)" />
+                </div>
+
+
+              </div>
+              <!-- div medidas del card-->
+            </div>
+            <!-- div card -->
+
+            <hr>
+            <div *ngIf="exitoForma" class="alert alert-success text-center" role="alert">
+              Actualizado con exito!!
+            </div>
+            <div *ngIf="errorForma" class="alert alert-danger text-center" role="alert">
+              <strong>Error,</strong>{{errorForma}}
+            </div>
+
+            <div class="button text-right">
+              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>                  
+              <input class="btn btn-info" type="submit" value="Admitir" />                
+            </div>
+            <div class="button text-right">
+              </div>
+
+
+          </div>
+          <!-- DIV DE PRIMER ROW-->
+
+
+          </div>
+      </form>
+
+    </div>
+
+    <div class="modal-footer">
+    </div>
+  </ng-template>
+  <!--FIN MODAL ADMITIR ESUDIANTE ANTIGUO -->

@@ -158,6 +158,17 @@ export class PanelConfiguracionSemestreComponent implements OnInit {
     let admitidos = _.map(semestre.admitidos)
     let matriculados = _.map(semestre.matriculados)
     console.log(inscripciones);
+    this.cuposSalaCula=this.semestre.cupoSalaCula;
+    this.cuposCaminadores=this.semestre.cuposCaminadores;
+    this.cuposParvulo=this.semestre.cuposParvulo;
+    this.cuposPreJardin=this.semestre.cuposPreJardin;
+    this.cuposJardin=this.semestre.cuposJardin;
+    this.cuposTrancision=this.semestre.cuposTrancision;
+    this.cuposPrimero=this.semestre.cuposPrimero;
+    this.cuposSegundo=this.semestre.cuposSegundo;
+    this.cuposTercero=this.semestre.cuposTercero;
+    this.cuposCuarto=this.semestre.cuposCuarto;
+    this.cuposQuinto=this.semestre.cuposQuinto;
     
     _.forEach(inscripciones, (o:any)=>{ 
       this.inscritosSalaCula=0;this.inscritosCaminadores=0;this.inscritosParvulo=0;this.inscritosPreJardin=0;this.inscritosJardin=0;

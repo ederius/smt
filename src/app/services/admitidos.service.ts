@@ -27,6 +27,23 @@ export class AdmitidosService {
     });
   }
 
+  agregarAlumnoAntiguo(admitido){
+    let date = new Date();
+    let ano = date.getFullYear();
+    return this._semestresServices.obtenerUltimoSemestre().then((semestre)=>{
+      return this.db.database.ref().child(`semestres/${ano}/${semestre}/admitidos/`).push().then(ref=>{
+        let key = ref.key; admitido.pin = ref.key; 
+        return this.db.database.ref(`semestres/${ano}/${semestre}/admitidos/${key}`).set(admitido).then(function(data){
+          return data;
+        }).catch((error)=>{
+          return error
+        });
+    });
+    }).catch((error)=>{
+      return error
+    });
+  }
+
   sumarAdmision(){
     let date = new Date();
     let ano = date.getFullYear();
